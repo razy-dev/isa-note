@@ -1,3 +1,3 @@
 # isa-note
 ## DBMS
-[B-Tree](./dbms/b-tree.adoc)
+[B-Tree](./dbms/b-tree.adoc) 
