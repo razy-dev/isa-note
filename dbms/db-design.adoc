@@ -1,4 +1,11 @@
 = Database 설계
+:toc: left
+:toclevels: 3
+:sectnums:
+:sectlinks:
+:imagesdir: ../imgs
+
+== 개념설계
 
 image::../imgs/20160725095856321.png[]
 image::../imgs/20160725095945897.png[]
