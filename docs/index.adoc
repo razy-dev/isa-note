@@ -1,4 +1,4 @@
 = ISA
 == DBMS
 
-link:./dbms/b-tree.adoc[b-tree]
+link:./dbms/b-tree.html[b-tree]
