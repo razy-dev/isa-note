@@ -30,7 +30,7 @@ jobs:
         # pdf_build: true
         # adoc_file_ext: .ascii # default is .adoc
         # source_dir: docs/ # default is .
-        source_dir: / 
+        # source_dir: / 
         # slides_build: true
         # pre_build:
         # post_build:
