@@ -1,5 +1,3 @@
 = ISA
 
-== DBMS
-
-link:./dbms/b-tree.html[b-tree]
+== xref:dbms/index.adoc[데이터베이스]
