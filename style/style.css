@@ -22,10 +22,11 @@ code {
 
 strong {
   font-weight: 600;
-  color: rgba(0, 0, 0, 1);
+  color: rgba(0, 0, 0 0.9);
 }
 
 em {
+  font-style: inherit;
   font-weight: 600;
   color: rgba(255, 0, 0, 1);
 }
@@ -667,173 +668,173 @@ pre.rouge {
     background-color: #f8f8f8;
 }
 
-#content > h1:first-child:not([class]), body {
-    background-color: #45494a;
-    color: #bbbbbb
-}
+/*#content > h1:first-child:not([class]), body {*/
+/*    background-color: #45494a;*/
+/*    color: #bbbbbb*/
+/*}*/
 
-.content > pre {
-    filter: invert(90%) hue-rotate(180deg);
-}
+/*.content > pre {*/
+/*    filter: invert(90%) hue-rotate(180deg);*/
+/*}*/
 
-a, a:hover, a:focus {
-    color: #589df6;
-}
+/*a, a:hover, a:focus {*/
+/*    color: #589df6;*/
+/*}*/
 
-table.tableblock, th.tableblock, td.tableblock {
-    color: #bbbbbb
-}
+/*table.tableblock, th.tableblock, td.tableblock {*/
+/*    color: #bbbbbb*/
+/*}*/
 
-/* was: rgba(0,0,0,.8) */
-table:not(.linenotable):not(.CodeRay) thead tr th, table thead tr td, table:not(.linenotable):not(.CodeRay) tfoot tr th, table:not(.linenotable):not(.CodeRay) tfoot tr td {
-    color: #bbbbbb
-}
+/*!* was: rgba(0,0,0,.8) *!*/
+/*table:not(.linenotable):not(.CodeRay) thead tr th, table thead tr td, table:not(.linenotable):not(.CodeRay) tfoot tr th, table:not(.linenotable):not(.CodeRay) tfoot tr td {*/
+/*    color: #bbbbbb*/
+/*}*/
 
-abbr, acronym {
-    color: #bbbbbb
-}
+/*abbr, acronym {*/
+/*    color: #bbbbbb*/
+/*}*/
 
-table:not(.linenotable):not(.CodeRay) tr th, table tr td {
-    color: #bbbbbb
-}
+/*table:not(.linenotable):not(.CodeRay) tr th, table tr td {*/
+/*    color: #bbbbbb*/
+/*}*/
 
-kbd {
-    background-color: #626262 !important;
-    color: #bbbbbb;
-    -webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, .2), 0 0 0 .1em #777 inset;
-    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2), 0 0 0 .1em #777 inset
-}
+/*kbd {*/
+/*    background-color: #626262 !important;*/
+/*    color: #bbbbbb;*/
+/*    -webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, .2), 0 0 0 .1em #777 inset;*/
+/*    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2), 0 0 0 .1em #777 inset*/
+/*}*/
 
-.menuseq, .menu {
-    color: #bbbbbb
-}
+/*.menuseq, .menu {*/
+/*    color: #bbbbbb*/
+/*}*/
 
-#footer {
-    color: #bbbbbb
-}
+/*#footer {*/
+/*    color: #bbbbbb*/
+/*}*/
 
-tbody tr th, tbody tr th p, tfoot tr th, tfoot tr th p {
-    color: #bbbbbb
-}
+/*tbody tr th, tbody tr th p, tfoot tr th, tfoot tr th p {*/
+/*    color: #bbbbbb*/
+/*}*/
 
-.conum[data-value] {
-    color: #bbbbbb
-}
+/*.conum[data-value] {*/
+/*    color: #bbbbbb*/
+/*}*/
 
-/* was: rgba(0,0,0,.85) */
-.paragraph.lead > p, #preamble > .sectionbody > .paragraph:first-of-type p {
-    color: #bbbbbb
-}
+/*!* was: rgba(0,0,0,.85) *!*/
+/*.paragraph.lead > p, #preamble > .sectionbody > .paragraph:first-of-type p {*/
+/*    color: #bbbbbb*/
+/*}*/
 
-.quoteblock blockquote, .quoteblock blockquote p {
-    color: #bbbbbb
-}
+/*.quoteblock blockquote, .quoteblock blockquote p {*/
+/*    color: #bbbbbb*/
+/*}*/
 
-#content > h1:first-child:not([class]) {
-    color: #bbbbbb
-}
+/*#content > h1:first-child:not([class]) {*/
+/*    color: #bbbbbb*/
+/*}*/
 
-#header .details br + span.author:before {
-    color: #bbbbbb
-}
+/*#header .details br + span.author:before {*/
+/*    color: #bbbbbb*/
+/*}*/
 
-#header .details span.email a {
-    color: #bbbbbb
-}
+/*#header .details span.email a {*/
+/*    color: #bbbbbb*/
+/*}*/
 
-#header > h1:first-child {
-    color: #bbbbbb
-}
+/*#header > h1:first-child {*/
+/*    color: #bbbbbb*/
+/*}*/
 
-blockquote, blockquote p {
-    color: #bbbbbb
-}
+/*blockquote, blockquote p {*/
+/*    color: #bbbbbb*/
+/*}*/
 
-/* was: rgba(0,0,0,.6) */
-blockquote cite a, blockquote cite a:visited {
-    color: #bbbbbb
-}
+/*!* was: rgba(0,0,0,.6) *!*/
+/*blockquote cite a, blockquote cite a:visited {*/
+/*    color: #bbbbbb*/
+/*}*/
 
-#header .details {
-    color: #bbbbbb
-}
+/*#header .details {*/
+/*    color: #bbbbbb*/
+/*}*/
 
-.admonitionblock > table td.content {
-    color: #bbbbbb
-}
+/*.admonitionblock > table td.content {*/
+/*    color: #bbbbbb*/
+/*}*/
 
-.quoteblock .quoteblock {
-    color: #bbbbbb
-}
+/*.quoteblock .quoteblock {*/
+/*    color: #bbbbbb*/
+/*}*/
 
-.quoteblock .attribution cite, .verseblock .attribution cite {
-    color: #bbbbbb
-}
+/*.quoteblock .attribution cite, .verseblock .attribution cite {*/
+/*    color: #bbbbbb*/
+/*}*/
 
-/* was: f8f8f7 */
-table:not(.linenotable):not(.CodeRay) tbody tr {
-    background: #45494a
-}
+/*!* was: f8f8f7 *!*/
+/*table:not(.linenotable):not(.CodeRay) tbody tr {*/
+/*    background: #45494a*/
+/*}*/
 
-table:not(.linenotable):not(.CodeRay) tr.even, table tr.alt, table tr:nth-of-type(even) {
-    background: #626262
-}
+/*table:not(.linenotable):not(.CodeRay) tr.even, table tr.alt, table tr:nth-of-type(even) {*/
+/*    background: #626262*/
+/*}*/
 
-/* was f7f8f7 */
-table:not(.linenotable):not(.CodeRay) thead, table tfoot {
-    background: #626262
-}
+/*!* was f7f8f7 *!*/
+/*table:not(.linenotable):not(.CodeRay) thead, table tfoot {*/
+/*    background: #626262*/
+/*}*/
 
-tbody tr th {
-    background: #626262
-}
+/*tbody tr th {*/
+/*    background: #626262*/
+/*}*/
 
-/* was: 7a2518 */
-.subheader, .admonitionblock td.content > .title, .audioblock > .title, .exampleblock > .title, .imageblock > .title, .listingblock > .title, .literalblock > .title, .stemblock > .title, .openblock > .title, .paragraph > .title, .quoteblock > .title, table.tableblock > .title, .verseblock > .title, .videoblock > .title, .dlist > .title, .olist > .title, .ulist > .title, .qlist > .title, .hdlist > .title,
-#toctitle,
-.sidebarblock > .content > .title,
-.quoteblock blockquote::before,
-    /* was: several */
-td.icon {
-    filter: invert(90%) hue-rotate(180deg);
-}
+/*!* was: 7a2518 *!*/
+/*.subheader, .admonitionblock td.content > .title, .audioblock > .title, .exampleblock > .title, .imageblock > .title, .listingblock > .title, .literalblock > .title, .stemblock > .title, .openblock > .title, .paragraph > .title, .quoteblock > .title, table.tableblock > .title, .verseblock > .title, .videoblock > .title, .dlist > .title, .olist > .title, .ulist > .title, .qlist > .title, .hdlist > .title,*/
+/*#toctitle,*/
+/*.sidebarblock > .content > .title,*/
+/*.quoteblock blockquote::before,*/
+/*    !* was: several *!*/
+/*td.icon {*/
+/*    filter: invert(90%) hue-rotate(180deg);*/
+/*}*/
 
-/* was: f8f8f7 */
-.sidebarblock, .exampleblock, .exampleblock > .content {
-    background: #626262;
-    border-color: #626262;
-    box-shadow: 0 1px 4px #626262
-}
+/*!* was: f8f8f7 *!*/
+/*.sidebarblock, .exampleblock, .exampleblock > .content {*/
+/*    background: #626262;*/
+/*    border-color: #626262;*/
+/*    box-shadow: 0 1px 4px #626262*/
+/*}*/
 
-/* was: f7f7f8 */
-.exampleblock > .content > :last-child > :last-child, .exampleblock > .content .olist > ol > li:last-child > :last-child, .exampleblock > .content .ulist > ul > li:last-child > :last-child, .exampleblock > .content .qlist > ol > li:last-child > :last-child, .sidebarblock > .content > :last-child > :last-child, .sidebarblock > .content .olist > ol > li:last-child > :last-child, .sidebarblock > .content .ulist > ul > li:last-child > :last-child, .sidebarblock > .content .qlist > ol > li:last-child > :last-child {
-    margin-bottom: 0
-}
+/*!* was: f7f7f8 *!*/
+/*.exampleblock > .content > :last-child > :last-child, .exampleblock > .content .olist > ol > li:last-child > :last-child, .exampleblock > .content .ulist > ul > li:last-child > :last-child, .exampleblock > .content .qlist > ol > li:last-child > :last-child, .sidebarblock > .content > :last-child > :last-child, .sidebarblock > .content .olist > ol > li:last-child > :last-child, .sidebarblock > .content .ulist > ul > li:last-child > :last-child, .sidebarblock > .content .qlist > ol > li:last-child > :last-child {*/
+/*    margin-bottom: 0*/
+/*}*/
 
-#toc {
-    background-color: #626262 !important;
-    border-color: #626262 !important;
-}
+/*#toc {*/
+/*    background-color: #626262 !important;*/
+/*    border-color: #626262 !important;*/
+/*}*/
 
-h1, h2, h3, #toctitle, .sidebarblock > .content > .title, h4, h5, h6 {
-    color: #cccccc
-}
+/*h1, h2, h3, #toctitle, .sidebarblock > .content > .title, h4, h5, h6 {*/
+/*    color: #cccccc*/
+/*}*/
 
-/* scroll bar color change to match the dark scheme */
-::-webkit-scrollbar {
-    width: 12px;
-    height: 12px;
-    background-color: inherit;
-}
+/*!* scroll bar color change to match the dark scheme *!*/
+/*::-webkit-scrollbar {*/
+/*    width: 12px;*/
+/*    height: 12px;*/
+/*    background-color: inherit;*/
+/*}*/
 
-::-webkit-scrollbar-thumb {
-    -webkit-border-radius: 10px;
-    border: 2px solid #2c2c2c;
-    background-color: #404040;
-}
+/*::-webkit-scrollbar-thumb {*/
+/*    -webkit-border-radius: 10px;*/
+/*    border: 2px solid #2c2c2c;*/
+/*    background-color: #404040;*/
+/*}*/
 
-::-webkit-scrollbar-track {
-    width: 12px;
-    height: 12px;
-    background-color: #2c2c2c;
-}
+/*::-webkit-scrollbar-track {*/
+/*    width: 12px;*/
+/*    height: 12px;*/
+/*    background-color: #2c2c2c;*/
+/*}*/
