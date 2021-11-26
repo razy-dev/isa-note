@@ -1,5 +1,5 @@
 = 1. 데이터베이스 개요
-include::../style/style.adoc[]
+include::../_toc.adoc[]
 
 == 1.1. 데이터베이스 개념
 
@@ -10,6 +10,8 @@ include::../style/style.adoc[]
 . *``저``장 데이터*(Stored) : 컴퓨터가 접근 가능한 매체에 저장
 . *``운``영 데이터*(Operational) : 조직 운영에 필요한 필수적인 데이터
 . *``공``유 데이터*(Shared) : 여러 응용 프로그램이 공동으로 사용
+
+include::../_to_index.adoc[]
 
 == 1.2. DBMS 발전 배경
 === 파일시스템의 문제점
@@ -22,6 +24,8 @@ include::../style/style.adoc[]
 * ``경``제성 :
 * ``무``결성 :
 
+include::../_to_index.adoc[]
+
 == 1.3. DBMS 정의
 응용프로그램과 데이터의 중재자로서 모든 응용프로그램들이 데이터베이스를 공용할 수 있도록 관리해주는 소프트웨어 시스템
 
@@ -30,6 +34,8 @@ include::../style/style.adoc[]
 * **조작**기능(Manipulation:CRUD)
 * **제어**기능(Control)
 
+include::../_to_index.adoc[]
+
 == 1.4. 데이터베이스 시스템
 데이터를 DB로 저장하고 관리해서 필요한 정보를 생성하는 컴퓨터 중심의 시스템
 
@@ -37,6 +43,8 @@ include::../style/style.adoc[]
 * 데이터 정의어(DDL)
 * 데이터 조작어(DML)
 * 데이터 제어어(DCL)
+
+include::../_to_index.adoc[]
 
 == 1.5. 3단계 데이터베이스 구조
 사용자의 응용과 물리적 데이터베이스의 분리
@@ -50,6 +58,8 @@ include::../style/style.adoc[]
 4+| 물리적 Data 독립성 확보
 | 내부 Schema | 1 개 | 장치 관점   | 물리적 데이터 모델을 사용. 데이터 저장 구조의 세부 사항과 데이터베이스에 대한 접근 경로를 기술
 |===
+
+include::../_to_index.adoc[]
 
 == 1.6. 데이터아키텍쳐 및 데이터베이스 관리
 === 1.6.1. 데이터아키텍쳐 및 데이터베이스 구축 방법론
@@ -104,6 +114,8 @@ include::../style/style.adoc[]
 ==== 데이터 품질 관리 프레임워크
 ==== 데이터 품질 관리 프로세스
 
+include::../_to_index.adoc[]
+
 == 1.7. 데이터베이스 저장 장치
 === 1.7.1 데이터를 디스크에 물리적으로 저장하는 방법
 ** 순차 파일(Sequential File)
@@ -121,6 +133,8 @@ include::../style/style.adoc[]
 디스크와 주기억장치간 데이터 전송은 Block(Page) 단위로 수행
 
 * `TODO` 이미지 추가
+
+include::../_to_index.adoc[]
 
 == 1.8. 데이터베이스 접근
 [%noheader]
@@ -154,6 +168,8 @@ include::../style/style.adoc[]
 
 * 1 block의 크기 = 60개 * (100 bytes 짜리 record) + 300
 * 20,000 bytes / (60*100 + 300) = 3 block = 180 records 가 들어갈 수 있다.
+
+include::../_to_index.adoc[]
 
 == 1.9. 파일조작 기본 방식
 * 순차 방법
@@ -233,6 +249,8 @@ image::확장해시 확장.png[]
 
 * https://m.blog.naver.com/PostView.naver?isHttpsRedirect=true&blogId=skyjjw79&logNo=220875535595
 
+include::../_to_index.adoc[]
+
 == 1.10. Tree
 === 1.10.1. Tree 개요
 ==== 이진 탐색 트리
@@ -242,17 +260,17 @@ image::확장해시 확장.png[]
 |===
 | 구분    ^| B Tree ^| B+ Tree
 | 접근성
-| * Leaf에 가기전에 값을 찾을 수 있다
-| * 레코드의 위치는 Leaf 노드에서만 파악된다 +
+a| * Leaf에 가기전에 값을 찾을 수 있다
+a| * 레코드의 위치는 Leaf 노드에서만 파악된다 +
 * 순차검색(범위검색)이 유리하다
 | 중복성
-| * 탐색 키의 중복성이 없다
-| * Index Set 과 Sequence Set 에 중복된다
+a| * 탐색 키의 중복성이 없다
+a| * Index Set 과 Sequence Set 에 중복된다
 | 복잡성
-| * Leaf 가 아닌 노드 Size 가 더 크다 +
+a| * Leaf 가 아닌 노드 Size 가 더 크다 +
 * Index 에 대한 저장공간 관리가 보잡하다 +
 * 삽입, 삭제가 복잡하다
-| * 모든 노드의 크기가 같다 +
+a| * 모든 노드의 크기가 같다 +
 * 삭제가 쉽다 +
 (삭제될 노드가 항상 Leaf 에 존재한다)
 |===
@@ -278,3 +296,5 @@ image::b-tree-후위순회.png[]
 === 1.10.4. B-Tree 삽입 연산
 
 * https://velog.io/@emplam27/%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0-%EA%B7%B8%EB%A6%BC%EC%9C%BC%EB%A1%9C-%EC%95%8C%EC%95%84%EB%B3%B4%EB%8A%94-B-Tree
+
+include::../_to_index.adoc[]
