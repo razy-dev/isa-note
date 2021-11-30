@@ -2,12 +2,132 @@
 include::../_toc.adoc[]
 
 == 2.1. 데이터-모델링
+=== 데이터 모델링 3요소
+데이터구조(Data Structure):: 개체와 개체 간 관계를 명세 (Schema)
+연산(Operations):: 개체를 처리하는 작업에 대한 명세
+제약조건(Constraint):: DB 에 허용될 수 있는 개체에 대한 논리적 제약 명세
 
 == 2.2. DB-생명주기와-설계단계
+=== 2.2.1. 요구분석
+* 요구 분석
+* 정보의 내용과 처리 요구조건의 수집
+* 기업의 경영목표와 제약조건의 식별
+* 공식적인 요구조건 명세 작성
+* 요구조건 명세표 검토
+
+=== 2.2.2. 개념 설계
+*핵심 엔티티 도출*
+
+==== 개념적 스키마 모델링
+개체분석(Entity Analysis:EA) 방법:: 하향식
+속성합성(Attribute Synthesis:AS) 방법:: 상향식
+
+==== 트랜잭션 모델링
+* 트랜잭션 식별
+* 트랜잭션 중요도
+* 트랜잭션 _예상 빈도_
+
+=== 2.2.3. 논리 설계
+==== ERT 표기법
+1. IE
+2. Baker
+3. Chen
+4. min/Max
+
+=== 2.2.4. 물리 설계
+_정규화_
+
 
 == 2.3. ERD-와-E-ERD
+==== E-R 모델과 관계형 모델의 변화
+[cols="^2,^2,<4,<2"]
+|===
+| Diagram   | 개념 모델     ^| 논리 모델                ^| 물리 모델
+
+|           | Entity        a| Relation                 a| Table
+|           | Attribute     a| * Attribute
+* Relation
+a| * Column
+* table
+|           | Relationship  a| * 소멸
+* Relation
+** 관계속성이 있는 경우
+** N:M 관계일 때
+** 3진 차수
+a| * _FK_
+* Table
+|           | 없음          a| Tuple                     a| Record(Row)
+|           | 식별자        a| 식별자                    a| Key
+|===
+
+=== 2.3.1. ER Model
+==== 1) ER Model Diagram 표기법
+[cols="^1,<1"]
+|===
+|           | 엔티티
+|           | 약한 엔티티
+|           | 관계 (Relationship)
+|           | 식별 관계
+|           | 속성(Attribute)
+|           | 키 속성(Attribute)
+|           | 약한 키 속성(Attribute)
+|           | *다치 속성(Attribute)* (여러 값을 가질 수 있음. eg> 취미)
+|           | 복합 속성(Attribute) (세부 속성으로 분해 가능. eg> 주소)
+|           | 유도된 속성(Attribute) (eg> 합계, 평균)
+|           | 부분 참여 / 전체참여
+|           | 카디날리티
+|           | 참조(참여) 제약조건
+|===
+
+==== 2) 개체(Entity)
+==== 3) 속성(Attribute)
+==== 4) 관계(Relationship)
+차수(Degree):: 관계에 참여하는 개체의 수
+* 이진(Binary)차수 : 관계에 참여하는 개체가 2개
+* 삼진(Ternary)차수 : 관계에 참여하는 개체가  3개
+* 단일(Unary)차수 : 관계에 참여하는 개체가  1개 (Recurve)
+기수성(Cardinality):: 개체가 참여할 수 있는 관계의 수
+* 1:1
+* 1:N
+* N:M
+선택성(Optionality):: 특정 개체와 관련된 상대 개체의 존재 여부
+* Mandatory
+* Optional
+
+==== 5) 개체 타입
+약한 개체 타입:: 자신의 속성만으로 키를 명세할 수 없는 개체
+강한 개체 타입:: 자신의 속성으로 구성된 키를 가진 개체
+식별관게:: 약한 개체를 강한 개체와 연관 시켜주는 관계
+* eg> 대출이 없으면 상환도 없다
+
+=== 2.3.2. 확장형 E-R 모델
+* 특수화
+* 일반화
+* 상속
+* 집단화
+* Disjoint Constrain
+* Non-disjoint Constrain
 
 == 2.4. 관계형-모델
+=== 2.4.1. 속성(Attribute)와 도메인
+* Domain
+* Attribute
+
+=== 2.4.2 Relation (Table)
+* TODO: Relation Image
+
+==== Relation 의 특징 (집합개념)
+튜플의 유일성:: 한 Relation 에 속한 모든 Tuple 은 유일하다
+튜플의 무 순서성:: Tuple 의 순서가 없다
+속성의 무 순서성:: 한 Relation 을 구성하는 속성(Attribute) 의 순서가 없다
+속성의 원자성:: 속성(Attribute) 은 더 이상 분해할 수 없다
+
+
+
+
+
+
+
 
 == 2.5. 관계-대수
 [cols="3,^5,^2"]
