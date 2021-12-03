@@ -17,7 +17,9 @@ include::../_toc.adoc[]
 * 상관없는 값들도 함께 삭제되는 연쇄 삭제 현상
 * 튜플을 삭제하면 꼭 필요한 데이터까지 함께 삭제되는 데이터 손실의 문제
 
-== 3.2. 함수적 종속성(FD: Functional Dependency)
+== 3.2. 함수적 종속성
+(FD: Functional Dependency)
+
 Relation R의 애트리뷰트들의 집합 X의 값이 애트리뷰트들의 집합 Y의 값을 유일하게(Unique) 결정한다면 +
 '집합 X 는 집합 Y 를 함수적으로 결정' 한다고 한다.
 
