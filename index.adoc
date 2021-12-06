@@ -1,3 +1,8 @@
 = ISA
+include::_toc.adoc[]
+:sectnums:
+:stylesdir: ./style
 
-== xref:dbms/index.adoc[데이터베이스]
+=== xref:audit/index.adoc[감리]
+=== xref:dbms/index.adoc[데이터베이스]
+=== xref:pmp/index.adoc[PMP 사업관리]

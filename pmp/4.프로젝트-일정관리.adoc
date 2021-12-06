@@ -1,0 +1,114 @@
+= 4. 프로젝트 일정관리
+include::../_toc.adoc[]
+
+== 4.1. 일정 관리 계획
+[cols="1,1,1", %autowidth.stretch]
+|===
+^| 투입물 ^| 도구 및 기법 ^| 산출물
+
+a| . 프로젝트 헌장
+. 프로젝트 관리 계획서
+- 범위 관리 계획서
+- 개발 방식
+. 기업 환경 요인
+. 조직 프로제스 자산
+
+a| . 전문가 판단
+. 데이터 분석
+. 회의
+
+a| . 일정관리 계획서
+|===
+
+== 4.2. 활동 정의
+[cols="1,1,1", %autowidth.stretch]
+|===
+^| 투입물 ^| 도구 및 기법 ^| 산출물
+
+a| . 프로젝트 관리 계획서
+- 일정관리 계획서
+- *범위 기준선*
+. 기업 환경 요인
+. 조직 프로제스 자산
+
+a| . 전문가 판단
+. 분할
+. 연동 기획
+. 회의
+
+a| . *활동 목록*
+. *활동 속성*
+. 이정표 목록
+. 변경 요청
+. 프로젝트 관리 계획서 업데이트
+- 일정 기준선
+- 원가 기준선
+|===
+
+=== 도구 및 기법
+==== 분할(Decomposition)
+==== 연동 기획(Rolling Wave Planning)
+
+=== 산출물
+==== 활동 목록(Activity List)
+==== 활동 속성(Activity Attributes)
+==== 이정표 목록(Milestone List)
+* 중요한 시점 또는 사건
+* *기간이 _0_*
+
+== 4.3. 활동 순서 배열
+[cols="1,1,1", %autowidth.stretch]
+|===
+^| 투입물 ^| 도구 및 기법 ^| 산출물
+
+a| . 프로젝트 관리 계획서
+- 일정관리 계획서
+- *범위 기준선*
+. 프로젝트 문서
+- 활동 목록
+- 활동 속성
+- 이정표 목록
+- 가정사항 기록부
+. 기업 환경 요인
+. 조직 프로제스 자산
+
+a| . 선후행도형법(PDM)
+. 의존관계 결정 및 통합
+. 선도 및 지연
+. 프로젝트관리정보시스템
+
+a| . 프로젝트 일정 네트워크 다이어그램
+. 프로젝트 문서 갱신
+|===
+
+=== 도구 및 기법
+==== 선후행 도형법(Precedence Diagramming Method: PDM)
+* AON(Activity On Node)
+
+FS(Finish-to-Start)::
+FF(Finish-to-Finish)::
+SF(Start-to-Finish)::
+SS(Start-to-Start)::
+
+//==
+
+===== 참고> 연결선 도형법(Arrow Diagramming Method: ADM)
+* AOA(Activity On Arrow)
+* FS 만 표현 가능
+** 기타 관계는 더미 활동(점선, 기간 0) 으로 표기
+
+===== 참고> 조건부 도형법(Conditional Diagramming Method: CDM)
+* GERT(Graphical Evaluation and Review Techniques)
+
+
+
+
+
+
+
+== 4.4. 활동 기간 산정
+
+== 4.5. 일정 개발
+
+== 4.6. 일정 통제
+
