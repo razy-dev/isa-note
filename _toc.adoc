@@ -6,3 +6,4 @@
 :imagesdir: ./imgs
 :stylesdir: ../style
 :stylesheet: style.css
+:stem: latexmath
