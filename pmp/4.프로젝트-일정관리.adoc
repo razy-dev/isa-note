@@ -184,12 +184,119 @@ latexmath:[\frac{P + M + O} {3}]
 latexmath:[\frac{P + 4M + O} {6}]
 
 ==== 상향식 추정(Bottom-up Estimating)
+==== 데이터 분석(Data Analysis)
+* 대안 분석(Alternatives Analysis)
+* 예비 분석(Reserve Analysis)
+** Contingency Reserve
+*** Known - Unknowns : 예측 가능한 위험 대비
+*** Duration estimates 에 포함됨
+** Management Reserve
+*** Unknown - Unknowns : 예측 불가능한 위험 대비
+
+==== 의사 결정(Decision Making) : 투표
+* Fist to Five
+
+==== 기간 산정치(Duration Estimates)
+* 산정 기준(Basis Of Estimates)
+** 기간 산정치를 뒷받침 하는 보조 문서
 
 === 4.4.3. 산출물
 
 == 4.5. 일정 개발
+[cols="1,1,1", %autowidth.stretch]
+|===
+^| 투입물 ^| 도구 및 기법 ^| 산출물
+
+a| . 프로젝트 관리 계획서
+- 일정관리 계획서
+- *범위 기준선*
+. 프로젝트 문서
+- 활동 목록
+- 활동 속성
+- 이정표(마일스톤) 목록
+- 가정사항 기록부
+- 교훈 관리대장
+- 프로젝트 팀 배정표
+- 자원분류체계(RBS)
+- 자원달력
+- 자원 요구사항
+- 위험 등록부
+- 기간 산정치
+- 산정 기준서
+- 프로젝트 일정 네트워크 다이어그램
+. 협약
+. 기업 환경 요인
+. 조직 프로제스 자산
+
+a| . 일정 네트워크 분석
+. 주공정법
+. 자원 최적화
+. 데이터 분석
+- 가정형 시나리오 분석
+- 시뮬레이션
+. 선도와 지연
+. 일정 단축
+. 애자일 릴리즈 기획
+. 프로젝트관리 정보시스템
+
+a| . 일정 기준선
+. 프로젝트 일정
+. 일정 데이터
+. 프로젝트 달력
+. 변경 요청
+. 프로젝트 관리 계획 갱신
+- 일정관리 계획서
+- 원가 기준선
+. 프로젝트 문서 갱신
+- 활동 속성
+- 가정사항 기록부
+- 기간 산정치
+- 교훈 관리대장
+- 자원 요구사항
+- 위험 등록부
+|===
+
 === 4.4.1. 투입물
 === 4.4.2. 도구 및 기법
+==== 일정 네트워크 분석(Schedule Network Analysis)
+===== #CPM(Critical Path Method)#
+* PERT/CPM 일정 -> 자원 기반 일정 계획
+* CP 개수가 많으면 -> 일정 지연 Risk 가 크다
+
+image::CPM-Node.png[]
+* ES(Early Start Date)
+* EF(Early Finish Date)
+* LS(Late Start Date)
+* LF(Late Finish Date)
+* TF(Total Float) = min(①, ②) = LS - ES = LF - EF
+** 프로젝트를 지연시키지 않으면서 활동이 가지는 여유 시간
+* FF(Free Float)
+** 후행 활동의 ES 를 지연시키지 않으면서, 선행 활동이 가지는 여유시간
+
+===== #CP(Critical Path)#
+* Longest path : 가장 오래 걸리는
+* Lest amount of float : 가장 적은 여유시간-> 최종적으로 0 으로 수렴
+* Determines the duration of the project : 프로젝트 일정 결정자
+
+image::CPM-Graph.png[]
+
+Forward pass::
+* 시작일 부터(->) 계산
+* 프로젝트 전채 수행 기간 파악
+
+Backward pass::
+* 종료일 부터(<-) 계산
+* Activity 의 여유 시간 파악
+
+
+
+==== 자원 최적화
+==== 데이터 분석
+==== 선도와 지연
+==== 일정 단축
+==== 애자일 릴리즈 기획
+==== 프로젝트관리 정보시스템
+
 === 4.4.3. 산출물
 
 == 4.6. 일정 통제
