@@ -209,11 +209,77 @@ a| . 작업 성과 정보
 * 실제 원가(Actual Cost: AC)
 ** 투입된 실제 원가
 
-EVM::
+===== eg> EVM
+* 총 예산 100억 일 경우
+[cols="^1,^1,^1,^1,^1,^1", %autowidth.stretch]
+|===
+| 계획 | 50%    .3+^.^| -> | PV | 50억 a| SV = EV - PV = -5억
+| 실적 | 45%               | EV | 45억 a|
+| 원가 | 47억              | AC | 47억 a| CV = EV - AC = -2억
+|===
 
+==== 차이 분석(Variance Analysis)
 
+.SV - CV
+[cols="^1,^1", %autowidth.stretch]
+|===
+| 일정 차이(Schedule Variance: _SV_)  | 원가 차이(Cost Variance: _CV_)
+
+a| SV = EV - PV                     a| CV = EV - AC
+<a| * SV > 0 : 일정 선행 / 실적 초과
+* SV = 0 : 일정 일치
+* SV < 0 : 일정 후행 / 실적 부족
+<a| * CV > 0 : 원가 절감 / 실적 초과
+* CV = 0 : 원가 일치
+* CV < 0 : 원가 초과 / 실적 부족
+|===
+
+.SPI - CPI
+[cols="^1,^1", %autowidth.stretch]
+|===
+a| 일정 성과 지표 +
+(Schedule Performance Index: _SPI_)
+a| 원가 성과 지표 +
+(Cost Performance Index: _CPI_)
+
+a| SPI = EV &div; PV                     a| CPI = EV &div; AC
+<a| * SPI > 1 : 일정 선행 / 실적 초과
+* SPI = 1 : 일정 일치
+* SPI < 1 : 일정 후행 / 실적 부족
+<a| * CPI > 1 : 원가 절감 / 실적 초과
+* CPI = 1 : 원가 일치
+* CPI < 0 : 원가 초과 / 실적 부족
+|===
+
+==== 추세 분석(Trend Analysis)
+EAC = AC + ETC::
+* EAC : 완료 시점 추정치(Estimates At Completion)
+* ETC : 잔여 지출 추정치(Estimates To Completion)
+
+VAC = BAC - EAC::
+* VAC : 완료 시점 차이(Variance At Completion)
+* BAC : 완료시점 예산
+
+==== 예측(Forecast)
+* EAC = AC + 상향식(Bottom-Up) ETC
+* EAC = AC + (BAC - EV) / ( 1 * 1 ) = AC + (BAC - EV)
+* EAC = AC + (BAC - EV) / (CPI * 1 ) = BAC / CPI
+* EAC = AC + (BAC - EV) / (SPI * CPI)
+
+==== 완료 성과 지수(TCPI: To-Complete Performance Index)
+TCPI:: 남은 일 / 남은 예산
+* TCPI < 1 : 일이 적네
+* TCPI = 1 : 일이 딱
+* TCPI > 1 : 일이 많네
+
+BACK 기준::
+* TCPI = (BAC - EV) / (BAC - AC)
+
+EAC 기준::
+* TCPI = (BAC - EV) / (EAC - AC)
 
 === 5.4.3. 산출물
+
 
 == 5.5. 경제성 공학
 === 5.5.1. 투입물
