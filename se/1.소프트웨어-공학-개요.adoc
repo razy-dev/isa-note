@@ -1,47 +1,192 @@
-include::../style/style.adoc[]
+:subject: 소프트웨어 공학
+include::../adoc/toc.adoc[]
 
 = 1. 소프트웨어 공학 개요
 
-== 1-1. 소프트웨어 공학
-S/W 생산성 향상::
+== 1-1. 소프트웨어 공학 정의 및 목적
+=== 소프트웨어 공학 정의
+=== 소프트웨어 공학의 목적
+S/W 생산성 향상 및 고품질 소프트웨어 생산::
 * 재사용
 * 표준화
 
+include::../adoc/to_index.adoc[]
+
 == 1-2. 소프트웨어 개발생명주기(SDLC)
-=== 개요
-1. 소프트웨어 생명주기 모델 정의::
-* 소프트웨어 개발 프로세스, 방법, 도구 등이 통합된 개발 전략
+소프트웨어 개발생명주기(SDLC) 구성요소::
+`타당성 조사` -> `요구분석` -> `설계` -> `개발/구현` -> `테스트` -> `유지보수` -> `폐기`
 
-2. 소프트웨어 생명주기 특성 및 기능::
-가. 소프트웨어 생명주기 특성::
-* 먼 개소리야
-
-나. 소프트웨어 생명주기 기능::
+소프트웨어 생명주기 기능::
 * 프로젝트 비용 산정
 * 프로젝트 개발 계획 수립
 * 용어의 표준화
 * 개발 진행 상황의 명확한 파악
 * 단계별 문서화를 통한 프로젝트 관리
 
-3. 소프트웨어 생명주기의 구성 요소::
-* 타당성 조사 - 요구분석 - 설계 - 개발 - 테스트 - 유지보수 - 폐기
 
-4. 소프트웨어 생명주기 모델의 선정 기준::
+소프트웨어 생명주기 모델의 선정 기준::
 * 프로젝트의 규모와 성격
 * 개발에 사용되는 방법과 도구
 * 개발에 소요되는 시간 과 비용
 * 개발 과정에서의 통제수단과 소프트웨어 산출물 인도 방식
 
-5. 소프트웨어 생명주기 모델 유형::
-* 폭포수 모델 (Waterfall Model)
-* 프로토타입 모델 (Prototype Model)
-* 나선형 모델 (Spiral Model)
-* 증분 개발 모델 (Incremental Model)
-* RAD 모델 (Rapid Application Development)
-* 4세대 개발 모델
+
+=== 소프트웨어 생명주기(SDLC) 모델
+[cols="^1,<2,<2", %autowidth.stretch]
+|===
+^| SDLC Model ^| Descriptions ^| Development Methodology
+
+^| 폭포수 모델 (Waterfall Model)
+a|
+a|
+
+^| 프로토타입 모델 (Prototype Model)
+a|
+a|
+
+^| 나선형 모델 (Spiral Model)
+a|
+a|
+
+^| 증분 개발 모델 (Incremental Model)
+a|
+a|
+
+^| RAD 모델 (Rapid Application Development)
+a|
+a|
+
+^| 4세대 개발 모델
+a|
+a|
+|===
+==== 폭포수 모델 (Waterfall Model)
+폭포수 모델 (Waterfall Model) 정의::
+
+폭포수 모델 (Waterfall Model) 특징::
+
+폭포수 모델 (Waterfall Model) 장단점::
+[cols="1,1", %autowidth.stretch]
+|===
+^| 장점 ^| 단점
+
+a|
+a|
+|===
+
+==== 프로토타입 모델 (Prototype Model)
+프로토타입 모델 (Prototype Model) 정의::
+프로토타입 모델 (Prototype Model) 특징::
+프로토타입 모델 (Prototype Model) 장단점::
+[cols="1,1", %autowidth.stretch]
+|===
+^| 장점 ^| 단점
+
+a|
+a|
+|===
+
+==== 나선형 모델 (Spiral Model)
+나선형 모델 (Spiral Model) 정의::
+나선형 모델 (Spiral Model) 특징::
+나선형 모델 (Spiral Model) 장단점::
+[cols="1,1", %autowidth.stretch]
+|===
+^| 장점 ^| 단점
+
+a|
+a|
+|===
+
+==== 반복적 개발 모델
+반복적 개발 모델 정의::
+반복적 개발 모델 특징::
+반복적 개발 모델 유형::
+반복적 개발 모델 장단점::
+[cols="1,1", %autowidth.stretch]
+|===
+^| 장점 ^| 단점
+
+a|
+a|
+|===
+
+==== RAD 모델 (Rapid Application Development)
+RAD 모델 정의::
+RAD 모델 특징::
+RAD 모델 장단점::
+[cols="1,1", %autowidth.stretch]
+|===
+^| 장점 ^| 단점
+
+a|
+a|
+|===
+
+RAD 모델 VS 전통적 개발 모델::
+[cols="^2,4,4", %autowidth.stretch]
+|===
+^| 구분 ^| RAD 개발 모델 ^| 정통적 개발 모델
+
+^|
+a|
+a|
+
+^|
+a|
+a|
+
+^|
+a|
+a|
+
+^|
+a|
+a|
+
+^|
+a|
+a|
+|===
+
+include::../adoc/to_index.adoc[]
+
 
 == 1-3. 소프트웨어 개발 방법론
 === 개요
+==== 개발 방법론 구서요소
+==== 개발 방법론 발전
+[cols="^1,2,2,2,2", %autowidth.stretch]
+|===
+^| 구분 ^| 구조적 기법 ^| 정보공학 기법 ^| 객체지향 기법 ^| CBD 기법
+
+^| 목적 ^|  ^|  ^|  ^|
+
+^| 특징
+a|
+a|
+a|
+a|
+
+^| 중점
+a|
+a|
+a|
+a|
+
+^| 장점
+a|
+a|
+a|
+a|
+
+^| 단점
+a|
+a|
+a|
+a|
+|===
+
 === 구조적 개발 방법론
 === 정보공학적 개발 방법론
 === 객체지향  개발 방법론
@@ -51,6 +196,8 @@ S/W 생산성 향상::
 === 도메인 공학
 === AOP (Aspect Oriented Programming)
 === Software Product Line
+=== Software 3R
+=== CASE (Computer Aided Software Engineering)
+=== 애자일 개발 방법론
 
-
-== 1-4. 애자일 개발 방법론
+include::../adoc/to_index.adoc[]

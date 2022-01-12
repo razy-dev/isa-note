@@ -1,5 +1,5 @@
 = Database 설계
-include::../style/style.adoc[]
+include::../adoc/style.adoc[]
 
 == 데이터베이스 설게 단계
 요구조건 분석 > 개념설계(E-R 모델) > 논리설계(데이터모델링) > 물리설계(데이터구조화) > 구현

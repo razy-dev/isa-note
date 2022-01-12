@@ -4,6 +4,6 @@
 //:sectnumlevels: 2
 //:partnums:
 :imagesdir: ./imgs
-:stylesdir: ../style
+:stylesdir: ../adoc
 :stylesheet: style.css
 :stem: latexmath

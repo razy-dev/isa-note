@@ -1,5 +1,5 @@
 = Transaction
-include::../style/style.adoc[]
+include::../adoc/style.adoc[]
 
 == Transaction
 === Transaction 정의

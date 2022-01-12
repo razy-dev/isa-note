@@ -1,5 +1,5 @@
 = Database 이론
-include::../style/style.adoc[]
+include::../adoc/style.adoc[]
 
 == B-Tree(Balanced Tree)
 === B-Tree 특징
