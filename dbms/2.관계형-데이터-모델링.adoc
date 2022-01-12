@@ -1,5 +1,7 @@
+:subject: 데이터베이스
+include::../adoc/toc.adoc[]
+
 = 2. 관계형 데이터 모델링
-include::../_toc.adoc[]
 
 == 2.1. 데이터-모델링
 === 데이터 모델링 3요소

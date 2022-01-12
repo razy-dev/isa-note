@@ -1,5 +1,7 @@
+:subject: 데이터베이스
+include::../adoc/toc.adoc[]
+
 = 5. 프로젝트 원가관리
-include::../_toc.adoc[]
 
 == 5.1. 원가 관리 계획
 [cols="1,1,1", %autowidth.stretch]

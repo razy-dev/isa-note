@@ -1,5 +1,7 @@
+:subject: 데이터베이스
+include::../adoc/toc.adoc[]
+
 = 3. 정규화 이론
-include::../_toc.adoc[]
 
 == 3.0. 개요
 * 개념적 설계 단계와 논리적 설계 단계 사이에서 수행
