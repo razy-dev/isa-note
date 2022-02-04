@@ -1,5 +1,5 @@
 = Database
-include::../_toc.adoc[]
+include::../adoc/toc.adoc[]
 
 [cols="3, 7"]
 |===

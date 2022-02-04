@@ -1,7 +1,9 @@
-= ISA
-include::_toc.adoc[]
+:rootdir: .
+include::adoc/toc.adoc[]
 :sectnums:
-:stylesdir: ./style
+:sectnumlevels: 2
+
+= ISA
 
 === xref:audit/index.adoc[감리]
 === xref:dbms/index.adoc[데이터베이스]

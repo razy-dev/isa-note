@@ -1,4 +1,5 @@
-[ xref:../index.adoc[Home] ]
+ifndef::rootdir[:rootdir: ..]
+[ xref:{rootdir}/index.adoc[Home] ]
 ifdef::subject[[ xref:./index.adoc[{subject}] ]]
 ifndef::subject[[ xref:./index.adoc[Contents] ]]
 [ xref:#header[Top] ]
