@@ -1,3 +1,10 @@
 include::../adoc/toc.adoc[]
 
-= 1. 전자정부법 및 시행령
+= II-16. COBIT (정보시스템 감사 통제 모델)
+
+== 16.1 COBIT 개요
+== 16.2 COBIT 4.1 vs 5.0
+== 16.3 COBIT 5.0 Management 와 Governance 분리
+== _16.4 COBIT 2019_
+== _16.5 COBIT 2019_ 개념
+== _16.5 COBIT 2019_ Design Factor
