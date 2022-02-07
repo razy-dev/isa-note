@@ -1,0 +1,4 @@
+include::../adoc/toc.adoc[]
+
+= 4. Dummy
+== 챕터 삭제

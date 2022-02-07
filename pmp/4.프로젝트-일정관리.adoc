@@ -1,4 +1,3 @@
-:subject: 데이터베이스
 include::../adoc/toc.adoc[]
 
 = 4. 프로젝트 일정관리
@@ -122,7 +121,7 @@ SS(Start-to-Start):: 선행 작업을 _착수_ 해야 후 후속 작업 _착수_
 Lead(선도):: Lead 를 활용해 후행 활동의 일정을 앞당길 수 있다.
 Lag(지연):: 후행 활동 일정을 지연시킨다.
 
-=== 4.3.3. 산출물
+=== 4.3.4. 산출물
 
 == 4.4. 활동 기간 산정
 [cols="1,1,1", %autowidth.stretch]
@@ -202,7 +201,7 @@ latexmath:[\frac{P + 4M + O} {6}]
 * 산정 기준(Basis Of Estimates)
 ** 기간 산정치를 뒷받침 하는 보조 문서
 
-=== 4.4.3. 산출물
+=== 4.4.4. 산출물
 
 == 4.5. 일정 개발
 [cols="1,1,1", %autowidth.stretch]
@@ -318,7 +317,7 @@ Milestone Chart::
 
 //==
 
-=== 4.4.3. 산출물
+=== 4.4.4. 산출물
 
 == 4.6. 일정 통제
 [cols="1,1,1", %autowidth.stretch]
@@ -383,4 +382,4 @@ Iteration Burn-down Chart::
 ==== 일정 예측(Schedule Forecasts)
 ==== 변경 요청(Change Request)
 
-=== 4.6.3. 산출물
+=== 4.6.4. 산출물
