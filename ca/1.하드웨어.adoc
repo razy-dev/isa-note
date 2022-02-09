@@ -2,26 +2,438 @@ include::../adoc/toc.adoc[]
 
 = 1. 하드웨어
 
+. CPU
+. 저장장치
+. 입/출력 장치
+
 == 1.1 마이크로프로세서
+=== CPU Type
+[cols="1,1", %autowidth.stretch]
+|===
+^| CISC (Complex Instruction Set Computer) ^| RISC (Reduced Instruction Set Computer)
+
+a| * 가변 길이 명령어
+* 복잡 -> 한번에 -> 낮은 Clock
+* 마이크로 프로그램시 제어자
+* 단일 캐쉬
+
+a| * 고정 길이 명령어
+* 단순 -> 반복적 -> 높은 Clock
+* 하드와이어식 제어자
+* 명령/데이터 캐쉬 분리
+|===
+
+* Mobile
+* Cloud
+* SoB (System on Board)
+* SoC (System on Chip) : M1(Apple)
+
+=== 병렬처리
+파이프라인::
+Super-Scala Processor::
+VLIW (Very Large Instruction Word)::
+//==
+
+==== Pipeline Hazard
+[cols="2,4,2", %autowidth.stretch]
+|===
+^| 구분 ^| 설명 ^| 해결
+
+^| 데이터 해저드
+a| * RAW(Read After Write)
+* WAR(Write After Read)
+* WAW(Write After Write)
+a|
+
+^| 제어 해저드
+a| *
+a|
+
+^| 구조적 해저드
+a| *
+a|
+|===
 
 == 1.2 입출력 장치
+[cols="2,4,2", %autowidth.stretch]
+|===
+^| 구분 ^| 설명 ^| 비고
+
+^| 직접 입출력
+a| * CPU 가 I/O 통제
+** CPU Driven I/O
+** Interrupt I/O
+a|
+
+^| 간접 입출력
+a| * DMA(Direct Memory Access)
+a|
+
+^| 채널
+a| * 별도 I/O Processer
+a|
+|===
+
+=== Disk Scheduling
+[cols="1,4,2", %autowidth.stretch]
+|===
+^| 구분 ^| 설명 ^| 비고
+
+^| FCFS
+a| 요청 순서대로
+a|
+
+^| SSTF
+a| 짧은 탐색 거리 순
+a|
+
+^| SCAN
+a| 진행 방향 상 짤은 탐색 거리 순
+a|
+
+^| C-SCAN
+a| 바깥에서 안쪽으로 이동하면서 짧은 탐색 시간 순
+a|
+|===
+
+==== Bus Bandwidth
+Bus Bandwidth = Clock &times; Bus width
+
+아이비브리지(Ivy Bridge)::
+QPI(Quick Path Interconnect)::
+샌디브리지(Sandy Bridge)::
+썬더볼트(ThunderBolt)::
+
+//==
 
 == 1.3 가상화 기술
+[cols="1,4,2", %autowidth.stretch]
+|===
+^| 구분 ^| 설명 ^| 비고
+
+^| 에뮬레이션
+a| 호스트 위에 하드웨어 가상머신 생성
+a| WINE
+
+^| 반가상화
+a| * 하드웨어 가상화(Hyper Visor)
+* 필요한 CPU 명령어만 가상화 +
+-> Host-Guest 간 API 통신 +
+-> Guest OS 커널 수정 필요
+a| Xen
+
+^| 전가상화
+a| * 하드웨어 가상화(Hyper Visor)
+* 모든 CPU 명령어를 가상화
+a| VMWare
+
+^| OS 가상화
+a| * OS partitioning
+a| Parallels
+|===
+
+Hyper Visor::
+Type1(Native/Bare Metal)::::
+* Host H/W 직접 구동
+* Xen, KVM, Hyper-V
+
+Type2(Hosted)::::
+* Host OS 위에 설치
+* VirtualBox, Virtual PC 등
+
+=== #Docker#
+==== Container
+OS Container::
+Application Container::
+
+//==
 
 == 1.4 병렬 컴퓨터(SMP/MPP)
+=== 플린 병렬 컴퓨터 분류
+[cols="2,4,2", %autowidth.stretch]
+|===
+^| 구분 ^| 설명 ^| 비고
+
+^| SISD +
+(Single Instruction stream Single Data stream)
+a| * 순차 처리
+a| * PC
+
+^| SIMD +
+(Single Instruction stream Multiple Data stream)
+a| * 배열의 모든 원소에 동일한 연산 수행
+a|
+
+^| MISD +
+(Multiple Instruction stream Single Data stream)
+a| * 한 데이터에 여러 명령 수행
+a| * 이론적/미사용
+
+^| MIMD +
+(Multiple Instruction stream Multiple Data stream)
+a| * 여러 명령 / 여러 데이터 대응
+a| * SMP / MPP / NUMA
+|===
+
+=== 강결합/약결합
+[cols="2,4,2", %autowidth.stretch]
+|===
+^| 구분 ^| 설명 ^| 비고
+
+^| 강결합(SMP) +
+(Symmetric Multiprocessor)
+a| * 하나의 OS 아래 여러 프로세서
+a|
+
+^| 약결합(MPP) +
+(Massive Parallel Processor)
+a| * 둘 이상 시스템이 통신
+a|
+
+^| NUMA +
+(Non-Uniform Memory Access)
+a| * 여러개의 마이크로 프로세서(CPU+Mem) 사이에 공유메모리 추가
+a|
+|===
 
 == 1.5 고가용성(HA)
+=== HA
+Hot Standby:: Active - Standby
+Mutual take-over:: Active1 - Active2
+Concurrent Access:: Active - Active
+
+=== HA vs FTS
+[cols="2,4,4", %autowidth.stretch]
+|===
+^| 구분 ^| HA (High Availability) ^| FTS (Fault Tolerant System)
+
+^| 장애시간
+^| 30~300초
+^| 0
+
+^| 유지보수
+^| 불필요
+^| 필수
+
+^| 도입비용
+^| 2배 이상
+^| 10 ~20배
+
+^| 하드웨어
+^| 범용 하드웨어
+^| 전용 하드웨어
+
+^| 운영체계
+^| 범용 OS
+^| 전용 OS
+
+^| 프로그램
+^| 범용
+^| 제한적
+|===
+
+=== 장애감시
+ICMP(Layer3) 감시:: Ping
+포트(Layer4) 감시:: TCP 접속
+서비스(Layer7) 감시:: HTTP OK
+
+=== 로드밸런싱
+[cols="2,4,2", %autowidth.stretch]
+|===
+^| 구분 ^| 설명 ^| 비고
+
+^| Round Robin
+a|
+a|
+
+^| Weighted Round Robin
+a|
+a|
+
+^| Least Connection
+a|
+a|
+
+^| Least Response Time
+a|
+a|
+
+^| Hash
+a|
+a|
+|===
 
 == 1.6 클러스터링(Clustering)
+=== Clustering Types
+[cols="2,4,2", %autowidth.stretch]
+|===
+^| 구분 ^| 설명 ^| 비고
+
+^| 고성능 클러스터 +
+(Hig Performance Clusters)
+a| * 모든 노드에 OS + Disk
+* 서버 노드에만 Disk
+a|
+
+^| 부한 분산 클러스터 +
+(Load Balancing Clusters)
+a| * DR(Direct Routing)
+* NAT(Network Address Translation)
+a|
+
+^| 고가용성 클러스터 +
+(High Availability Clusters)
+a| * HA 와 유사
+a|
+|===
 
 == 1.7 클라우드 컴퓨팅
+SaaS::
+PaaS::
+IaaS::
+//==
+
+프라이빗 클라우드::
+퍼블릭 클라우드::
+커뮤니티 클라우드::
+하이브리드 클라우드::
+//==
+
+=== 클라우드 컴퓨팅 SLA
+[cols="1,2,4,1", %autowidth.stretch]
+|===
+^| 구분 ^| 지표 ^| 설명 ^| 비고
+
+^| SLA
+^| Availability
+a|
+a|
+
+^| OLA
+a| * Reliability
+* Manageability
+a|
+a|
+
+^| UC
+^| Serviceability
+a|
+a|
+|===
+==== 클라우드 컴퓨팅 SLA 특징
+정형화된 지표::
+SLA 등급 선택::
+SLA 평가 보상::
+//==
+
+==== 클라우드 가상자원 측정 항목
+시스템 성능::
+네트워크 성능::
+서비스 성능::
+가용성::
+//==
+
+=== 클라우드 컴퓨팅 서비스 품질/성능
+* 클라우드컴퓨팅 발전 및 이용자 보호에 관한 법률
+
+==== 클라우드컴퓨팅서비스 품질/성능 세부 기준
+가용성::
+응답성::
+확장성::
+신뢰성::
+서비스 회복시간::::
+백업 주기::::
+백업 준수율::::
+백업 데이터 보관기간::::
+서비스 지속성::
+서비스 지원::
+고객 대응::
+고객 대응 체계::::
+고객 불만 처리 체계::::
+
+//==
+
+=== OpenStack
+풀링된 가상 리소스를 사용하여 프라이빗 및 퍼블릭 클라우드를 구축하고 관리하는 오픈소스 플랫폼입니다.
+
+NOVA:: Instance
+NEUTRON:: Network
+SWIFT:: Object Storage(S3)
+CINDER:: Block Storage
+KEYSTONE:: SSO
+GLANCE:: Image
 
 == 1.8 임베디드 시스템
 
-== 1.9 실시가 시스템
+== 1.9 실시간 시스템
 
 == 1.10 가상 메모리
+TLB:: 페이지 테이블의 캐쉬
+PMT::
+PTBR(Page Table Base Register)::
+//==
+
+=== 페이지 교체
+무작위 교체::
+FIFO 교체::
+Optimal 교체:: 사용하지 않을 페이지 예측 -> 비현실적
+Second Chance 교체:: FIFO 에서 1차 보류 -> 2차 교체
+LRU(Least Recently Used) 교체:: 가장 오래 미사용 페이지 교체
+LFU(Least Frequently Used) 교체:: 참조 횟수가 가장 작은 페이지 교체
+MFU(Most Frequently Used) 교체:: 참조 횟수가 가장 많은 페이지 교체
+MRU(Most Recently Used) 교체:: 가장 최근에 사용한 페이지를 교체.
+NUR(Not Used Recently) 교체:: 최근에 사용하지 않은 페이지 교체
+
+//==
+
+==== 페이지 교체기법의 문제점
+Demand Paging::
+Page Fault::
+Thrashing:: 빈번한 페이지 교체로 I/O 에 더 많은 CPU 소모
+
+==== Thrashing 해결방법
+Working Set::
+PFF(Page Fault Frequency)::
+//==
 
 == 1.11 캐시 메모리
+=== 적중률
+T average = 적중률 &times; 캐시메모리 접근 시간 + (1 &minus; 적중률) &times; 주기억장치 접근 시간
+
+eg> 적중률 0.9, 캐시메모리 접근 시간 50, 주기억장치 접근 시간 400 +
+T average = 0.9 &times; 50 + 0.1 &times; 400
+
+=== 사상 및 연관
+직접 사상(Direct Mapped)::
+* 인덱스가 가리키는 공간이 하나인 경우.
+* 처리가 빠르지만 충돌 발생이 잦다.
+완전 연관(Fully Associative)::
+* 인덱스가 모든 공간을 가리키는 경우.
+* 충돌이 적지만 모든 블록을 탐색해야 해서 속도가 느리다.
+집합 연관(Set Associative)::
+* 인덱스가 가리키는 공간이 두 개 이상인 경우.
+* n-way set associative 캐시라고 부른다.
+//==
 
 == 1.12 메모리(DRAM, SRAM, SSD)
+RAM::
+SRAM::::
+PSRAM::::
+DRAM::::
+* SDRAM
+* DDR SDRAM
+
+ROM::
+Flas Memory::::
+* NOR Memory : SSD XIP
+* NAND Memory: USB
+
+=== RAM
+DRAM(Dynamic RAM::
+* capacitor 충전
+SRAM(Static RAM)::
+* flip-flop
+
+=== ROM
+* SSD(NOR)) / USB(NAND)
+//==

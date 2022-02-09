@@ -5,6 +5,47 @@ include::../adoc/toc.adoc[]
 == 5.1 네트워크 이론
 
 == 5.2 OSI 7 Layer
+[cols="^1,<4,^1,^1,^1,^1,^1", %autowidth.stretch]
+|===
+^| OSI ^| 기능 ^| 대상 ^| 단위 ^| 장비 ^| TCP/IP ^| 보안
+
+| Application L7
+a| Application I/F
+| App | Data | L7 Switch | App | SSH SFTP HTTPS
+
+| Presentation L6
+a| 압축/암호화/인코딩
+| MSG | Data | L7 Switch | App | SSH SFTP HTTPS
+
+| Session L5
+a| 인증
+| User | Data | L7 Switch | App | SSH SFTP HTTPS
+
+| Transport L4
+a| * 전송
+* 순서/에러/혼잡 제어
+| Port | Segment | L4 Switch, 로드발란서 | TCP UDP SCTP | SSL
+
+| Network L3
+| Routing
+| IP | Packet | L3 Switch, 라우터 | IP ICMP IGMP ARP/RARP OSPF DDP  | IPSec
+
+| Data Link L2
+a| * 흐름/에러 제어
+* LLC
+| MAC | Frame | L2 Switch, 브릿지 | FDDI PPP SLIP ATM | PPTP L2F L2TP
+
+| Physical L1
+a| 전기신호
+| - | Bit | 리피터 허브 |  | -
+|===
+
+=== IPv4
+==== Subnet Mask
+Subnet 첫번, 마지막 IP는 예약
+
+=== IPv6
+128 bit
 
 == 5.3 TCP/IP
 
