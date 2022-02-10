@@ -5,7 +5,7 @@ include::../adoc/toc.adoc[]
 == 5.1 네트워크 이론
 
 == 5.2 OSI 7 Layer
-[cols="^1,<4,^1,^1,^1,^1,^1", %autowidth.stretch]
+[cols="^1,<4,^1,^1,^1,<2,^1", %autowidth.stretch]
 |===
 ^| OSI ^| 기능 ^| 대상 ^| 단위 ^| 장비 ^| TCP/IP ^| 보안
 
@@ -24,11 +24,21 @@ a| 인증
 | Transport L4
 a| * 전송
 * 순서/에러/혼잡 제어
-| Port | Segment | L4 Switch, 로드발란서 | TCP UDP SCTP | SSL
+| Port | Segment | L4 Switch, 로드발란서
+a| * TCP/UDP
+* SCTP
+| SSL
 
 | Network L3
 | Routing
-| IP | Packet | L3 Switch, 라우터 | IP ICMP IGMP ARP/RARP OSPF DDP  | IPSec
+| IP | Packet | L3 Switch, 라우터
+a| * IP
+** ICMP
+** IGMP
+** ARP/RARP
+** OSPF
+** DDP
+| IPSec
 
 | Data Link L2
 a| * 흐름/에러 제어
@@ -40,16 +50,119 @@ a| 전기신호
 | - | Bit | 리피터 허브 |  | -
 |===
 
+== 5.3 TCP/IP
+=== TCP/UDP
+[cols="^2,<6,<6", %autowidth.stretch]
+|===
+^|  ^| TCP ^| UDP
+
+^| 연결 방식
+a| 연결형 서비스로 가상 회선 방식
+a| 비연결형 서비스로 데이터그램 방식
+
+^| 데이터 순서
+a| 순서 Yuji
+a| 순서 Yuji 안함
+
+^| 데이터 손실
+a| 손실 없음
+a| 손실 가능
+
+^| 에러 제어
+a| 에러 발생 시 재전송
+a| 에러 발생해도 재전송 안함
+
+^| 흐름 제어
+a| 슬라이딩 윈도우
+a| 흐름 제어 없음
+
+|===
+
+=== IPv4 vs IPv6
+[cols="^2,<6,<6", %autowidth.stretch]
+|===
+^|  ^| IPv4 ^| IPv6
+
+^| 주소 크기
+a| * 32bit
+a| * 128bit
+
+^| 헤더 크기
+a| * 가변 길이
+a| * 고정 길이 (40byte) + 확장 헤더
+
+^| 헤더 길이
+a| * 4bit
+a| * 불필요
+
+^| 표기법
+a| * 8bit(10진수) &times; 4 +
+123.456.789.000
+a| * 16bit(16진수) &times; 8 +
+1234:5678:...:ABCD:00FF
+
+^| 전송 방식
+a| * 멀티캐스트, 유니캐스트, 브로드캐스트
+a| * 멀티캐스트, 유니캐스트, 브로드캐스트
+
+^| 품질 제어
+a| * 품질 보장 X
+a| * 확장 헤더에서 지원
+* 등급별 / 서비스별 패킷 구분 품질 보장
+
+^| 보안 기능
+a| * IPSec 프로토콜 추가
+a| * 확장 헤더에서 기본 제공
+
+^| 기타 기능
+a| * X
+a| * 모바일 IP, 웹캐스팅
+
+^| 주소 할당
+a| * A, B, C, D 클래스 비순차 할당 + subnet
+a| * 네트워크 규모 및 단말기 수에 따라 순차 할당
+
+^| 주소 갯수
+a| * 약 43억개
+a| * 약 31조개
+|===
+
 === IPv4
 ==== Subnet Mask
 Subnet 첫번, 마지막 IP는 예약
 
 === IPv6
-128 bit
+==== IPv4 -> IPv6 전환
+Tunnel 통신 방식:: IPv6 to IPv4(캡슐화) -> IPv4 터널 -> IPv4 to IPv6
+Dual Stack 통신 방식:: IPv4/IPv6 통합 운용
+Native 통신 방식:: IPv4, IPv6 개별 운용
 
-== 5.3 TCP/IP
+==== IPv6 확장 헤더
+홉간 옵션 헤더::
+소스라우팅 헤더::
+목적지 옵션(Destination Option) 헤더::
+ESP (Encrypted Security Payload) Option Header::
+Authentication Option Header::
+//===
 
+==== IPv6 Error Message
+목적지 도달 불가 (Destination unreachable)::
+너무 큰 패킷 (Packet too Big)::
+매개 변수 문제 (Parameter Problem)::
+//===
+
+==== MIPv6 / Mobile IPv6
+바인딩 갱신 (Binding Update)::
+바인딩 인지 (Binding Acknowledgement)::
+바인딩 요청 (Binding Request)::
+홈 주소 옵션 (Home Address Option)::
+홈 에이젼트 주소 발견 요청 (Home Agent Address Discovery Request)::
+홈 에이젼트 주소 발견 응답 (Home Agent Address Discovery Reply)::
+
+//==
+.
 == 5.4 IPv6
+Pass
 
 == 5.5 WLAN
 
