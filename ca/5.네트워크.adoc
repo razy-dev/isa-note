@@ -5,6 +5,8 @@ include::../adoc/toc.adoc[]
 == 5.1 네트워크 이론
 
 == 5.2 OSI 7 Layer
+image::99F6363359FDDC9E1F.jpg[align=center]
+
 [cols="^1,<4,^1,^1,^1,<2,^1", %autowidth.stretch]
 |===
 ^| OSI ^| 기능 ^| 대상 ^| 단위 ^| 장비 ^| TCP/IP ^| 보안
@@ -52,6 +54,8 @@ a| 전기신호
 
 == 5.3 TCP/IP
 === TCP/UDP
+* TCP (Transmission Control Protocol)
+* UDP (User Datagram Protocol)
 [cols="^2,<6,<6", %autowidth.stretch]
 |===
 ^|  ^| TCP ^| UDP
@@ -75,10 +79,30 @@ a| 에러 발생해도 재전송 안함
 ^| 흐름 제어
 a| 슬라이딩 윈도우
 a| 흐름 제어 없음
-
 |===
 
-=== IPv4 vs IPv6
+흐름제어(Flow Control):: 데이터를 송신하는 곳과 수신하는 곳의 데이터 처리 속도를 조절하여 수신자의 버퍼 오버플로우를 방지하는 것입니다.
+네이글(Nagle's) 알고리즘::::
+(조금 씩 여러번 말고) ACK를 받을 때 까지 출력버퍼에 데이터를 저장하였다가 한번에 (많이) 보내는 방식
+슬라이딩 윈도우 알고리즘::::
+수신 측에서 설정한 윈도우 크기만큼 송신 측에서 확인 응답(ACK) 없이 전송할 수 있게 하여 흐름을 동적으로 조절하는 제어 알고리즘
+전송 보장 알고리즘::::
+데이크스트라(Dijkstra's) 알고리즘::::
+//==
+
+혼잡제어(Congestion Control):: 네트워크 내의 패킷 수가 넘치게 증가하지 않도록 방지하는 것입니다. +
+정보의 소통량이 과다하면 패킷을 조금만 전송하여 혼잡 붕괴 현상이 일어나는 것을 막습니다.
+느린 시작::::
+지속적 증가::::
+작은 윈도우 크기 선택::::
+
+//==
+Handshaking::
+3-way Handshaking:::: TCP의 연결을 초기화
+4-way Handshaking::::  세션을 종료하기 위해 수행되는 절차
+
+=== IP (Internet Protocol)
+==== IPv4 vs IPv6
 [cols="^2,<6,<6", %autowidth.stretch]
 |===
 ^|  ^| IPv4 ^| IPv6
@@ -118,6 +142,31 @@ a| * 확장 헤더에서 기본 제공
 a| * X
 a| * 모바일 IP, 웹캐스팅
 
+^| Error Message
+a| * Destination unreachable
+* Source quench
+* Time Exceeded
+* Parameter problem
+* Redirection
+a| * Destination unreachable
+* Source quench
+* [.line-through]#Time Exceeded#
+* Parameter problem
+* Redirection
+* Packet too Big
+
+^| Query Message
+a| * Echo request or reply
+* Timestamp request and reply
+* Address mask request and reply
+* Router solicitation and advertisement
+a| * Echo Request and Reply
+* -
+* -
+* Router Discovery
+* Neighbor Discovery
+* Group Membership
+
 ^| 주소 할당
 a| * A, B, C, D 클래스 비순차 할당 + subnet
 a| * 네트워크 규모 및 단말기 수에 따라 순차 할당
@@ -128,6 +177,13 @@ a| * 약 31조개
 |===
 
 === IPv4
+==== IPv4 주소 부족 회피 기법
+CIDR::
+NAT::
+VLSM::
+DHCP::
+//==
+
 ==== Subnet Mask
 Subnet 첫번, 마지막 IP는 예약
 
@@ -145,11 +201,10 @@ ESP (Encrypted Security Payload) Option Header::
 Authentication Option Header::
 //===
 
-==== IPv6 Error Message
-목적지 도달 불가 (Destination unreachable)::
-너무 큰 패킷 (Packet too Big)::
-매개 변수 문제 (Parameter Problem)::
-//===
+==== IPv6 주소 자동 구성
+비상태 보존형::
+상태 보존형:: DHCPv6
+
 
 ==== MIPv6 / Mobile IPv6
 바인딩 갱신 (Binding Update)::
@@ -158,20 +213,97 @@ Authentication Option Header::
 홈 주소 옵션 (Home Address Option)::
 홈 에이젼트 주소 발견 요청 (Home Agent Address Discovery Request)::
 홈 에이젼트 주소 발견 응답 (Home Agent Address Discovery Reply)::
-
 //==
-.
+
 == 5.4 IPv6
 Pass
 
 == 5.5 WLAN
+=== Wi-Fi 규격
+[cols="^2,<5,<5,^2", %autowidth.stretch]
+|===
+^| 규격 ^| 속도 ^| 주파수  ^| 변조 방식
+
+^| 802.11 (1)   | 2Mbps         | 비규격       |
+^| 802.11b (2)  | 11Mbps        | 2.4GHz       | DSSS
+^| 802.11a      | 54Mbps        | 5GHz         | OFDM
+^| 802.11g (3)  | 54Mbps        | 2.4GHz       | OFDM
+^| 802.11n (4)  | 150~300Mbps   | 2.4/5GHz     | OFDM
+^| 802.11ac (5) | 1Gbps         | 2.4/5GHz     | ?
+^| 802.11ad (6) | 6~7Gbps       | 2.4/5/60GHz  | ?
+|===
+
+=== Wi-Fi 보안
+==== 802.11i
+인증::
+PSK::: SSID + PW
+802.1x::: 인증 서버
+
+암호::
+WEP::: RC5 + static key
+WPA::: RC5 + TKIP
+WPA2::: AES + CCMP
 
 == 5.6 Mbile IP
+HA(Home Address:고정) + CoA(Care of Address)
+
+MIPv4 삼각 라우팅:: 보안 &uarr; 효율 &darr;
+MIPv6 직접 라우팅:: 보안 &darr; 효율 &uarr;
 
 == 5.7 라우팅 프로토콜
+=== 프로토콜 정의
+[cols="^2,<5,<5", %autowidth.stretch]
+|===
+^| 구분 ^| 거리 벡터 알고리즘 ^| 링크 상태 알고리즘
+|===
+
+=== 프로토콜
+[cols="2,3,3,3", %autowidth.stretch]
+|===
+^| 구분 ^| RIP ^| OSPF ^| BGP
+
+^| 규모
+a| 소규모
+a| 대규모
+a| 넷트워크(AS) 간 라우팅
+
+^| 알고리즘
+a| 거리 벡터
+a| 링크 상태
+a| -
+|===
 
 == 5.8 이동통신
+[cols="2,5,5", %autowidth.stretch]
+|===
+^| 구분 ^| 음성 ^| 데이터
+^| 1G a| a|
+^| 2G a| a|
+^| 3G(IMT-2000) a| a|
+^| 3.9G(LTE) a| a|
+^| 4G(LTE-A) a| a|
+^| 5G a| a|
+|===
+
+=== 간섭 해결
+CoMP::
+Coordinated:::
+Coordinated Scheduling::::
+Coordinated Beamforming::::
+Joint Processing:::
+
+eICIC::
+//==
+
 
 == 5.9 Wireless Sensor Network
+=== 무선 측위
+GPS::
+기지국::
+AoA:::
+ToA:::
+TDoA:::
+LPM::
+//==
 
 == 5.10 Smart Wearable
