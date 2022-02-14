@@ -3,12 +3,93 @@ include::../adoc/toc.adoc[]
 = 6. 네트워크 응용
 
 == 6.1 VoIP
+=== VoIP 개요
+=== VoIP 서비스 유형
+=== VoIP 구현 기술
+=== VoIP 서비스 구성
+[cols="1,4", %autowidth.stretch]
+|===
+^| 구분 ^| 역할/기능
+^| Gateway (CTI) a| * 음성전화망(PSTN) 과 인터넷(IP Protocol) 변환
+^| Gate Keeper a| * 인증/보안
+^| MCU a| * 다자간 회의
+^| Terminal a| * Client (PC, 인터넷 전화 등)
+|===
+
+=== VoIP 프로토콜
+[cols="2,2,2,6", %autowidth.stretch]
+|===
+^| 구분 ^| 기관 ^| Protocol ^| 설명
+
+^| H.323 ^| ITU-T ^| TCP
+a| * 메시지 구조 복잡
+
+^| SIP ^| IETF ^| UDP
+a| * 메시지 구조 단순
+
+^| MGCP ^| ? ^| ?
+a| *
+
+^| MEGACO ^| ITU-T + IETF ^| ?
+a| *
+|===
 
 == 6.2 QoS
+=== QoS 개요
+=== 통합서비스모델(Integrated Service Model)
 
 == 6.3 NMS(SNMP)
+=== NMS(Network Management System) 기능
+[cols="2,8" %autowidth.stretch]
+|===
+^| 구분 ^| 설명
+
+^| 구성 관리 a|
+^| 장애 관리 a|
+^| 성능 관리 a|
+^| 보안 관리 a|
+^| 계정 관리 a|
+|===
+
+=== SNMP 2.0
+[cols="2,8" %autowidth.stretch]
+|===
+^| 구분 ^| 설명
+
+^| Get      a|
+^| Get Next a|
+^| Set      a|
+^| Trap     a| Event
+|===
+
+=== SNMP 3.0
+[cols="2,8" %autowidth.stretch]
+|===
+^| 구분 ^| 설명
+
+^| GetRequest       a|
+^| GetNextRequest   a|
+^| GetBulkRequest   a|
+^| SetRequest       a|
+^| GetResponse      a|
+^| InformRequest    a|
+^| Trap             a| Event
+^| Report           a| 미사용
+|===
 
 == 6.4 CDN
+=== CDN 유형
+Top-down CDN::
+Bottom-up CDN::
+//==
+
+=== 전송방식
+Pushing::
+Cashing::
+Splitting::
+//==
+
+=== Request Redirect
 
 == 6.5 DMB
 
@@ -16,10 +97,107 @@ include::../adoc/toc.adoc[]
 Pass
 
 == 6.7 네트워크 장비
+=== 네트워크 장비
+[cols="^2,^1,7" %autowidth.stretch]
+|===
+^| 구분 ^| OSI 7 | 설명
+
+^| 리피터(Repeater) ^| L1  a| 증폭
+^| 브릿지(Bridge)   ^| L2  a| 연결 / MAC
+^| 라우터(Router)   ^| L3  a| 전송
+^| L4 Switch        ^| L4  a| Load Balancing
+^| L7 Switch        ^| L7  a| 보안 IDS/IPS
+^| GW(Gateway)      ^| L7  a|
+|===
+* 상위 장비는 하위 장비의 기능을 수행 할 수 있다.
+
+==== MPLS(Multi-Protocol Label Switching)
+* VPN
+* TE (Traffic Engineering)
+* 1 Packet Multi Label
+* 자체 암호화 기능 없음
+
+=== Load Balancing
+Round Robin::
+Weighted Round Robin::
+Least Connection::
+Least Response Time::
+Hash::
+//==
 
 == 6.8 홈 네트워크
+=== 유선 Home Networking
+Home PNA:: 전화선
+IEEE 1394:: 직렬 버스
+PLC:: 전력선
+//==
 
-== 6.9 SDN(Software Defined Network)
+=== 무선 Home Networking
+Home RF::
+무선 랜::
+블루투스::
+IrDA::
+Zigbee::
+//==
+
+=== Home Gateway & Server
+Home Gateway::
+Home Server::
+//==
+
+=== Home Middleware
+HAVi:: AV 기기 상호연동
+JINI:: Java 기반. Java RMI 통신
+UPnP:: Web 기반(TCP/IP, HTTP)
+LonWorks:: LonTalk Protocol
+
+=== 기타
+전력선 통신::
+* Home Plug
+* CEBus
+* LonWorks
+
+== 6.9 SDN / NFV
+
+=== SDN(Software Defined Network)
+개방형 인터페이스 eg>OpenFlow
+
+SDN 계층별 기술::
+SDN 응용 프로그램:::
+SDN 컨트롤러:::
+SDN Datapath:::
+
+SDN 인터페이스::
+CDPI(Control to Data-Plane Interface):::
+* SDN 컨트롤러와 SDN Datapath간에 정의 된 인터페이스
+* 프로그래 방식의 포워딩 제어, 기능광고, 통계보고, 이벤트알림
+NBI(Northbound Interface):::
+* SDN 응용 프로그램-컨트롤러 간 I/F, 추상 네트워크 가시화
+* 벤더 중립적이며, 상호 운용 가능 방식으로 구현
+드라이버/에이젼트:::
+* 각 인터페이스는 드라이버-에이전트 쌍으로 구성
+North(Top) ::::
+** 응용프로그램
+South(Bottom) ::::
+** 인프라
+** OpenFlow
+
+
+=== Packet Overlay 수행 방법
+VXLAN(Virtual eXtensible LAN)::
+MVGRE(Network Virtualization with GRE)::
+NVO3(Network Virtualization Overlays)::
+//==
+
+=== NFV()
+네트워크 기능(장비) 가상화
 
 == 6.10 데이터 압축
+=== 압축기술
+무손실 압축::
+* 반복길이 부호화
+* LZW 부호화
+* 산술 부호화
+손실 압축::
+* 예측 부호화
 
