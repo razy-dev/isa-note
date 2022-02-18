@@ -4,6 +4,94 @@ include::../adoc/toc.adoc[]
 = 5. 소프트웨어 품질관리/인증
 
 == 5-1. 소프트웨어 품질
+=== ISO 9126 (SW 품질 특성)
+image::ISO 9126.png[align="center"]
+
+ISO 9126-1 Quality Model ::
+* 6개 품질 특성 : #기신사# #효유이#
+* 21개 부특성
+ISO 9126-2 External Metrics::
+* SW 사용될 때 외부 속성
+* 실행가능한 SW 시험/운영으로 측정
+ISO 9126-3 Internal Metrics::
+* 설계/코드 등 SW 내부 속성
+* 설계/개발 중 SW 에 적용
+ISO 9126-4 Quality in Use Metrics::
+* 사용자 관점 SW 품질(효과) 측정
+
+=== ISO 14598 (소프트웨어 평가절차)
+반복성, 재사용성, 공정성, 객관성
+
+평가 요구사항 확립::
+평가의 명세화::
+평가 설계::
+평가 실행::
+
+//==
+
+=== ISO 29119 (테스트 기법)
+구성요소::
+제품 설명서:::
+사용자 문서:::
+실행 프로그램:::
+
+프로세스::
+제품 설명서 시험:::
+사용자 문서 시험:::
+실행 프로그램 시험:::
+시험 기록:::
+시험 보고서 작성:::
+
+//==
+
+=== ISO 25000
+소프트웨어 품질평가 통합 모델 (ISO 9126 + 14598 + 29119)
+
+ISO/IEC 25000 구성요소::
+2500x Product Quality General Division:::
+2501x Quality Model Division:::
+2502x Quality Metrics Division:::
+2503x Quality Requirement Division:::
+2504x Quality Evaluation Division:::
+
+//==
+
+image::ISO 25000.png[align="center"]
+[.text-center]
+*#기신사# #효유이# #호보#*
+
+__기__능 적합성 Functionality Suitability::
+기능 성숙도 Functional Completeness::: 사용자의 목적 만족
+기능 정확도 Functional Correctness::: 정확한 결과 제공
+기능 타당성 Functional Appropriateness::: 목적의 완수를 용이
+
+__신__뢰성 Reliability::
+성숙도 Maturity::: 고장을 회피하며 신뢰도 충족
+오류 허용성 Fault Tolerance::: 결함이 존재해도 성능 수준을 유지
+회복 가능성 Recoverability::: 고장 발생 시 성능 및 데이터 회복
+가용성 Availability:::
+
+__사__용성 Usability::
+이해 용이성 Understandability::: 요구에 적절한지 식별 가능
+학습성 Learnability::: 사용자가 사용방법 학습 가능
+운용성 Operability::: 제어 및 동작
+사용자 인터페이스 미학 User Interface Aesthetics::: 이뿐가?
+사용자 오류 보호 User error Protection::: 오류로 부터 사용자 보호
+접근성 Accessibility::: 사용자 특성(나이/장애)에 상관 없이 사용
+
+실행 __효__율성 Performance Efficiency::
+
+
+__유__지보수성 Maintainability::
+* 품질 저하 없이 수정 가능
+* 변경이 다른 부분에 미치는 영향 최소화
+* 변경에 대한 영향 분석 용이
+* 테스트 용이
+__이__식성 Portability:: 다른 제품을 대체 할 수 있어야 한다.
+
+__호__환성 Compatibility:: 다른 제품과 자원 공유. 다른 제품에 악역향이 없어야 한다.
+__보__안성 Security::
+//==
 
 == 5-2. 소프트웨어 품질보증
 
