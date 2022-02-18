@@ -1,8 +1,0 @@
-ifndef::rootdir[:rootdir: ..]
-:stylesdir: {rootdir}/adoc
-:stylesheet: style.css
-:source-highlighter: coderay
-:stem: latexmath
-
-// Image Dir
-ifndef::imagesdir[:imagesdir: ./imgs]
