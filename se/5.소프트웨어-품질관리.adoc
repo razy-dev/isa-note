@@ -48,51 +48,141 @@ ISO 9126-4 Quality in Use Metrics::
 소프트웨어 품질평가 통합 모델 (ISO 9126 + 14598 + 29119)
 
 ISO/IEC 25000 구성요소::
-2500x Product Quality General Division:::
-2501x Quality Model Division:::
-2502x Quality Metrics Division:::
-2503x Quality Requirement Division:::
-2504x Quality Evaluation Division:::
+2500x Product Quality General Division::: 품질 관리 지침
+2501x Quality Model Division::: 품질 모형(모델)
+2502x Quality Metrics Division::: 품질 측정
+2503x Quality Requirement Division::: 품질 정의(요구사항)
+2504x Quality Evaluation Division::: 품질 평가
 
 //==
 
 image::ISO 25000.png[align="center"]
 [.text-center]
-*#기신사# #효유이# #호보#*
+*#기신사# #효유이# #보호#*
 
-__기__능 적합성 Functionality Suitability::
-기능 성숙도 Functional Completeness::: 사용자의 목적 만족
-기능 정확도 Functional Correctness::: 정확한 결과 제공
-기능 타당성 Functional Appropriateness::: 목적의 완수를 용이
+* __기__성정타
+* __신__성 오회가
+* __사__이학운 인보접
+* __효__시자용
+* __유__분수 시모재
+* __이__적대설
+* __보__기무 부책인
+* __호__공운
 
-__신__뢰성 Reliability::
-성숙도 Maturity::: 고장을 회피하며 신뢰도 충족
-오류 허용성 Fault Tolerance::: 결함이 존재해도 성능 수준을 유지
-회복 가능성 Recoverability::: 고장 발생 시 성능 및 데이터 회복
-가용성 Availability:::
+[cols="^2,3,4", %autowidth.stretch]
+|===
+.3+^| __기__능 적합성 +
+Functionality Suitability
+^| 기능 __성__숙도 +
+Functional Completeness     a| * 사용자의 목적 만족
+^| 기능 __정__확도 +
+Functional Correctness      a| * 정확한 결과 제공
+^| 기능 __타__당성 +
+Functional Appropriateness  a| * 목적의 완수를 용이
 
-__사__용성 Usability::
-이해 용이성 Understandability::: 요구에 적절한지 식별 가능
-학습성 Learnability::: 사용자가 사용방법 학습 가능
-운용성 Operability::: 제어 및 동작
-사용자 인터페이스 미학 User Interface Aesthetics::: 이뿐가?
-사용자 오류 보호 User error Protection::: 오류로 부터 사용자 보호
-접근성 Accessibility::: 사용자 특성(나이/장애)에 상관 없이 사용
+.4+^| __신__뢰성 +
+Reliability +
+고장 없이 운영될 확률
+^| __성__숙도 +
+Maturity                    a| * 고장을 회피하며 신뢰도 충족
+^| __오__류 허용성 +
+Fault Tolerance             a| * 결함이 존재해도 성능 수준을 유지
+^| __회__복 가능성 +
+Recoverability              a| * 고장 발생 시 성능 및 데이터 회복
+^| __가__용성 +
+Availability                a| * 필요 시 운용 가능
+* 요청된 서비스를 제공할 확률
 
-실행 __효__율성 Performance Efficiency::
+.6+^| __사__용성 +
+Usability
+^| __이__해 용이성 +
+Understandability           a| * 요구에 적절한지 식별 가능
+^| __학__습성 +
+Learnability                a| * 사용자가 사용방법 학습 가능
+^| __운__용성 +
+Operability                 a| * 제어 및 동작
+^| 사용자 __인__터페이스 미학 +
+User Interface Aesthetics   a| * 이뿐가?
+^| 사용자 오류 __보__호 +
+User error Protection       a| * 오류로 부터 사용자 보호
+^| __접__근성 +
+Accessibility               a| * 사용자 특성(나이/장애)에 상관 없이 사용
 
+.3+^| 성능 __효__율성
+Performance Efficiency
+^| __시__간 반응성 +
+Time Behavior               a| * 응답 및 처리 시간, 시간당 처리량
+^| __자__원 활용 +
+Resource Utilization        a| * 최소량
+^| __용__량 +
+Capacity                    a| * 처리량
 
-__유__지보수성 Maintainability::
-* 품질 저하 없이 수정 가능
-* 변경이 다른 부분에 미치는 영향 최소화
-* 변경에 대한 영향 분석 용이
-* 테스트 용이
-__이__식성 Portability:: 다른 제품을 대체 할 수 있어야 한다.
+.5+^| __유__지보수성 +
+Maintainability
+^| __분__석성 +
+Analyzability               a| * 문제 식별, 고장 원인 파악
+^| __수__정 가능성 +
+Modifiability               a| * 수정
+^| __시__험 가능성 +
+Testability                 a| * 테스트
+^| __모__듈성 +
+Modularity                  a| * 개별 구성 요소
+^| __재__사용성 +
+Reusability                 a| * 자산(모듈)이 한개 이상의 시스템에서 사용 가능
 
-__호__환성 Compatibility:: 다른 제품과 자원 공유. 다른 제품에 악역향이 없어야 한다.
-__보__안성 Security::
-//==
+.3+^| __이__식성 +
+Portability
+^| __적__합성 +
+Adaptability                a| * 다른 환경에 적용
+^| __대__치성 +
+Replaceability              a| * 동일 목적의 다른 SW(모듈)로 대체 가능
+^| __설__치 가능성 +
+Installability              a| * 설치/제거
+
+.2+^| __호__환성(상호운용성) +
+Compatibility
+^| 상호 __공__존성 +
+Co-existence                a| * 다른 제품에 악영향 없이 자원 공유하며 기능 수행
+^| 상호 __운__용성 +
+Interoperability            a| * 다른 제품과 정보를 교환하며 운용
+
+.5+^| __보__안성 +
+Security
+^| __기__밀성 +
+Confidentiality             a| * 접근 통제
+^| __무__결성 +
+Integrity                   a| * 변경 통제
+^| __부__인방지 +
+Non-Repudiation             a| * 니가 했자나
+^| __책__임성 +
+Accountability              a| * 감사
+^| __인__증성 +
+Authenticity                a| * 인증
+|===
+
 
 == 5-2. 소프트웨어 품질보증
+[cols="^1,2,2", %autowidth.stretch]
+|===
+^| L5 | |
+^| L4 | |
+^| L3 | |
+^| L2 | |
+^| L1 | |
+^| L0 | |
+|===
 
+=== ISO 12207
+=== SPICE (Software Process Improvement and Capability dEtermination)
+==== 프로세스 차원 (Process Dimension)
+==== 프로세스 능력 차원 (Process Capability Dimension)
+[cols="^1,^2,^2,^2,4", %autowidth.stretch]
+|===
+^| L5 | Optimizing  | 전사      | 최적화  | 표준 프로세스의 지속적 개선
+^| L4 | Predictable | 전사      | 예측    | 표준 프로세스의 정량적 이해 및 통계
+^| L3 | Established | 전사      | 확립    | 표준 프로세스의 사용
+^| L2 | Managed     | Team      | 관리    | 표준 프로세스 수행 계획 및 관리
+^| L1 | Performed   | Team      | 수행    | 프로세스 수행 및 목적 달성
+^| L0 | Incomplete  | Team      | 불안정  | 미구현 또는 목적 미달성
+|===
 == 5-3. 기타
