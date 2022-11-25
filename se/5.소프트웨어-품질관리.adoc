@@ -47,7 +47,7 @@ ISO 9126-4 Quality in Use Metrics::
 === ISO 25000
 소프트웨어 품질평가 통합 모델 (ISO 9126 + 14598 + 29119)
 
-ISO/IEC 25000 구성요소::
+ISO/IEC 25000 구성요소:: *#기신사# #효유이# #보호#*
 2500x Product Quality General Division::: 품질 관리 지침
 2501x Quality Model Division::: 품질 모형(모델)
 2502x Quality Metrics Division::: 품질 측정
@@ -58,7 +58,7 @@ ISO/IEC 25000 구성요소::
 
 image::ISO 25000.png[align="center"]
 [.text-center]
-*#기신사# #효유이# #보호#*
+
 
 * __기__성정타
 * __신__성 오회가
@@ -172,17 +172,74 @@ Authenticity                a| * 인증
 ^| L0 | |
 |===
 
-=== ISO 12207
-=== SPICE (Software Process Improvement and Capability dEtermination)
+=== ISO 12207 p.382
+* SDLC Process 표준
+* MIL - STD - 498 + 조직 프로세스 = ISO 12207
+
+=== SPICE
+Software Process Improvement and Capability dEtermination::
+ISO 12207 + 평가 = ISO 15504 = SPICE::
+2D 평가모델::
+프로세스 차원:::
+* 5개 카테고리 + 40개 세부 프로세스
+* ISO 12207 기반
+프로세스 능력 차원:::
+* 6개(0~5) Level
+
 ==== 프로세스 차원 (Process Dimension)
+CUS Customer-Supplier::
+ENG Engineering::
+SUP Support::
+MAN Management::
+ORG Organization::
+
+//==
+
 ==== 프로세스 능력 차원 (Process Capability Dimension)
 [cols="^1,^2,^2,^2,4", %autowidth.stretch]
 |===
 ^| L5 | Optimizing  | 전사      | 최적화  | 표준 프로세스의 지속적 개선
-^| L4 | Predictable | 전사      | 예측    | 표준 프로세스의 정량적 이해 및 통계
+^| L4 | Predictable | 전사      | 예측    | 표준 프로세스의 측정 -> 정량적 이해 및 통계
 ^| L3 | Established | 전사      | 확립    | 표준 프로세스의 사용
 ^| L2 | Managed     | Team      | 관리    | 표준 프로세스 수행 계획 및 관리
 ^| L1 | Performed   | Team      | 수행    | 프로세스 수행 및 목적 달성
 ^| L0 | Incomplete  | Team      | 불안정  | 미구현 또는 목적 미달성
 |===
+
+---
+
+=== CMM (Capability Maturity Model)
+[cols="^1,^2,^2,^2,4", %autowidth.stretch]
+|===
+^| L5 | Optimizing  | 전사      | 최적화  | 표준 프로세스의 지속적 개선
+^| L4 | Managed     | 전사      | 관리    | 표준 프로세스의 측정 -> 정량적 이해 및 관리
+^| L3 | Defined     | 전사      | 정의    | 표준 프로세스의 정의 및 사용
+^| L2 | Repeatable  | Team      | 반복    | 프로세스 경험적 반복 -> 문서화
+^| L1 | Initial     | Team      | 초기    | 프로세스가 거의 없음
+|===
+
+=== TTAK.KO-11.0103
+==== 1. 개요
+==== 2. 표준의 구성 및 범위
+==== 3. 용어 정의
+==== 4. 품질 평가 모델
+===== 4.1 품질 모델
+*#완정명일이#* 가 *#특검추수#*
+
+__완__전성(Completeness):: 요구 사항 중 사용자가 제시한 요구 사항에서 누락된 기능 요구 사항이 존재하는지 여부
+__정__확성(Correctness):: 요구 사항 중 논리적으로 정확하게 기술한 명세의 작성 비율
+__명__확성(Unambiguousness):: 요구 사항 산출물에 기술한 용어가 명확하게 의미 전달되는지 여부
+__일__관성(Consistency):: 산출물 항목의 연관 및 종속관계가 있는 항목 간에 불일치가 존재하는지 여부
+__이__해 가능성(Understandability):: 문장이 용이하게 이해 가능한지 여부
+
+__특__이성(Peculiarity)::  중요도 난이도 및 변경 가능성 (옵션 여부)을 표기하였는지 여부
+__검__증 가능성(Verifiability):: 명세에 대한 검증 기준 및 방법을 제시하였는지 여부
+__추__적성(Traceability):: 산출물 항목의 연관 및 종속관계가 있는 항목 간에 추적관계를 식별하였는지 여부
+__수__정 용이성(Modifiability)::
+    * 명세 항목이 쉽게 식별되고 원하는 수정이 용이하게 반영되며
+    * 수정에 대한 영향도 분석이 용이하게 이루어지는지 여부
+
+==== 5. 평가 항목
+==== 6. 평가 절차
+
 == 5-3. 기타

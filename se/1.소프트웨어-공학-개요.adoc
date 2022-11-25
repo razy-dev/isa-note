@@ -5,14 +5,23 @@ include::../adoc/toc.adoc[]
 
 == 1-1. 소프트웨어 공학 정의 및 목적
 === 소프트웨어 공학 정의
-=== 소프트웨어 공학의 목적
+
+=== 소프트웨어 공학의 목적 (p.003)
+소프트웨어 위기::
+* (무어의 법칙으로 상징되는) 빠른 하드웨어 발전 속도를 따라가지 못함
+* 소프트웨어 개발 비용, 일정, 자원 예측 어려움
+* 기타 소프트웨어의 가치를 제대로 인정 받지 못함
+
+해결 방안:: *생산성, 자동화, 유지 보수성* 극대화
+
 S/W 생산성 향상 및 고품질 소프트웨어 생산::
 * 재사용
 * 표준화
 
+
 include::../adoc/to_index.adoc[]
 
-== 1-2. 소프트웨어 개발생명주기(SDLC)
+== 1-2. 소프트웨어 개발생명주기(SDLC) (p.005)
 소프트웨어 개발생명주기(SDLC) 구성요소::
 `타당성 조사` -> `요구분석` -> `설계` -> `개발/구현` -> `테스트` -> `유지보수` -> `폐기`
 
@@ -34,33 +43,47 @@ include::../adoc/to_index.adoc[]
 === 소프트웨어 생명주기(SDLC) 모델
 [cols="^1,<2,<2", %autowidth.stretch]
 |===
-^| SDLC Model ^| Descriptions ^| Development Methodology
+^| SDLC Model ^| 장점 ^| 단점
 
-^| 폭포수 모델 (Waterfall Model)
+^| 폭포수 모델 (Waterfall Model) p.006
+a| * 가장 오래 되고 폭 넓게 사용
+* 전체 과정을 이해하기 용이
+* 관리 용이(진행 과정 세분화)
+a| * 초기에 요구사항 정의가 어려움
+* 중요 문제점의 발견이 늦어짐
+* 전 단계가 종결 되어야 다음 단계를 수행
+
+^| 프로토타입 모델 (Prototype Model) p.007
+a| * 요구 사항 도출이 용이
+* 개발자와 사용자간 의사소통 원활
+* 개발 타당성 검증 용이
+a| * 프로토타입 산출물 폐기에 따른 비경제적
+* 전체 SW 품질과 장기적 유지 보수 어려움
+
+^| 나선형 모델 (Spiral Model) p.009
+a| * 정확한 사용자 요구 사항 파악
+* 위험 부담 감소
+* 품질 확보
+a| * 많은 시간 소요
+* 관리에 어려움(복잡함)
+* 충분한 사례 부족 -> 검증 어려움
+
+^| 반복적(증분/진화적) 개발 모델 p.010
 a|
 a|
 
-^| 프로토타입 모델 (Prototype Model)
-a|
-a|
-
-^| 나선형 모델 (Spiral Model)
-a|
-a|
-
-^| 증분 개발 모델 (Incremental Model)
-a|
-a|
-
-^| RAD 모델 (Rapid Application Development)
-a|
-a|
+^| RAD 모델 (Rapid Application Development) p.012
+a| * 요구사항의 완전한 이해와 프로젝트 범위가 명확 할 경우
+* 신속한 개발 및 고품질 구현 가능
+a| * 적절한 모듈화 가능성 전제
+* 기술적 위험이 높을 경우 부적합
+* 구성원의 책임감 필요
 
 ^| 4세대 개발 모델
 a|
 a|
 |===
-==== 폭포수 모델 (Waterfall Model)
+==== 폭포수 모델 (Waterfall Model) p.006
 폭포수 모델 (Waterfall Model) 정의::
 
 폭포수 모델 (Waterfall Model) 특징::
@@ -74,7 +97,7 @@ a|
 a|
 |===
 
-==== 프로토타입 모델 (Prototype Model)
+==== 프로토타입 모델 (Prototype Model) p.007
 프로토타입 모델 (Prototype Model) 정의::
 프로토타입 모델 (Prototype Model) 특징::
 프로토타입 모델 (Prototype Model) 장단점::
@@ -86,8 +109,9 @@ a|
 a|
 |===
 
-==== 나선형 모델 (Spiral Model)
+==== 나선형 모델 (Spiral Model) p.009
 나선형 모델 (Spiral Model) 정의::
+* 계획수립 -> 위험분석 -> 개발 -> 평가
 나선형 모델 (Spiral Model) 특징::
 나선형 모델 (Spiral Model) 장단점::
 [cols="1,1", %autowidth.stretch]
@@ -98,7 +122,7 @@ a|
 a|
 |===
 
-==== 반복적 개발 모델
+==== 반복적 개발 모델 p.010
 반복적 개발 모델 정의::
 반복적 개발 모델 특징::
 반복적 개발 모델 유형::
@@ -111,7 +135,7 @@ a|
 a|
 |===
 
-==== RAD 모델 (Rapid Application Development)
+==== RAD 모델 (Rapid Application Development) p.012
 RAD 모델 정의::
 RAD 모델 특징::
 RAD 모델 장단점::
