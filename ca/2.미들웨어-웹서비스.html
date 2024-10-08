@@ -1,0 +1,1574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 2.0.23">
+<title>2. 미들웨어/웹서비스</title>
+<style>
+@import "https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700";
+@import "https://cdn.jsdelivr.net/gh/asciidoctor/asciidoctor@2.0/data/stylesheets/asciidoctor-default.css";
+
+body {
+  font-family: "Open Sans","DejaVu Sans",sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6, #toctitle, .sidebarblock > .content > .title {
+  color: rgba(0, 0, 0, 1);
+  font-weight: bold;
+}
+
+h1 > a.link, h2 > a.link, h3 > a.link, h4 > a.link, h5 > a.link, h6 > a.link {
+  color: rgba(0, 0, 0, 1);
+  font-weight: bold;
+}
+
+code {
+  font-weight: 600;
+  color: rgba(0, 0, 255, 1);
+}
+
+strong {
+  font-weight: 600;
+  color: rgba(0, 0, 0 0.9);
+}
+
+em {
+  font-style: inherit;
+  font-weight: 600;
+  color: rgba(255, 0, 0, 1);
+}
+
+/* Stylesheet for CodeRay to match GitHub theme | MIT License | http://foundation.zurb.com */
+pre.CodeRay {
+    background: #f7f7f8
+}
+
+.CodeRay .line-numbers {
+    border-right: 1px solid currentColor;
+    opacity: .35;
+    padding: 0 .5em 0 0
+}
+
+.CodeRay span.line-numbers {
+    display: inline-block;
+    margin-right: .75em
+}
+
+.CodeRay .line-numbers strong {
+    color: #000
+}
+
+table.CodeRay {
+    border-collapse: separate;
+    border: 0;
+    margin-bottom: 0;
+    background: none
+}
+
+table.CodeRay td {
+    vertical-align: top;
+    line-height: inherit
+}
+
+table.CodeRay td.line-numbers {
+    text-align: right
+}
+
+table.CodeRay td.code {
+    padding: 0 0 0 .75em
+}
+
+.CodeRay .debug {
+    color: #fff !important;
+    background: #000080 !important
+}
+
+.CodeRay .annotation {
+    color: #007
+}
+
+.CodeRay .attribute-name {
+    color: #000080
+}
+
+.CodeRay .attribute-value {
+    color: #700
+}
+
+.CodeRay .binary {
+    color: #509
+}
+
+.CodeRay .comment {
+    color: #998;
+    font-style: italic
+}
+
+.CodeRay .char {
+    color: #04d
+}
+
+.CodeRay .char .content {
+    color: #04d
+}
+
+.CodeRay .char .delimiter {
+    color: #039
+}
+
+.CodeRay .class {
+    color: #458;
+    font-weight: bold
+}
+
+.CodeRay .complex {
+    color: #a08
+}
+
+.CodeRay .constant, .CodeRay .predefined-constant {
+    color: #008080
+}
+
+.CodeRay .color {
+    color: #099
+}
+
+.CodeRay .class-variable {
+    color: #369
+}
+
+.CodeRay .decorator {
+    color: #b0b
+}
+
+.CodeRay .definition {
+    color: #099
+}
+
+.CodeRay .delimiter {
+    color: #000
+}
+
+.CodeRay .doc {
+    color: #970
+}
+
+.CodeRay .doctype {
+    color: #34b
+}
+
+.CodeRay .doc-string {
+    color: #d42
+}
+
+.CodeRay .escape {
+    color: #666
+}
+
+.CodeRay .entity {
+    color: #800
+}
+
+.CodeRay .error {
+    color: #808
+}
+
+.CodeRay .exception {
+    color: inherit
+}
+
+.CodeRay .filename {
+    color: #099
+}
+
+.CodeRay .function {
+    color: #900;
+    font-weight: bold
+}
+
+.CodeRay .global-variable {
+    color: #008080
+}
+
+.CodeRay .hex {
+    color: #058
+}
+
+.CodeRay .integer, .CodeRay .float {
+    color: #099
+}
+
+.CodeRay .include {
+    color: #555
+}
+
+.CodeRay .inline {
+    color: #000
+}
+
+.CodeRay .inline .inline {
+    background: #ccc
+}
+
+.CodeRay .inline .inline .inline {
+    background: #bbb
+}
+
+.CodeRay .inline .inline-delimiter {
+    color: #d14
+}
+
+.CodeRay .inline-delimiter {
+    color: #d14
+}
+
+.CodeRay .important {
+    color: #555;
+    font-weight: bold
+}
+
+.CodeRay .interpreted {
+    color: #b2b
+}
+
+.CodeRay .instance-variable {
+    color: #008080
+}
+
+.CodeRay .label {
+    color: #970
+}
+
+.CodeRay .local-variable {
+    color: #963
+}
+
+.CodeRay .octal {
+    color: #40e
+}
+
+.CodeRay .predefined {
+    color: #369
+}
+
+.CodeRay .preprocessor {
+    color: #579
+}
+
+.CodeRay .pseudo-class {
+    color: #555
+}
+
+.CodeRay .directive {
+    font-weight: bold
+}
+
+.CodeRay .type {
+    font-weight: bold
+}
+
+.CodeRay .predefined-type {
+    color: inherit
+}
+
+.CodeRay .reserved, .CodeRay .keyword {
+    color: #000;
+    font-weight: bold
+}
+
+.CodeRay .key {
+    color: #808
+}
+
+.CodeRay .key .delimiter {
+    color: #606
+}
+
+.CodeRay .key .char {
+    color: #80f
+}
+
+.CodeRay .value {
+    color: #088
+}
+
+.CodeRay .regexp .delimiter {
+    color: #808
+}
+
+.CodeRay .regexp .content {
+    color: #808
+}
+
+.CodeRay .regexp .modifier {
+    color: #808
+}
+
+.CodeRay .regexp .char {
+    color: #d14
+}
+
+.CodeRay .regexp .function {
+    color: #404;
+    font-weight: bold
+}
+
+.CodeRay .string {
+    color: #d20
+}
+
+.CodeRay .string .string .string {
+    background: #ffd0d0
+}
+
+.CodeRay .string .content {
+    color: #d14
+}
+
+.CodeRay .string .char {
+    color: #d14
+}
+
+.CodeRay .string .delimiter {
+    color: #d14
+}
+
+.CodeRay .shell {
+    color: #d14
+}
+
+.CodeRay .shell .delimiter {
+    color: #d14
+}
+
+.CodeRay .symbol {
+    color: #990073
+}
+
+.CodeRay .symbol .content {
+    color: #a60
+}
+
+.CodeRay .symbol .delimiter {
+    color: #630
+}
+
+.CodeRay .tag {
+    color: #008080
+}
+
+.CodeRay .tag-special {
+    color: #d70
+}
+
+.CodeRay .variable {
+    color: #036
+}
+
+.CodeRay .insert {
+    background: #afa
+}
+
+.CodeRay .delete {
+    background: #faa
+}
+
+.CodeRay .change {
+    color: #aaf;
+    background: #007
+}
+
+.CodeRay .head {
+    color: #f8f;
+    background: #505
+}
+
+.CodeRay .insert .insert {
+    color: #080
+}
+
+.CodeRay .delete .delete {
+    color: #800
+}
+
+.CodeRay .change .change {
+    color: #66f
+}
+
+.CodeRay .head .head {
+    color: #f4f
+}
+
+pre.rouge table td {
+    padding: 5px;
+}
+
+pre.rouge table pre {
+    margin: 0;
+}
+
+pre.rouge .cm {
+    color: #999988;
+    font-style: italic;
+}
+
+pre.rouge .cp {
+    color: #999999;
+    font-weight: bold;
+}
+
+pre.rouge .c1 {
+    color: #999988;
+    font-style: italic;
+}
+
+pre.rouge .cs {
+    color: #999999;
+    font-weight: bold;
+    font-style: italic;
+}
+
+pre.rouge .c, pre.rouge .ch, pre.rouge .cd, pre.rouge .cpf {
+    color: #999988;
+    font-style: italic;
+}
+
+pre.rouge .err {
+    color: #a61717;
+    background-color: #e3d2d2;
+}
+
+pre.rouge .gd {
+    color: #000000;
+    background-color: #ffdddd;
+}
+
+pre.rouge .ge {
+    color: #000000;
+    font-style: italic;
+}
+
+pre.rouge .gr {
+    color: #aa0000;
+}
+
+pre.rouge .gh {
+    color: #999999;
+}
+
+pre.rouge .gi {
+    color: #000000;
+    background-color: #ddffdd;
+}
+
+pre.rouge .go {
+    color: #888888;
+}
+
+pre.rouge .gp {
+    color: #555555;
+}
+
+pre.rouge .gs {
+    font-weight: bold;
+}
+
+pre.rouge .gu {
+    color: #aaaaaa;
+}
+
+pre.rouge .gt {
+    color: #aa0000;
+}
+
+pre.rouge .kc {
+    color: #000000;
+    font-weight: bold;
+}
+
+pre.rouge .kd {
+    color: #000000;
+    font-weight: bold;
+}
+
+pre.rouge .kn {
+    color: #000000;
+    font-weight: bold;
+}
+
+pre.rouge .kp {
+    color: #000000;
+    font-weight: bold;
+}
+
+pre.rouge .kr {
+    color: #000000;
+    font-weight: bold;
+}
+
+pre.rouge .kt {
+    color: #445588;
+    font-weight: bold;
+}
+
+pre.rouge .k, pre.rouge .kv {
+    color: #000000;
+    font-weight: bold;
+}
+
+pre.rouge .mf {
+    color: #009999;
+}
+
+pre.rouge .mh {
+    color: #009999;
+}
+
+pre.rouge .il {
+    color: #009999;
+}
+
+pre.rouge .mi {
+    color: #009999;
+}
+
+pre.rouge .mo {
+    color: #009999;
+}
+
+pre.rouge .m, pre.rouge .mb, pre.rouge .mx {
+    color: #009999;
+}
+
+pre.rouge .sb {
+    color: #d14;
+}
+
+pre.rouge .sc {
+    color: #d14;
+}
+
+pre.rouge .sd {
+    color: #d14;
+}
+
+pre.rouge .s2 {
+    color: #d14;
+}
+
+pre.rouge .se {
+    color: #d14;
+}
+
+pre.rouge .sh {
+    color: #d14;
+}
+
+pre.rouge .si {
+    color: #d14;
+}
+
+pre.rouge .sx {
+    color: #d14;
+}
+
+pre.rouge .sr {
+    color: #009926;
+}
+
+pre.rouge .s1 {
+    color: #d14;
+}
+
+pre.rouge .ss {
+    color: #990073;
+}
+
+pre.rouge .s, pre.rouge .sa, pre.rouge .dl {
+    color: #d14;
+}
+
+pre.rouge .na {
+    color: #008080;
+}
+
+pre.rouge .bp {
+    color: #999999;
+}
+
+pre.rouge .nb {
+    color: #0086B3;
+}
+
+pre.rouge .nc {
+    color: #445588;
+    font-weight: bold;
+}
+
+pre.rouge .no {
+    color: #008080;
+}
+
+pre.rouge .nd {
+    color: #3c5d5d;
+    font-weight: bold;
+}
+
+pre.rouge .ni {
+    color: #800080;
+}
+
+pre.rouge .ne {
+    color: #990000;
+    font-weight: bold;
+}
+
+pre.rouge .nf, pre.rouge .fm {
+    color: #990000;
+    font-weight: bold;
+}
+
+pre.rouge .nl {
+    color: #990000;
+    font-weight: bold;
+}
+
+pre.rouge .nn {
+    color: #555555;
+}
+
+pre.rouge .nt {
+    color: #000080;
+}
+
+pre.rouge .vc {
+    color: #008080;
+}
+
+pre.rouge .vg {
+    color: #008080;
+}
+
+pre.rouge .vi {
+    color: #008080;
+}
+
+pre.rouge .nv, pre.rouge .vm {
+    color: #008080;
+}
+
+pre.rouge .ow {
+    color: #000000;
+    font-weight: bold;
+}
+
+pre.rouge .o {
+    color: #000000;
+    font-weight: bold;
+}
+
+pre.rouge .w {
+    color: #bbbbbb;
+}
+
+pre.rouge {
+    background-color: #f8f8f8;
+}
+
+/*#content > h1:first-child:not([class]), body {*/
+/*    background-color: #45494a;*/
+/*    color: #bbbbbb*/
+/*}*/
+
+/*.content > pre {*/
+/*    filter: invert(90%) hue-rotate(180deg);*/
+/*}*/
+
+/*a, a:hover, a:focus {*/
+/*    color: #589df6;*/
+/*}*/
+
+/*table.tableblock, th.tableblock, td.tableblock {*/
+/*    color: #bbbbbb*/
+/*}*/
+
+/*!* was: rgba(0,0,0,.8) *!*/
+/*table:not(.linenotable):not(.CodeRay) thead tr th, table thead tr td, table:not(.linenotable):not(.CodeRay) tfoot tr th, table:not(.linenotable):not(.CodeRay) tfoot tr td {*/
+/*    color: #bbbbbb*/
+/*}*/
+
+/*abbr, acronym {*/
+/*    color: #bbbbbb*/
+/*}*/
+
+/*table:not(.linenotable):not(.CodeRay) tr th, table tr td {*/
+/*    color: #bbbbbb*/
+/*}*/
+
+/*kbd {*/
+/*    background-color: #626262 !important;*/
+/*    color: #bbbbbb;*/
+/*    -webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, .2), 0 0 0 .1em #777 inset;*/
+/*    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2), 0 0 0 .1em #777 inset*/
+/*}*/
+
+/*.menuseq, .menu {*/
+/*    color: #bbbbbb*/
+/*}*/
+
+/*#footer {*/
+/*    color: #bbbbbb*/
+/*}*/
+
+/*tbody tr th, tbody tr th p, tfoot tr th, tfoot tr th p {*/
+/*    color: #bbbbbb*/
+/*}*/
+
+/*.conum[data-value] {*/
+/*    color: #bbbbbb*/
+/*}*/
+
+/*!* was: rgba(0,0,0,.85) *!*/
+/*.paragraph.lead > p, #preamble > .sectionbody > .paragraph:first-of-type p {*/
+/*    color: #bbbbbb*/
+/*}*/
+
+/*.quoteblock blockquote, .quoteblock blockquote p {*/
+/*    color: #bbbbbb*/
+/*}*/
+
+/*#content > h1:first-child:not([class]) {*/
+/*    color: #bbbbbb*/
+/*}*/
+
+/*#header .details br + span.author:before {*/
+/*    color: #bbbbbb*/
+/*}*/
+
+/*#header .details span.email a {*/
+/*    color: #bbbbbb*/
+/*}*/
+
+/*#header > h1:first-child {*/
+/*    color: #bbbbbb*/
+/*}*/
+
+/*blockquote, blockquote p {*/
+/*    color: #bbbbbb*/
+/*}*/
+
+/*!* was: rgba(0,0,0,.6) *!*/
+/*blockquote cite a, blockquote cite a:visited {*/
+/*    color: #bbbbbb*/
+/*}*/
+
+/*#header .details {*/
+/*    color: #bbbbbb*/
+/*}*/
+
+/*.admonitionblock > table td.content {*/
+/*    color: #bbbbbb*/
+/*}*/
+
+/*.quoteblock .quoteblock {*/
+/*    color: #bbbbbb*/
+/*}*/
+
+/*.quoteblock .attribution cite, .verseblock .attribution cite {*/
+/*    color: #bbbbbb*/
+/*}*/
+
+/*!* was: f8f8f7 *!*/
+/*table:not(.linenotable):not(.CodeRay) tbody tr {*/
+/*    background: #45494a*/
+/*}*/
+
+/*table:not(.linenotable):not(.CodeRay) tr.even, table tr.alt, table tr:nth-of-type(even) {*/
+/*    background: #626262*/
+/*}*/
+
+/*!* was f7f8f7 *!*/
+/*table:not(.linenotable):not(.CodeRay) thead, table tfoot {*/
+/*    background: #626262*/
+/*}*/
+
+/*tbody tr th {*/
+/*    background: #626262*/
+/*}*/
+
+/*!* was: 7a2518 *!*/
+/*.subheader, .admonitionblock td.content > .title, .audioblock > .title, .exampleblock > .title, .imageblock > .title, .listingblock > .title, .literalblock > .title, .stemblock > .title, .openblock > .title, .paragraph > .title, .quoteblock > .title, table.tableblock > .title, .verseblock > .title, .videoblock > .title, .dlist > .title, .olist > .title, .ulist > .title, .qlist > .title, .hdlist > .title,*/
+/*#toctitle,*/
+/*.sidebarblock > .content > .title,*/
+/*.quoteblock blockquote::before,*/
+/*    !* was: several *!*/
+/*td.icon {*/
+/*    filter: invert(90%) hue-rotate(180deg);*/
+/*}*/
+
+/*!* was: f8f8f7 *!*/
+/*.sidebarblock, .exampleblock, .exampleblock > .content {*/
+/*    background: #626262;*/
+/*    border-color: #626262;*/
+/*    box-shadow: 0 1px 4px #626262*/
+/*}*/
+
+/*!* was: f7f7f8 *!*/
+/*.exampleblock > .content > :last-child > :last-child, .exampleblock > .content .olist > ol > li:last-child > :last-child, .exampleblock > .content .ulist > ul > li:last-child > :last-child, .exampleblock > .content .qlist > ol > li:last-child > :last-child, .sidebarblock > .content > :last-child > :last-child, .sidebarblock > .content .olist > ol > li:last-child > :last-child, .sidebarblock > .content .ulist > ul > li:last-child > :last-child, .sidebarblock > .content .qlist > ol > li:last-child > :last-child {*/
+/*    margin-bottom: 0*/
+/*}*/
+
+/*#toc {*/
+/*    background-color: #626262 !important;*/
+/*    border-color: #626262 !important;*/
+/*}*/
+
+/*h1, h2, h3, #toctitle, .sidebarblock > .content > .title, h4, h5, h6 {*/
+/*    color: #cccccc*/
+/*}*/
+
+/*!* scroll bar color change to match the dark scheme *!*/
+/*::-webkit-scrollbar {*/
+/*    width: 12px;*/
+/*    height: 12px;*/
+/*    background-color: inherit;*/
+/*}*/
+
+/*::-webkit-scrollbar-thumb {*/
+/*    -webkit-border-radius: 10px;*/
+/*    border: 2px solid #2c2c2c;*/
+/*    background-color: #404040;*/
+/*}*/
+
+/*::-webkit-scrollbar-track {*/
+/*    width: 12px;*/
+/*    height: 12px;*/
+/*    background-color: #2c2c2c;*/
+/*}*/
+</style>
+</head>
+<body class="article toc2 toc-left">
+<div id="header">
+<h1>2. 미들웨어/웹서비스</h1>
+<div id="toc" class="toc2">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#_2_1_raid_ssd">2.1 RAID / SSD</a>
+<ul class="sectlevel2">
+<li><a href="#_raid">RAID</a></li>
+<li><a href="#_ssd">SSD</a></li>
+</ul>
+</li>
+<li><a href="#_2_2_네트워크_저장장치">2.2 네트워크 저장장치</a>
+<ul class="sectlevel2">
+<li><a href="#_backup">Backup</a></li>
+</ul>
+</li>
+<li><a href="#_2_3_msa_server_less">2.3 MSA / Server Less</a>
+<ul class="sectlevel2">
+<li><a href="#_msa">MSA</a></li>
+<li><a href="#_server_less">Server Less</a></li>
+</ul>
+</li>
+<li><a href="#_2_4_분산객체">2.4 분산객체</a>
+<ul class="sectlevel2">
+<li><a href="#_분산객체">분산객체</a></li>
+<li><a href="#_미들웨어">미들웨어</a></li>
+</ul>
+</li>
+<li><a href="#_2_5_comcommon_object_model">2.5 COM(Common Object Model)</a></li>
+<li><a href="#_2_5_java">2.5 Java</a>
+<ul class="sectlevel2">
+<li><a href="#_java_gcgarbage_collection">Java GC(Garbage Collection)</a></li>
+</ul>
+</li>
+<li><a href="#_2_6_ejb">2.6 EJB</a></li>
+<li><a href="#_2_7_was">2.7 WAS</a></li>
+<li><a href="#_2_8_eai">2.8 EAI</a>
+<ul class="sectlevel2">
+<li><a href="#_tptransaction_processing">TP(Transaction Processing)</a></li>
+</ul>
+</li>
+<li><a href="#_2_9_x_internet">2.9 X-Internet</a></li>
+<li><a href="#_2_10_html5">2.10 HTML5</a></li>
+<li><a href="#_2_11_android">2.11 Android</a></li>
+<li><a href="#_2_12_오픈소스">2.12 오픈소스</a></li>
+<li><a href="#_기타">기타</a></li>
+</ul>
+</div>
+</div>
+<div id="content">
+<div class="sect1">
+<h2 id="_2_1_raid_ssd">2.1 RAID / SSD</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_raid">RAID</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 13.3333%;">
+<col style="width: 53.3333%;">
+<col style="width: 26.6666%;">
+<col style="width: 6.6668%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-center valign-top">구분</th>
+<th class="tableblock halign-center valign-top">설명</th>
+<th class="tableblock halign-center valign-top">특징</th>
+<th class="tableblock halign-center valign-top">Disk</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">RAID 0</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p>Stripped Disk Array without Fault tolerance</p>
+</li>
+<li>
+<p>분산 저장</p>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">성능(속도) &uarr; 가용성 &darr;</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">2+</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">RAID 1</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p>Mirroring and Duplexing</p>
+</li>
+<li>
+<p>복사 저장</p>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">성능(속도) &darr; 가용성 &uarr;</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">2+</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">RAID 2</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p>Hamming code ECC</p>
+</li>
+<li>
+<p>분산 저장 + Hamming code(bit) Disk (병목)</p>
+</li>
+<li>
+<p>Data Disk 수에 따라 Hamming code(bit) Disk 추가</p>
+</li>
+<li>
+<p>\(2^p &gt;=d + p + 1\)</p>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">성능(속도) &darr; 가용성 &uarr;</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">2+</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">RAID 3</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p>Parallel Transfer with parity</p>
+</li>
+<li>
+<p>분산 저장 + Parity(byte) Disk <mark>1개 (병목)</mark></p>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">성능(속도) &darr; 가용성 &uarr;</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">3+</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">RAID 4</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p>Independent data disks with shared parity disk</p>
+</li>
+<li>
+<p>분산 저장 + Parity(word/<em>block</em>) Disk <mark>1개 (병목)</mark></p>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">성능(속도) &darr; 가용성 &uarr;</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">3+</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">RAID 5</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p>Independent data disks with distributed parity blocks</p>
+</li>
+<li>
+<p>Data + Parity(word/<em>block</em>) 분산저장 (병목해소)</p>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">성능(속도) &uarr; 가용성 &uarr;</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">3+</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">RAID 6</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p>Independent data disks with two independent distributed parity schemas</p>
+</li>
+<li>
+<p>RAID 5 + Parity(word/<em>block</em>) 분산 Disk 추가<br>
+&#8594; Parity 가 2개 (가용성)</p>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">성능(속도) &uarr; 가용성 &uarr;</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">4+</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">RAID 0 + 1</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p>RAID 0 한것을 RAID 1 로 묶음</p>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">성능(속도) &uarr; 가용성 &darr;</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">4+</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">RAID 1 + 0</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p>RAID 1 한것을 RAID 0 로 묶음</p>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">성능(속도) &uarr; 가용성 &darr;</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">4+</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_ssd">SSD</h3>
+
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_2_2_네트워크_저장장치">2.2 네트워크 저장장치</h2>
+<div class="sectionbody">
+<div class="dlist">
+<dl>
+<dt class="hdlist1">DAS(Direct Attached Storage)</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>SCSI</p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">SAN(Storage Area Network)</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>??</p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">NAS(Network Attached Storage)</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>TCP/IP</p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">IP Storage</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>??</p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="sect2">
+<h3 id="_backup">Backup</h3>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">전체(full) 백업</dt>
+<dd>
+<p>전체 복사본</p>
+</dd>
+<dt class="hdlist1">차등(differential) 백업</dt>
+<dd>
+<p>마지막 full backup 후 변경 내역 full backup</p>
+</dd>
+<dt class="hdlist1">증분(incremental) 백업</dt>
+<dd>
+<p>이전 백업 후 변경된 데이터만</p>
+</dd>
+<dt class="hdlist1">합성(synthetic) 백업</dt>
+<dd>
+<p>전체 백업과 증분 백업을 합쳐 백업</p>
+</dd>
+<dt class="hdlist1">중복제거(deduplication) 백업</dt>
+<dd>
+<p>동일 데이터 + 메타 데이터</p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_2_3_msa_server_less">2.3 MSA / Server Less</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_msa">MSA</h3>
+
+</div>
+<div class="sect2">
+<h3 id="_server_less">Server Less</h3>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">컨테이너 레지스트리</dt>
+<dd>
+<p>기능 저장소</p>
+</dd>
+<dt class="hdlist1">컨테이너 오케스트레이터</dt>
+<dd>
+<p>컨테이너 운영/관리</p>
+</dd>
+<dt class="hdlist1">마스터 노드</dt>
+<dd>
+<p>운영 환경 관리</p>
+</dd>
+<dt class="hdlist1">워커 노드</dt>
+<dd>
+<p>기능 수행</p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_2_4_분산객체">2.4 분산객체</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_분산객체">분산객체</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 12.5%;">
+<col style="width: 50%;">
+<col style="width: 12.5%;">
+<col style="width: 12.5%;">
+<col style="width: 12.5%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-center valign-top">구분</th>
+<th class="tableblock halign-center valign-top">설명</th>
+<th class="tableblock halign-center valign-top">표준</th>
+<th class="tableblock halign-center valign-top">OS</th>
+<th class="tableblock halign-center valign-top">언어</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">DCE</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p>절차지향 분산환경 표준</p>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">OSF</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">?</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">?</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">CORBA</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p>분산 걔체 표준</p>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">OMG</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">ALL</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">ALL</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">DCOM</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p>원격객체 서비스 지향</p>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">MS</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">Window</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">ALL</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">RMI</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Java 분산 객체</p>
+</div></div></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">Oracle</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">ALL(JVM)</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">Java</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_미들웨어">미들웨어</h3>
+<div class="paragraph">
+<p>어플리케이션들을 연결하고, 서로 데이터를 교환 할 수 있도록 하는 소프트웨어</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">동기식(Synchronous)</dt>
+<dd>
+<p>RPC, ORB, OLTP, RDA</p>
+</dd>
+<dt class="hdlist1">비동기식(Asynchronous)</dt>
+<dd>
+<p>MQ, MOM</p>
+</dd>
+</dl>
+</div>
+<div class="sect3">
+<h4 id="_메시지_처리_방식">메시지 처리 방식</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>Fire &amp; Forget : 쏘고 몰랑~~</p>
+</li>
+<li>
+<p>Publish &amp; Subscript : 쐈으니 받아가</p>
+</li>
+<li>
+<p>Routing : 차례대로 전달</p>
+</li>
+<li>
+<p>Callback : 받았으면 알려줘</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_2_5_comcommon_object_model">2.5 COM(Common Object Model)</h2>
+<div class="sectionbody">
+
+</div>
+</div>
+<div class="sect1">
+<h2 id="_2_5_java">2.5 Java</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_java_gcgarbage_collection">Java GC(Garbage Collection)</h3>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Default GC</dt>
+<dt class="hdlist1">Serial GC</dt>
+<dd>
+<p>차례대로 단일 쓰레드</p>
+</dd>
+<dt class="hdlist1">Parallel GC</dt>
+<dd>
+<p>다중 쓰레드</p>
+</dd>
+<dt class="hdlist1">CMS GC</dt>
+<dd>
+<p>Application Thread 와 GC Thread 동시 수행</p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_2_6_ejb">2.6 EJB</h2>
+<div class="sectionbody">
+
+</div>
+</div>
+<div class="sect1">
+<h2 id="_2_7_was">2.7 WAS</h2>
+<div class="sectionbody">
+
+</div>
+</div>
+<div class="sect1">
+<h2 id="_2_8_eai">2.8 EAI</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>데이터 연결 통로 확보, 데이터 공유/통합 업무 처리 시스템
+* Data Level 통합
+* Object Level 통합
+* Process Level 통합</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 40%;">
+<col style="width: 40%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-center valign-top">구분</th>
+<th class="tableblock halign-center valign-top">HUB &amp; Spoke</th>
+<th class="tableblock halign-center valign-top">Message Bus</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">기능</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p>Hub System + Queue</p>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p>미들웨어(Bus)</p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">장단점</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p>쉬움</p>
+</li>
+<li>
+<p>Hub 죽음 다 죽음</p>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p>고속전송/확장성</p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+<div class="sect2">
+<h3 id="_tptransaction_processing">TP(Transaction Processing)</h3>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Broker-based Architecture</dt>
+<dt class="hdlist1">Bus-based Architecture</dt>
+</dl>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_2_9_x_internet">2.9 X-Internet</h2>
+<div class="sectionbody">
+
+</div>
+</div>
+<div class="sect1">
+<h2 id="_2_10_html5">2.10 HTML5</h2>
+<div class="sectionbody">
+
+</div>
+</div>
+<div class="sect1">
+<h2 id="_2_11_android">2.11 Android</h2>
+<div class="sectionbody">
+
+</div>
+</div>
+<div class="sect1">
+<h2 id="_2_12_오픈소스">2.12 오픈소스</h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 18.1818%;">
+<col style="width: 72.7272%;">
+<col style="width: 9.091%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-center valign-top">OSS</th>
+<th class="tableblock halign-center valign-top">설명</th>
+<th class="tableblock halign-center valign-top">강도</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">AGPL</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>무조건 공개</p>
+</div></div></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">최강</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">GPL 2.0</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>무조건 공개</p>
+</div></div></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">강</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">LGPL 2.1</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>사용한 부분만 공개</p>
+</div></div></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">중</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">BSD</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">하</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">Apache</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>라이센스 및 저작관 명시 + 변경 사항</p>
+</div></div></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">하</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">MPL</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">하</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">MIT</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>라이센스 및 저작관 명시</p>
+</div></div></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">하</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_기타">기타</h2>
+<div class="sectionbody">
+<div class="dlist">
+<dl>
+<dt class="hdlist1">HTTP Method 멱등성</dt>
+<dd>
+<p>동일한 요청을 한 번 보내는 것과 여러 번 연속으로 보내는 것이 같은 효과를 지니고, 서버의 상태도 동일하게 남을 때,
+해당 HTTP 메서드가 멱등성을 가졌다고 말합니다.<br>
+다른 말로는, 멱등성 메서드에는 통계 기록 등을 제외하면 어떠한 부수 효과(side effect)도 존재해서는 안됩니다.<br>
+올바르게 구현한 경우 GET, HEAD, PUT, DELETE 메서드는 멱등성을 가지며, POST 메서드는 그렇지 않습니다.<br>
+모든 안전한(서버데이터 변화 없음) 메서드는 멱등성도 가집니다.</p>
+</dd>
+</dl>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-center valign-top">Method</th>
+<th class="tableblock halign-center valign-top">안전</th>
+<th class="tableblock halign-center valign-top">멱등성</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">HEAD</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">O</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">O</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">GET</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">O</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">O</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">POST</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">X</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">X</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">PUT/PATCH</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">X</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">O</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">DELETE</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">X</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">O</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  messageStyle: "none",
+  tex2jax: {
+    inlineMath: [["\\(", "\\)"]],
+    displayMath: [["\\[", "\\]"]],
+    ignoreClass: "nostem|nolatexmath"
+  },
+  asciimath2jax: {
+    delimiters: [["\\$", "\\$"]],
+    ignoreClass: "nostem|noasciimath"
+  },
+  TeX: { equationNumbers: { autoNumber: "none" } }
+})
+MathJax.Hub.Register.StartupHook("AsciiMath Jax Ready", function () {
+  MathJax.InputJax.AsciiMath.postfilterHooks.Add(function (data, node) {
+    if ((node = data.script.parentNode) && (node = node.parentNode) && node.classList.contains("stemblock")) {
+      data.math.root.display = "block"
+    }
+    return data
+  })
+})
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js?config=TeX-MML-AM_HTMLorMML"></script>
+</body>
+</html>

@@ -1,0 +1,2092 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 2.0.23">
+<title>1. 하드웨어</title>
+<style>
+@import "https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700";
+@import "https://cdn.jsdelivr.net/gh/asciidoctor/asciidoctor@2.0/data/stylesheets/asciidoctor-default.css";
+
+body {
+  font-family: "Open Sans","DejaVu Sans",sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6, #toctitle, .sidebarblock > .content > .title {
+  color: rgba(0, 0, 0, 1);
+  font-weight: bold;
+}
+
+h1 > a.link, h2 > a.link, h3 > a.link, h4 > a.link, h5 > a.link, h6 > a.link {
+  color: rgba(0, 0, 0, 1);
+  font-weight: bold;
+}
+
+code {
+  font-weight: 600;
+  color: rgba(0, 0, 255, 1);
+}
+
+strong {
+  font-weight: 600;
+  color: rgba(0, 0, 0 0.9);
+}
+
+em {
+  font-style: inherit;
+  font-weight: 600;
+  color: rgba(255, 0, 0, 1);
+}
+
+/* Stylesheet for CodeRay to match GitHub theme | MIT License | http://foundation.zurb.com */
+pre.CodeRay {
+    background: #f7f7f8
+}
+
+.CodeRay .line-numbers {
+    border-right: 1px solid currentColor;
+    opacity: .35;
+    padding: 0 .5em 0 0
+}
+
+.CodeRay span.line-numbers {
+    display: inline-block;
+    margin-right: .75em
+}
+
+.CodeRay .line-numbers strong {
+    color: #000
+}
+
+table.CodeRay {
+    border-collapse: separate;
+    border: 0;
+    margin-bottom: 0;
+    background: none
+}
+
+table.CodeRay td {
+    vertical-align: top;
+    line-height: inherit
+}
+
+table.CodeRay td.line-numbers {
+    text-align: right
+}
+
+table.CodeRay td.code {
+    padding: 0 0 0 .75em
+}
+
+.CodeRay .debug {
+    color: #fff !important;
+    background: #000080 !important
+}
+
+.CodeRay .annotation {
+    color: #007
+}
+
+.CodeRay .attribute-name {
+    color: #000080
+}
+
+.CodeRay .attribute-value {
+    color: #700
+}
+
+.CodeRay .binary {
+    color: #509
+}
+
+.CodeRay .comment {
+    color: #998;
+    font-style: italic
+}
+
+.CodeRay .char {
+    color: #04d
+}
+
+.CodeRay .char .content {
+    color: #04d
+}
+
+.CodeRay .char .delimiter {
+    color: #039
+}
+
+.CodeRay .class {
+    color: #458;
+    font-weight: bold
+}
+
+.CodeRay .complex {
+    color: #a08
+}
+
+.CodeRay .constant, .CodeRay .predefined-constant {
+    color: #008080
+}
+
+.CodeRay .color {
+    color: #099
+}
+
+.CodeRay .class-variable {
+    color: #369
+}
+
+.CodeRay .decorator {
+    color: #b0b
+}
+
+.CodeRay .definition {
+    color: #099
+}
+
+.CodeRay .delimiter {
+    color: #000
+}
+
+.CodeRay .doc {
+    color: #970
+}
+
+.CodeRay .doctype {
+    color: #34b
+}
+
+.CodeRay .doc-string {
+    color: #d42
+}
+
+.CodeRay .escape {
+    color: #666
+}
+
+.CodeRay .entity {
+    color: #800
+}
+
+.CodeRay .error {
+    color: #808
+}
+
+.CodeRay .exception {
+    color: inherit
+}
+
+.CodeRay .filename {
+    color: #099
+}
+
+.CodeRay .function {
+    color: #900;
+    font-weight: bold
+}
+
+.CodeRay .global-variable {
+    color: #008080
+}
+
+.CodeRay .hex {
+    color: #058
+}
+
+.CodeRay .integer, .CodeRay .float {
+    color: #099
+}
+
+.CodeRay .include {
+    color: #555
+}
+
+.CodeRay .inline {
+    color: #000
+}
+
+.CodeRay .inline .inline {
+    background: #ccc
+}
+
+.CodeRay .inline .inline .inline {
+    background: #bbb
+}
+
+.CodeRay .inline .inline-delimiter {
+    color: #d14
+}
+
+.CodeRay .inline-delimiter {
+    color: #d14
+}
+
+.CodeRay .important {
+    color: #555;
+    font-weight: bold
+}
+
+.CodeRay .interpreted {
+    color: #b2b
+}
+
+.CodeRay .instance-variable {
+    color: #008080
+}
+
+.CodeRay .label {
+    color: #970
+}
+
+.CodeRay .local-variable {
+    color: #963
+}
+
+.CodeRay .octal {
+    color: #40e
+}
+
+.CodeRay .predefined {
+    color: #369
+}
+
+.CodeRay .preprocessor {
+    color: #579
+}
+
+.CodeRay .pseudo-class {
+    color: #555
+}
+
+.CodeRay .directive {
+    font-weight: bold
+}
+
+.CodeRay .type {
+    font-weight: bold
+}
+
+.CodeRay .predefined-type {
+    color: inherit
+}
+
+.CodeRay .reserved, .CodeRay .keyword {
+    color: #000;
+    font-weight: bold
+}
+
+.CodeRay .key {
+    color: #808
+}
+
+.CodeRay .key .delimiter {
+    color: #606
+}
+
+.CodeRay .key .char {
+    color: #80f
+}
+
+.CodeRay .value {
+    color: #088
+}
+
+.CodeRay .regexp .delimiter {
+    color: #808
+}
+
+.CodeRay .regexp .content {
+    color: #808
+}
+
+.CodeRay .regexp .modifier {
+    color: #808
+}
+
+.CodeRay .regexp .char {
+    color: #d14
+}
+
+.CodeRay .regexp .function {
+    color: #404;
+    font-weight: bold
+}
+
+.CodeRay .string {
+    color: #d20
+}
+
+.CodeRay .string .string .string {
+    background: #ffd0d0
+}
+
+.CodeRay .string .content {
+    color: #d14
+}
+
+.CodeRay .string .char {
+    color: #d14
+}
+
+.CodeRay .string .delimiter {
+    color: #d14
+}
+
+.CodeRay .shell {
+    color: #d14
+}
+
+.CodeRay .shell .delimiter {
+    color: #d14
+}
+
+.CodeRay .symbol {
+    color: #990073
+}
+
+.CodeRay .symbol .content {
+    color: #a60
+}
+
+.CodeRay .symbol .delimiter {
+    color: #630
+}
+
+.CodeRay .tag {
+    color: #008080
+}
+
+.CodeRay .tag-special {
+    color: #d70
+}
+
+.CodeRay .variable {
+    color: #036
+}
+
+.CodeRay .insert {
+    background: #afa
+}
+
+.CodeRay .delete {
+    background: #faa
+}
+
+.CodeRay .change {
+    color: #aaf;
+    background: #007
+}
+
+.CodeRay .head {
+    color: #f8f;
+    background: #505
+}
+
+.CodeRay .insert .insert {
+    color: #080
+}
+
+.CodeRay .delete .delete {
+    color: #800
+}
+
+.CodeRay .change .change {
+    color: #66f
+}
+
+.CodeRay .head .head {
+    color: #f4f
+}
+
+pre.rouge table td {
+    padding: 5px;
+}
+
+pre.rouge table pre {
+    margin: 0;
+}
+
+pre.rouge .cm {
+    color: #999988;
+    font-style: italic;
+}
+
+pre.rouge .cp {
+    color: #999999;
+    font-weight: bold;
+}
+
+pre.rouge .c1 {
+    color: #999988;
+    font-style: italic;
+}
+
+pre.rouge .cs {
+    color: #999999;
+    font-weight: bold;
+    font-style: italic;
+}
+
+pre.rouge .c, pre.rouge .ch, pre.rouge .cd, pre.rouge .cpf {
+    color: #999988;
+    font-style: italic;
+}
+
+pre.rouge .err {
+    color: #a61717;
+    background-color: #e3d2d2;
+}
+
+pre.rouge .gd {
+    color: #000000;
+    background-color: #ffdddd;
+}
+
+pre.rouge .ge {
+    color: #000000;
+    font-style: italic;
+}
+
+pre.rouge .gr {
+    color: #aa0000;
+}
+
+pre.rouge .gh {
+    color: #999999;
+}
+
+pre.rouge .gi {
+    color: #000000;
+    background-color: #ddffdd;
+}
+
+pre.rouge .go {
+    color: #888888;
+}
+
+pre.rouge .gp {
+    color: #555555;
+}
+
+pre.rouge .gs {
+    font-weight: bold;
+}
+
+pre.rouge .gu {
+    color: #aaaaaa;
+}
+
+pre.rouge .gt {
+    color: #aa0000;
+}
+
+pre.rouge .kc {
+    color: #000000;
+    font-weight: bold;
+}
+
+pre.rouge .kd {
+    color: #000000;
+    font-weight: bold;
+}
+
+pre.rouge .kn {
+    color: #000000;
+    font-weight: bold;
+}
+
+pre.rouge .kp {
+    color: #000000;
+    font-weight: bold;
+}
+
+pre.rouge .kr {
+    color: #000000;
+    font-weight: bold;
+}
+
+pre.rouge .kt {
+    color: #445588;
+    font-weight: bold;
+}
+
+pre.rouge .k, pre.rouge .kv {
+    color: #000000;
+    font-weight: bold;
+}
+
+pre.rouge .mf {
+    color: #009999;
+}
+
+pre.rouge .mh {
+    color: #009999;
+}
+
+pre.rouge .il {
+    color: #009999;
+}
+
+pre.rouge .mi {
+    color: #009999;
+}
+
+pre.rouge .mo {
+    color: #009999;
+}
+
+pre.rouge .m, pre.rouge .mb, pre.rouge .mx {
+    color: #009999;
+}
+
+pre.rouge .sb {
+    color: #d14;
+}
+
+pre.rouge .sc {
+    color: #d14;
+}
+
+pre.rouge .sd {
+    color: #d14;
+}
+
+pre.rouge .s2 {
+    color: #d14;
+}
+
+pre.rouge .se {
+    color: #d14;
+}
+
+pre.rouge .sh {
+    color: #d14;
+}
+
+pre.rouge .si {
+    color: #d14;
+}
+
+pre.rouge .sx {
+    color: #d14;
+}
+
+pre.rouge .sr {
+    color: #009926;
+}
+
+pre.rouge .s1 {
+    color: #d14;
+}
+
+pre.rouge .ss {
+    color: #990073;
+}
+
+pre.rouge .s, pre.rouge .sa, pre.rouge .dl {
+    color: #d14;
+}
+
+pre.rouge .na {
+    color: #008080;
+}
+
+pre.rouge .bp {
+    color: #999999;
+}
+
+pre.rouge .nb {
+    color: #0086B3;
+}
+
+pre.rouge .nc {
+    color: #445588;
+    font-weight: bold;
+}
+
+pre.rouge .no {
+    color: #008080;
+}
+
+pre.rouge .nd {
+    color: #3c5d5d;
+    font-weight: bold;
+}
+
+pre.rouge .ni {
+    color: #800080;
+}
+
+pre.rouge .ne {
+    color: #990000;
+    font-weight: bold;
+}
+
+pre.rouge .nf, pre.rouge .fm {
+    color: #990000;
+    font-weight: bold;
+}
+
+pre.rouge .nl {
+    color: #990000;
+    font-weight: bold;
+}
+
+pre.rouge .nn {
+    color: #555555;
+}
+
+pre.rouge .nt {
+    color: #000080;
+}
+
+pre.rouge .vc {
+    color: #008080;
+}
+
+pre.rouge .vg {
+    color: #008080;
+}
+
+pre.rouge .vi {
+    color: #008080;
+}
+
+pre.rouge .nv, pre.rouge .vm {
+    color: #008080;
+}
+
+pre.rouge .ow {
+    color: #000000;
+    font-weight: bold;
+}
+
+pre.rouge .o {
+    color: #000000;
+    font-weight: bold;
+}
+
+pre.rouge .w {
+    color: #bbbbbb;
+}
+
+pre.rouge {
+    background-color: #f8f8f8;
+}
+
+/*#content > h1:first-child:not([class]), body {*/
+/*    background-color: #45494a;*/
+/*    color: #bbbbbb*/
+/*}*/
+
+/*.content > pre {*/
+/*    filter: invert(90%) hue-rotate(180deg);*/
+/*}*/
+
+/*a, a:hover, a:focus {*/
+/*    color: #589df6;*/
+/*}*/
+
+/*table.tableblock, th.tableblock, td.tableblock {*/
+/*    color: #bbbbbb*/
+/*}*/
+
+/*!* was: rgba(0,0,0,.8) *!*/
+/*table:not(.linenotable):not(.CodeRay) thead tr th, table thead tr td, table:not(.linenotable):not(.CodeRay) tfoot tr th, table:not(.linenotable):not(.CodeRay) tfoot tr td {*/
+/*    color: #bbbbbb*/
+/*}*/
+
+/*abbr, acronym {*/
+/*    color: #bbbbbb*/
+/*}*/
+
+/*table:not(.linenotable):not(.CodeRay) tr th, table tr td {*/
+/*    color: #bbbbbb*/
+/*}*/
+
+/*kbd {*/
+/*    background-color: #626262 !important;*/
+/*    color: #bbbbbb;*/
+/*    -webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, .2), 0 0 0 .1em #777 inset;*/
+/*    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2), 0 0 0 .1em #777 inset*/
+/*}*/
+
+/*.menuseq, .menu {*/
+/*    color: #bbbbbb*/
+/*}*/
+
+/*#footer {*/
+/*    color: #bbbbbb*/
+/*}*/
+
+/*tbody tr th, tbody tr th p, tfoot tr th, tfoot tr th p {*/
+/*    color: #bbbbbb*/
+/*}*/
+
+/*.conum[data-value] {*/
+/*    color: #bbbbbb*/
+/*}*/
+
+/*!* was: rgba(0,0,0,.85) *!*/
+/*.paragraph.lead > p, #preamble > .sectionbody > .paragraph:first-of-type p {*/
+/*    color: #bbbbbb*/
+/*}*/
+
+/*.quoteblock blockquote, .quoteblock blockquote p {*/
+/*    color: #bbbbbb*/
+/*}*/
+
+/*#content > h1:first-child:not([class]) {*/
+/*    color: #bbbbbb*/
+/*}*/
+
+/*#header .details br + span.author:before {*/
+/*    color: #bbbbbb*/
+/*}*/
+
+/*#header .details span.email a {*/
+/*    color: #bbbbbb*/
+/*}*/
+
+/*#header > h1:first-child {*/
+/*    color: #bbbbbb*/
+/*}*/
+
+/*blockquote, blockquote p {*/
+/*    color: #bbbbbb*/
+/*}*/
+
+/*!* was: rgba(0,0,0,.6) *!*/
+/*blockquote cite a, blockquote cite a:visited {*/
+/*    color: #bbbbbb*/
+/*}*/
+
+/*#header .details {*/
+/*    color: #bbbbbb*/
+/*}*/
+
+/*.admonitionblock > table td.content {*/
+/*    color: #bbbbbb*/
+/*}*/
+
+/*.quoteblock .quoteblock {*/
+/*    color: #bbbbbb*/
+/*}*/
+
+/*.quoteblock .attribution cite, .verseblock .attribution cite {*/
+/*    color: #bbbbbb*/
+/*}*/
+
+/*!* was: f8f8f7 *!*/
+/*table:not(.linenotable):not(.CodeRay) tbody tr {*/
+/*    background: #45494a*/
+/*}*/
+
+/*table:not(.linenotable):not(.CodeRay) tr.even, table tr.alt, table tr:nth-of-type(even) {*/
+/*    background: #626262*/
+/*}*/
+
+/*!* was f7f8f7 *!*/
+/*table:not(.linenotable):not(.CodeRay) thead, table tfoot {*/
+/*    background: #626262*/
+/*}*/
+
+/*tbody tr th {*/
+/*    background: #626262*/
+/*}*/
+
+/*!* was: 7a2518 *!*/
+/*.subheader, .admonitionblock td.content > .title, .audioblock > .title, .exampleblock > .title, .imageblock > .title, .listingblock > .title, .literalblock > .title, .stemblock > .title, .openblock > .title, .paragraph > .title, .quoteblock > .title, table.tableblock > .title, .verseblock > .title, .videoblock > .title, .dlist > .title, .olist > .title, .ulist > .title, .qlist > .title, .hdlist > .title,*/
+/*#toctitle,*/
+/*.sidebarblock > .content > .title,*/
+/*.quoteblock blockquote::before,*/
+/*    !* was: several *!*/
+/*td.icon {*/
+/*    filter: invert(90%) hue-rotate(180deg);*/
+/*}*/
+
+/*!* was: f8f8f7 *!*/
+/*.sidebarblock, .exampleblock, .exampleblock > .content {*/
+/*    background: #626262;*/
+/*    border-color: #626262;*/
+/*    box-shadow: 0 1px 4px #626262*/
+/*}*/
+
+/*!* was: f7f7f8 *!*/
+/*.exampleblock > .content > :last-child > :last-child, .exampleblock > .content .olist > ol > li:last-child > :last-child, .exampleblock > .content .ulist > ul > li:last-child > :last-child, .exampleblock > .content .qlist > ol > li:last-child > :last-child, .sidebarblock > .content > :last-child > :last-child, .sidebarblock > .content .olist > ol > li:last-child > :last-child, .sidebarblock > .content .ulist > ul > li:last-child > :last-child, .sidebarblock > .content .qlist > ol > li:last-child > :last-child {*/
+/*    margin-bottom: 0*/
+/*}*/
+
+/*#toc {*/
+/*    background-color: #626262 !important;*/
+/*    border-color: #626262 !important;*/
+/*}*/
+
+/*h1, h2, h3, #toctitle, .sidebarblock > .content > .title, h4, h5, h6 {*/
+/*    color: #cccccc*/
+/*}*/
+
+/*!* scroll bar color change to match the dark scheme *!*/
+/*::-webkit-scrollbar {*/
+/*    width: 12px;*/
+/*    height: 12px;*/
+/*    background-color: inherit;*/
+/*}*/
+
+/*::-webkit-scrollbar-thumb {*/
+/*    -webkit-border-radius: 10px;*/
+/*    border: 2px solid #2c2c2c;*/
+/*    background-color: #404040;*/
+/*}*/
+
+/*::-webkit-scrollbar-track {*/
+/*    width: 12px;*/
+/*    height: 12px;*/
+/*    background-color: #2c2c2c;*/
+/*}*/
+</style>
+</head>
+<body class="article toc2 toc-left">
+<div id="header">
+<h1>1. 하드웨어</h1>
+<div id="toc" class="toc2">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#_1_1_마이크로프로세서">1.1 마이크로프로세서</a>
+<ul class="sectlevel2">
+<li><a href="#_cpu_type">CPU Type</a></li>
+<li><a href="#_병렬처리">병렬처리</a></li>
+</ul>
+</li>
+<li><a href="#_1_2_입출력_장치">1.2 입출력 장치</a>
+<ul class="sectlevel2">
+<li><a href="#_disk_scheduling">Disk Scheduling</a></li>
+</ul>
+</li>
+<li><a href="#_1_3_가상화_기술">1.3 가상화 기술</a>
+<ul class="sectlevel2">
+<li><a href="#_docker"><mark>Docker</mark></a></li>
+</ul>
+</li>
+<li><a href="#_1_4_병렬_컴퓨터smpmpp">1.4 병렬 컴퓨터(SMP/MPP)</a>
+<ul class="sectlevel2">
+<li><a href="#_플린_병렬_컴퓨터_분류">플린 병렬 컴퓨터 분류</a></li>
+<li><a href="#_강결합약결합">강결합/약결합</a></li>
+</ul>
+</li>
+<li><a href="#_1_5_고가용성ha">1.5 고가용성(HA)</a>
+<ul class="sectlevel2">
+<li><a href="#_ha">HA</a></li>
+<li><a href="#_ha_vs_fts">HA vs FTS</a></li>
+<li><a href="#_장애감시">장애감시</a></li>
+<li><a href="#_로드밸런싱">로드밸런싱</a></li>
+</ul>
+</li>
+<li><a href="#_1_6_클러스터링clustering">1.6 클러스터링(Clustering)</a>
+<ul class="sectlevel2">
+<li><a href="#_clustering_types">Clustering Types</a></li>
+</ul>
+</li>
+<li><a href="#_1_7_클라우드_컴퓨팅">1.7 클라우드 컴퓨팅</a>
+<ul class="sectlevel2">
+<li><a href="#_클라우드_컴퓨팅_sla">클라우드 컴퓨팅 SLA</a></li>
+<li><a href="#_클라우드_컴퓨팅_서비스_품질성능">클라우드 컴퓨팅 서비스 품질/성능</a></li>
+<li><a href="#_openstack">OpenStack</a></li>
+</ul>
+</li>
+<li><a href="#_1_8_임베디드_시스템">1.8 임베디드 시스템</a></li>
+<li><a href="#_1_9_실시간_시스템">1.9 실시간 시스템</a></li>
+<li><a href="#_1_10_가상_메모리">1.10 가상 메모리</a>
+<ul class="sectlevel2">
+<li><a href="#_페이지_교체">페이지 교체</a></li>
+</ul>
+</li>
+<li><a href="#_1_11_캐시_메모리">1.11 캐시 메모리</a>
+<ul class="sectlevel2">
+<li><a href="#_적중률">적중률</a></li>
+<li><a href="#_사상_및_연관">사상 및 연관</a></li>
+</ul>
+</li>
+<li><a href="#_1_12_메모리dram_sram_ssd">1.12 메모리(DRAM, SRAM, SSD)</a>
+<ul class="sectlevel2">
+<li><a href="#_ram">RAM</a></li>
+<li><a href="#_rom">ROM</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="content">
+<div id="preamble">
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>CPU</p>
+</li>
+<li>
+<p>저장장치</p>
+</li>
+<li>
+<p>입/출력 장치</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_1_1_마이크로프로세서">1.1 마이크로프로세서</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_cpu_type">CPU Type</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-center valign-top">CISC (Complex Instruction Set Computer)</th>
+<th class="tableblock halign-center valign-top">RISC (Reduced Instruction Set Computer)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p>가변 길이 명령어</p>
+</li>
+<li>
+<p>복잡 &#8594; 한번에 &#8594; 낮은 Clock</p>
+</li>
+<li>
+<p>마이크로 프로그램시 제어자</p>
+</li>
+<li>
+<p>단일 캐쉬</p>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p>고정 길이 명령어</p>
+</li>
+<li>
+<p>단순 &#8594; 반복적 &#8594; 높은 Clock</p>
+</li>
+<li>
+<p>하드와이어식 제어자</p>
+</li>
+<li>
+<p>명령/데이터 캐쉬 분리</p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+<div class="ulist">
+<ul>
+<li>
+<p>Mobile</p>
+</li>
+<li>
+<p>Cloud</p>
+</li>
+<li>
+<p>SoB (System on Board)</p>
+</li>
+<li>
+<p>SoC (System on Chip) : M1(Apple)</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_병렬처리">병렬처리</h3>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">파이프라인</dt>
+<dt class="hdlist1">Super-Scala Processor</dt>
+<dt class="hdlist1">VLIW (Very Large Instruction Word)</dt>
+</dl>
+</div>
+<div class="sect3">
+<h4 id="_pipeline_hazard">Pipeline Hazard</h4>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 50%;">
+<col style="width: 25%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-center valign-top">구분</th>
+<th class="tableblock halign-center valign-top">설명</th>
+<th class="tableblock halign-center valign-top">해결</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">데이터 해저드</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p>RAW(Read After Write)</p>
+</li>
+<li>
+<p>WAR(Write After Read)</p>
+</li>
+<li>
+<p>WAW(Write After Write)</p>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">제어 해저드</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>*</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">구조적 해저드</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>*</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_1_2_입출력_장치">1.2 입출력 장치</h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 50%;">
+<col style="width: 25%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-center valign-top">구분</th>
+<th class="tableblock halign-center valign-top">설명</th>
+<th class="tableblock halign-center valign-top">비고</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">직접 입출력</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p>CPU 가 I/O 통제</p>
+<div class="ulist">
+<ul>
+<li>
+<p>CPU Driven I/O</p>
+</li>
+<li>
+<p>Interrupt I/O</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">간접 입출력</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p>DMA(Direct Memory Access)</p>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">채널</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p>별도 I/O Processer</p>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+</tr>
+</tbody>
+</table>
+<div class="sect2">
+<h3 id="_disk_scheduling">Disk Scheduling</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 14.2857%;">
+<col style="width: 57.1428%;">
+<col style="width: 28.5715%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-center valign-top">구분</th>
+<th class="tableblock halign-center valign-top">설명</th>
+<th class="tableblock halign-center valign-top">비고</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">FCFS</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>요청 순서대로</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">SSTF</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>짧은 탐색 거리 순</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">SCAN</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>진행 방향 상 짤은 탐색 거리 순</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">C-SCAN</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>바깥에서 안쪽으로 이동하면서 짧은 탐색 시간 순</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+</tr>
+</tbody>
+</table>
+<div class="sect3">
+<h4 id="_bus_bandwidth">Bus Bandwidth</h4>
+<div class="paragraph">
+<p>Bus Bandwidth = Clock &times; Bus width</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">아이비브리지(Ivy Bridge)</dt>
+<dt class="hdlist1">QPI(Quick Path Interconnect)</dt>
+<dt class="hdlist1">샌디브리지(Sandy Bridge)</dt>
+<dt class="hdlist1">썬더볼트(ThunderBolt)</dt>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_1_3_가상화_기술">1.3 가상화 기술</h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 14.2857%;">
+<col style="width: 57.1428%;">
+<col style="width: 28.5715%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-center valign-top">구분</th>
+<th class="tableblock halign-center valign-top">설명</th>
+<th class="tableblock halign-center valign-top">비고</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">에뮬레이션</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>호스트 위에 하드웨어 가상머신 생성</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>WINE</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">반가상화</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p>하드웨어 가상화(Hyper Visor)</p>
+</li>
+<li>
+<p>필요한 CPU 명령어만 가상화<br>
+&#8594; Host-Guest 간 API 통신<br>
+&#8594; Guest OS 커널 수정 필요</p>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Xen</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">전가상화</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p>하드웨어 가상화(Hyper Visor)</p>
+</li>
+<li>
+<p>모든 CPU 명령어를 가상화</p>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>VMWare</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">OS 가상화</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p>OS partitioning</p>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Parallels</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Hyper Visor</dt>
+<dd>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Type1(Native/Bare Metal)</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>Host H/W 직접 구동</p>
+</li>
+<li>
+<p>Xen, KVM, Hyper-V</p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">Type2(Hosted)</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>Host OS 위에 설치</p>
+</li>
+<li>
+<p>VirtualBox, Virtual PC 등</p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+</dd>
+</dl>
+</div>
+<div class="sect2">
+<h3 id="_docker"><mark>Docker</mark></h3>
+<div class="sect3">
+<h4 id="_container">Container</h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">OS Container</dt>
+<dt class="hdlist1">Application Container</dt>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_1_4_병렬_컴퓨터smpmpp">1.4 병렬 컴퓨터(SMP/MPP)</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_플린_병렬_컴퓨터_분류">플린 병렬 컴퓨터 분류</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 50%;">
+<col style="width: 25%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-center valign-top">구분</th>
+<th class="tableblock halign-center valign-top">설명</th>
+<th class="tableblock halign-center valign-top">비고</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">SISD<br>
+(Single Instruction stream Single Data stream)</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p>순차 처리</p>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p>PC</p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">SIMD<br>
+(Single Instruction stream Multiple Data stream)</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p>배열의 모든 원소에 동일한 연산 수행</p>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">MISD<br>
+(Multiple Instruction stream Single Data stream)</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p>한 데이터에 여러 명령 수행</p>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p>이론적/미사용</p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">MIMD<br>
+(Multiple Instruction stream Multiple Data stream)</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p>여러 명령 / 여러 데이터 대응</p>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p>SMP / MPP / NUMA</p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_강결합약결합">강결합/약결합</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 50%;">
+<col style="width: 25%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-center valign-top">구분</th>
+<th class="tableblock halign-center valign-top">설명</th>
+<th class="tableblock halign-center valign-top">비고</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">강결합(SMP)<br>
+(Symmetric Multiprocessor)</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p>하나의 OS 아래 여러 프로세서</p>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">약결합(MPP)<br>
+(Massive Parallel Processor)</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p>둘 이상 시스템이 통신</p>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">NUMA<br>
+(Non-Uniform Memory Access)</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p>여러개의 마이크로 프로세서(CPU+Mem) 사이에 공유메모리 추가</p>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_1_5_고가용성ha">1.5 고가용성(HA)</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_ha">HA</h3>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Hot Standby</dt>
+<dd>
+<p>Active - Standby</p>
+</dd>
+<dt class="hdlist1">Mutual take-over</dt>
+<dd>
+<p>Active1 - Active2</p>
+</dd>
+<dt class="hdlist1">Concurrent Access</dt>
+<dd>
+<p>Active - Active</p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_ha_vs_fts">HA vs FTS</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 40%;">
+<col style="width: 40%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-center valign-top">구분</th>
+<th class="tableblock halign-center valign-top">HA (High Availability)</th>
+<th class="tableblock halign-center valign-top">FTS (Fault Tolerant System)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">장애시간</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">30~300초</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">0</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">유지보수</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">불필요</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">필수</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">도입비용</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">2배 이상</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">10 ~20배</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">하드웨어</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">범용 하드웨어</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">전용 하드웨어</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">운영체계</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">범용 OS</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">전용 OS</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">프로그램</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">범용</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">제한적</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_장애감시">장애감시</h3>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">ICMP(Layer3) 감시</dt>
+<dd>
+<p>Ping</p>
+</dd>
+<dt class="hdlist1">포트(Layer4) 감시</dt>
+<dd>
+<p>TCP 접속</p>
+</dd>
+<dt class="hdlist1">서비스(Layer7) 감시</dt>
+<dd>
+<p>HTTP OK</p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_로드밸런싱">로드밸런싱</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 50%;">
+<col style="width: 25%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-center valign-top">구분</th>
+<th class="tableblock halign-center valign-top">설명</th>
+<th class="tableblock halign-center valign-top">비고</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">Round Robin</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">Weighted Round Robin</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">Least Connection</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">Least Response Time</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">Hash</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_1_6_클러스터링clustering">1.6 클러스터링(Clustering)</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_clustering_types">Clustering Types</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 50%;">
+<col style="width: 25%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-center valign-top">구분</th>
+<th class="tableblock halign-center valign-top">설명</th>
+<th class="tableblock halign-center valign-top">비고</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">고성능 클러스터<br>
+(Hig Performance Clusters)</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p>모든 노드에 OS + Disk</p>
+</li>
+<li>
+<p>서버 노드에만 Disk</p>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">부한 분산 클러스터<br>
+(Load Balancing Clusters)</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p>DR(Direct Routing)</p>
+</li>
+<li>
+<p>NAT(Network Address Translation)</p>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">고가용성 클러스터<br>
+(High Availability Clusters)</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p>HA 와 유사</p>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_1_7_클라우드_컴퓨팅">1.7 클라우드 컴퓨팅</h2>
+<div class="sectionbody">
+<div class="dlist">
+<dl>
+<dt class="hdlist1">SaaS</dt>
+<dt class="hdlist1">PaaS</dt>
+<dt class="hdlist1">IaaS</dt>
+<dt class="hdlist1">프라이빗 클라우드</dt>
+<dt class="hdlist1">퍼블릭 클라우드</dt>
+<dt class="hdlist1">커뮤니티 클라우드</dt>
+<dt class="hdlist1">하이브리드 클라우드</dt>
+</dl>
+</div>
+<div class="sect2">
+<h3 id="_클라우드_컴퓨팅_sla">클라우드 컴퓨팅 SLA</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 12.5%;">
+<col style="width: 25%;">
+<col style="width: 50%;">
+<col style="width: 12.5%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-center valign-top">구분</th>
+<th class="tableblock halign-center valign-top">지표</th>
+<th class="tableblock halign-center valign-top">설명</th>
+<th class="tableblock halign-center valign-top">비고</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">SLA</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">Availability</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">OLA</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p>Reliability</p>
+</li>
+<li>
+<p>Manageability</p>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">UC</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">Serviceability</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+</tr>
+</tbody>
+</table>
+<div class="sect3">
+<h4 id="_클라우드_컴퓨팅_sla_특징">클라우드 컴퓨팅 SLA 특징</h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">정형화된 지표</dt>
+<dt class="hdlist1">SLA 등급 선택</dt>
+<dt class="hdlist1">SLA 평가 보상</dt>
+</dl>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_클라우드_가상자원_측정_항목">클라우드 가상자원 측정 항목</h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">시스템 성능</dt>
+<dt class="hdlist1">네트워크 성능</dt>
+<dt class="hdlist1">서비스 성능</dt>
+<dt class="hdlist1">가용성</dt>
+</dl>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_클라우드_컴퓨팅_서비스_품질성능">클라우드 컴퓨팅 서비스 품질/성능</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>클라우드컴퓨팅 발전 및 이용자 보호에 관한 법률</p>
+</li>
+</ul>
+</div>
+<div class="sect3">
+<h4 id="_클라우드컴퓨팅서비스_품질성능_세부_기준">클라우드컴퓨팅서비스 품질/성능 세부 기준</h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">가용성</dt>
+<dt class="hdlist1">응답성</dt>
+<dt class="hdlist1">확장성</dt>
+<dt class="hdlist1">신뢰성</dt>
+<dd>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">서비스 회복시간</dt>
+<dt class="hdlist1">백업 주기</dt>
+<dt class="hdlist1">백업 준수율</dt>
+<dt class="hdlist1">백업 데이터 보관기간</dt>
+</dl>
+</div>
+</dd>
+<dt class="hdlist1">서비스 지속성</dt>
+<dt class="hdlist1">서비스 지원</dt>
+<dt class="hdlist1">고객 대응</dt>
+<dd>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">고객 대응 체계</dt>
+<dt class="hdlist1">고객 불만 처리 체계</dt>
+</dl>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_openstack">OpenStack</h3>
+<div class="paragraph">
+<p>풀링된 가상 리소스를 사용하여 프라이빗 및 퍼블릭 클라우드를 구축하고 관리하는 오픈소스 플랫폼입니다.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">NOVA</dt>
+<dd>
+<p>Instance</p>
+</dd>
+<dt class="hdlist1">NEUTRON</dt>
+<dd>
+<p>Network</p>
+</dd>
+<dt class="hdlist1">SWIFT</dt>
+<dd>
+<p>Object Storage(S3)</p>
+</dd>
+<dt class="hdlist1">CINDER</dt>
+<dd>
+<p>Block Storage</p>
+</dd>
+<dt class="hdlist1">KEYSTONE</dt>
+<dd>
+<p>SSO</p>
+</dd>
+<dt class="hdlist1">GLANCE</dt>
+<dd>
+<p>Image</p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_1_8_임베디드_시스템">1.8 임베디드 시스템</h2>
+<div class="sectionbody">
+
+</div>
+</div>
+<div class="sect1">
+<h2 id="_1_9_실시간_시스템">1.9 실시간 시스템</h2>
+<div class="sectionbody">
+
+</div>
+</div>
+<div class="sect1">
+<h2 id="_1_10_가상_메모리">1.10 가상 메모리</h2>
+<div class="sectionbody">
+<div class="dlist">
+<dl>
+<dt class="hdlist1">TLB</dt>
+<dd>
+<p>페이지 테이블의 캐쉬</p>
+</dd>
+<dt class="hdlist1">PMT</dt>
+<dt class="hdlist1">PTBR(Page Table Base Register)</dt>
+</dl>
+</div>
+<div class="sect2">
+<h3 id="_페이지_교체">페이지 교체</h3>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">무작위 교체</dt>
+<dt class="hdlist1">FIFO 교체</dt>
+<dt class="hdlist1">Optimal 교체</dt>
+<dd>
+<p>사용하지 않을 페이지 예측 &#8594; 비현실적</p>
+</dd>
+<dt class="hdlist1">Second Chance 교체</dt>
+<dd>
+<p>FIFO 에서 1차 보류 &#8594; 2차 교체</p>
+</dd>
+<dt class="hdlist1">LRU(Least Recently Used) 교체</dt>
+<dd>
+<p>가장 오래 미사용 페이지 교체</p>
+</dd>
+<dt class="hdlist1">LFU(Least Frequently Used) 교체</dt>
+<dd>
+<p>참조 횟수가 가장 작은 페이지 교체</p>
+</dd>
+<dt class="hdlist1">MFU(Most Frequently Used) 교체</dt>
+<dd>
+<p>참조 횟수가 가장 많은 페이지 교체</p>
+</dd>
+<dt class="hdlist1">MRU(Most Recently Used) 교체</dt>
+<dd>
+<p>가장 최근에 사용한 페이지를 교체.</p>
+</dd>
+<dt class="hdlist1">NUR(Not Used Recently) 교체</dt>
+<dd>
+<p>최근에 사용하지 않은 페이지 교체</p>
+</dd>
+</dl>
+</div>
+<div class="sect3">
+<h4 id="_페이지_교체기법의_문제점">페이지 교체기법의 문제점</h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Demand Paging</dt>
+<dt class="hdlist1">Page Fault</dt>
+<dt class="hdlist1">Thrashing</dt>
+<dd>
+<p>빈번한 페이지 교체로 I/O 에 더 많은 CPU 소모</p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_thrashing_해결방법">Thrashing 해결방법</h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Working Set</dt>
+<dt class="hdlist1">PFF(Page Fault Frequency)</dt>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_1_11_캐시_메모리">1.11 캐시 메모리</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_적중률">적중률</h3>
+<div class="paragraph">
+<p>T average = 적중률 &times; 캐시메모리 접근 시간 + (1 &minus; 적중률) &times; 주기억장치 접근 시간</p>
+</div>
+<div class="paragraph">
+<p>eg&gt; 적중률 0.9, 캐시메모리 접근 시간 50, 주기억장치 접근 시간 400<br>
+T average = 0.9 &times; 50 + 0.1 &times; 400</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_사상_및_연관">사상 및 연관</h3>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">직접 사상(Direct Mapped)</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>인덱스가 가리키는 공간이 하나인 경우.</p>
+</li>
+<li>
+<p>처리가 빠르지만 충돌 발생이 잦다.</p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">완전 연관(Fully Associative)</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>인덱스가 모든 공간을 가리키는 경우.</p>
+</li>
+<li>
+<p>충돌이 적지만 모든 블록을 탐색해야 해서 속도가 느리다.</p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">집합 연관(Set Associative)</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>인덱스가 가리키는 공간이 두 개 이상인 경우.</p>
+</li>
+<li>
+<p>n-way set associative 캐시라고 부른다.</p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_1_12_메모리dram_sram_ssd">1.12 메모리(DRAM, SRAM, SSD)</h2>
+<div class="sectionbody">
+<div class="dlist">
+<dl>
+<dt class="hdlist1">RAM</dt>
+<dd>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">SRAM</dt>
+<dt class="hdlist1">PSRAM</dt>
+<dt class="hdlist1">DRAM</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>SDRAM</p>
+</li>
+<li>
+<p>DDR SDRAM</p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+</dd>
+<dt class="hdlist1">ROM</dt>
+<dd>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Flas Memory</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>NOR Memory : SSD XIP</p>
+</li>
+<li>
+<p>NAND Memory: USB</p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+</dd>
+</dl>
+</div>
+<div class="sect2">
+<h3 id="_ram">RAM</h3>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">DRAM(Dynamic RAM</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>capacitor 충전</p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">SRAM(Static RAM)</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>flip-flop</p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_rom">ROM</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>SSD(NOR)) / USB(NAND)</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  messageStyle: "none",
+  tex2jax: {
+    inlineMath: [["\\(", "\\)"]],
+    displayMath: [["\\[", "\\]"]],
+    ignoreClass: "nostem|nolatexmath"
+  },
+  asciimath2jax: {
+    delimiters: [["\\$", "\\$"]],
+    ignoreClass: "nostem|noasciimath"
+  },
+  TeX: { equationNumbers: { autoNumber: "none" } }
+})
+MathJax.Hub.Register.StartupHook("AsciiMath Jax Ready", function () {
+  MathJax.InputJax.AsciiMath.postfilterHooks.Add(function (data, node) {
+    if ((node = data.script.parentNode) && (node = node.parentNode) && node.classList.contains("stemblock")) {
+      data.math.root.display = "block"
+    }
+    return data
+  })
+})
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js?config=TeX-MML-AM_HTMLorMML"></script>
+</body>
+</html>

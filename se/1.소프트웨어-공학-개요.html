@@ -1,0 +1,1787 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 2.0.23">
+<title>1. 소프트웨어 공학 개요</title>
+<style>
+@import "https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700";
+@import "https://cdn.jsdelivr.net/gh/asciidoctor/asciidoctor@2.0/data/stylesheets/asciidoctor-default.css";
+
+body {
+  font-family: "Open Sans","DejaVu Sans",sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6, #toctitle, .sidebarblock > .content > .title {
+  color: rgba(0, 0, 0, 1);
+  font-weight: bold;
+}
+
+h1 > a.link, h2 > a.link, h3 > a.link, h4 > a.link, h5 > a.link, h6 > a.link {
+  color: rgba(0, 0, 0, 1);
+  font-weight: bold;
+}
+
+code {
+  font-weight: 600;
+  color: rgba(0, 0, 255, 1);
+}
+
+strong {
+  font-weight: 600;
+  color: rgba(0, 0, 0 0.9);
+}
+
+em {
+  font-style: inherit;
+  font-weight: 600;
+  color: rgba(255, 0, 0, 1);
+}
+
+/* Stylesheet for CodeRay to match GitHub theme | MIT License | http://foundation.zurb.com */
+pre.CodeRay {
+    background: #f7f7f8
+}
+
+.CodeRay .line-numbers {
+    border-right: 1px solid currentColor;
+    opacity: .35;
+    padding: 0 .5em 0 0
+}
+
+.CodeRay span.line-numbers {
+    display: inline-block;
+    margin-right: .75em
+}
+
+.CodeRay .line-numbers strong {
+    color: #000
+}
+
+table.CodeRay {
+    border-collapse: separate;
+    border: 0;
+    margin-bottom: 0;
+    background: none
+}
+
+table.CodeRay td {
+    vertical-align: top;
+    line-height: inherit
+}
+
+table.CodeRay td.line-numbers {
+    text-align: right
+}
+
+table.CodeRay td.code {
+    padding: 0 0 0 .75em
+}
+
+.CodeRay .debug {
+    color: #fff !important;
+    background: #000080 !important
+}
+
+.CodeRay .annotation {
+    color: #007
+}
+
+.CodeRay .attribute-name {
+    color: #000080
+}
+
+.CodeRay .attribute-value {
+    color: #700
+}
+
+.CodeRay .binary {
+    color: #509
+}
+
+.CodeRay .comment {
+    color: #998;
+    font-style: italic
+}
+
+.CodeRay .char {
+    color: #04d
+}
+
+.CodeRay .char .content {
+    color: #04d
+}
+
+.CodeRay .char .delimiter {
+    color: #039
+}
+
+.CodeRay .class {
+    color: #458;
+    font-weight: bold
+}
+
+.CodeRay .complex {
+    color: #a08
+}
+
+.CodeRay .constant, .CodeRay .predefined-constant {
+    color: #008080
+}
+
+.CodeRay .color {
+    color: #099
+}
+
+.CodeRay .class-variable {
+    color: #369
+}
+
+.CodeRay .decorator {
+    color: #b0b
+}
+
+.CodeRay .definition {
+    color: #099
+}
+
+.CodeRay .delimiter {
+    color: #000
+}
+
+.CodeRay .doc {
+    color: #970
+}
+
+.CodeRay .doctype {
+    color: #34b
+}
+
+.CodeRay .doc-string {
+    color: #d42
+}
+
+.CodeRay .escape {
+    color: #666
+}
+
+.CodeRay .entity {
+    color: #800
+}
+
+.CodeRay .error {
+    color: #808
+}
+
+.CodeRay .exception {
+    color: inherit
+}
+
+.CodeRay .filename {
+    color: #099
+}
+
+.CodeRay .function {
+    color: #900;
+    font-weight: bold
+}
+
+.CodeRay .global-variable {
+    color: #008080
+}
+
+.CodeRay .hex {
+    color: #058
+}
+
+.CodeRay .integer, .CodeRay .float {
+    color: #099
+}
+
+.CodeRay .include {
+    color: #555
+}
+
+.CodeRay .inline {
+    color: #000
+}
+
+.CodeRay .inline .inline {
+    background: #ccc
+}
+
+.CodeRay .inline .inline .inline {
+    background: #bbb
+}
+
+.CodeRay .inline .inline-delimiter {
+    color: #d14
+}
+
+.CodeRay .inline-delimiter {
+    color: #d14
+}
+
+.CodeRay .important {
+    color: #555;
+    font-weight: bold
+}
+
+.CodeRay .interpreted {
+    color: #b2b
+}
+
+.CodeRay .instance-variable {
+    color: #008080
+}
+
+.CodeRay .label {
+    color: #970
+}
+
+.CodeRay .local-variable {
+    color: #963
+}
+
+.CodeRay .octal {
+    color: #40e
+}
+
+.CodeRay .predefined {
+    color: #369
+}
+
+.CodeRay .preprocessor {
+    color: #579
+}
+
+.CodeRay .pseudo-class {
+    color: #555
+}
+
+.CodeRay .directive {
+    font-weight: bold
+}
+
+.CodeRay .type {
+    font-weight: bold
+}
+
+.CodeRay .predefined-type {
+    color: inherit
+}
+
+.CodeRay .reserved, .CodeRay .keyword {
+    color: #000;
+    font-weight: bold
+}
+
+.CodeRay .key {
+    color: #808
+}
+
+.CodeRay .key .delimiter {
+    color: #606
+}
+
+.CodeRay .key .char {
+    color: #80f
+}
+
+.CodeRay .value {
+    color: #088
+}
+
+.CodeRay .regexp .delimiter {
+    color: #808
+}
+
+.CodeRay .regexp .content {
+    color: #808
+}
+
+.CodeRay .regexp .modifier {
+    color: #808
+}
+
+.CodeRay .regexp .char {
+    color: #d14
+}
+
+.CodeRay .regexp .function {
+    color: #404;
+    font-weight: bold
+}
+
+.CodeRay .string {
+    color: #d20
+}
+
+.CodeRay .string .string .string {
+    background: #ffd0d0
+}
+
+.CodeRay .string .content {
+    color: #d14
+}
+
+.CodeRay .string .char {
+    color: #d14
+}
+
+.CodeRay .string .delimiter {
+    color: #d14
+}
+
+.CodeRay .shell {
+    color: #d14
+}
+
+.CodeRay .shell .delimiter {
+    color: #d14
+}
+
+.CodeRay .symbol {
+    color: #990073
+}
+
+.CodeRay .symbol .content {
+    color: #a60
+}
+
+.CodeRay .symbol .delimiter {
+    color: #630
+}
+
+.CodeRay .tag {
+    color: #008080
+}
+
+.CodeRay .tag-special {
+    color: #d70
+}
+
+.CodeRay .variable {
+    color: #036
+}
+
+.CodeRay .insert {
+    background: #afa
+}
+
+.CodeRay .delete {
+    background: #faa
+}
+
+.CodeRay .change {
+    color: #aaf;
+    background: #007
+}
+
+.CodeRay .head {
+    color: #f8f;
+    background: #505
+}
+
+.CodeRay .insert .insert {
+    color: #080
+}
+
+.CodeRay .delete .delete {
+    color: #800
+}
+
+.CodeRay .change .change {
+    color: #66f
+}
+
+.CodeRay .head .head {
+    color: #f4f
+}
+
+pre.rouge table td {
+    padding: 5px;
+}
+
+pre.rouge table pre {
+    margin: 0;
+}
+
+pre.rouge .cm {
+    color: #999988;
+    font-style: italic;
+}
+
+pre.rouge .cp {
+    color: #999999;
+    font-weight: bold;
+}
+
+pre.rouge .c1 {
+    color: #999988;
+    font-style: italic;
+}
+
+pre.rouge .cs {
+    color: #999999;
+    font-weight: bold;
+    font-style: italic;
+}
+
+pre.rouge .c, pre.rouge .ch, pre.rouge .cd, pre.rouge .cpf {
+    color: #999988;
+    font-style: italic;
+}
+
+pre.rouge .err {
+    color: #a61717;
+    background-color: #e3d2d2;
+}
+
+pre.rouge .gd {
+    color: #000000;
+    background-color: #ffdddd;
+}
+
+pre.rouge .ge {
+    color: #000000;
+    font-style: italic;
+}
+
+pre.rouge .gr {
+    color: #aa0000;
+}
+
+pre.rouge .gh {
+    color: #999999;
+}
+
+pre.rouge .gi {
+    color: #000000;
+    background-color: #ddffdd;
+}
+
+pre.rouge .go {
+    color: #888888;
+}
+
+pre.rouge .gp {
+    color: #555555;
+}
+
+pre.rouge .gs {
+    font-weight: bold;
+}
+
+pre.rouge .gu {
+    color: #aaaaaa;
+}
+
+pre.rouge .gt {
+    color: #aa0000;
+}
+
+pre.rouge .kc {
+    color: #000000;
+    font-weight: bold;
+}
+
+pre.rouge .kd {
+    color: #000000;
+    font-weight: bold;
+}
+
+pre.rouge .kn {
+    color: #000000;
+    font-weight: bold;
+}
+
+pre.rouge .kp {
+    color: #000000;
+    font-weight: bold;
+}
+
+pre.rouge .kr {
+    color: #000000;
+    font-weight: bold;
+}
+
+pre.rouge .kt {
+    color: #445588;
+    font-weight: bold;
+}
+
+pre.rouge .k, pre.rouge .kv {
+    color: #000000;
+    font-weight: bold;
+}
+
+pre.rouge .mf {
+    color: #009999;
+}
+
+pre.rouge .mh {
+    color: #009999;
+}
+
+pre.rouge .il {
+    color: #009999;
+}
+
+pre.rouge .mi {
+    color: #009999;
+}
+
+pre.rouge .mo {
+    color: #009999;
+}
+
+pre.rouge .m, pre.rouge .mb, pre.rouge .mx {
+    color: #009999;
+}
+
+pre.rouge .sb {
+    color: #d14;
+}
+
+pre.rouge .sc {
+    color: #d14;
+}
+
+pre.rouge .sd {
+    color: #d14;
+}
+
+pre.rouge .s2 {
+    color: #d14;
+}
+
+pre.rouge .se {
+    color: #d14;
+}
+
+pre.rouge .sh {
+    color: #d14;
+}
+
+pre.rouge .si {
+    color: #d14;
+}
+
+pre.rouge .sx {
+    color: #d14;
+}
+
+pre.rouge .sr {
+    color: #009926;
+}
+
+pre.rouge .s1 {
+    color: #d14;
+}
+
+pre.rouge .ss {
+    color: #990073;
+}
+
+pre.rouge .s, pre.rouge .sa, pre.rouge .dl {
+    color: #d14;
+}
+
+pre.rouge .na {
+    color: #008080;
+}
+
+pre.rouge .bp {
+    color: #999999;
+}
+
+pre.rouge .nb {
+    color: #0086B3;
+}
+
+pre.rouge .nc {
+    color: #445588;
+    font-weight: bold;
+}
+
+pre.rouge .no {
+    color: #008080;
+}
+
+pre.rouge .nd {
+    color: #3c5d5d;
+    font-weight: bold;
+}
+
+pre.rouge .ni {
+    color: #800080;
+}
+
+pre.rouge .ne {
+    color: #990000;
+    font-weight: bold;
+}
+
+pre.rouge .nf, pre.rouge .fm {
+    color: #990000;
+    font-weight: bold;
+}
+
+pre.rouge .nl {
+    color: #990000;
+    font-weight: bold;
+}
+
+pre.rouge .nn {
+    color: #555555;
+}
+
+pre.rouge .nt {
+    color: #000080;
+}
+
+pre.rouge .vc {
+    color: #008080;
+}
+
+pre.rouge .vg {
+    color: #008080;
+}
+
+pre.rouge .vi {
+    color: #008080;
+}
+
+pre.rouge .nv, pre.rouge .vm {
+    color: #008080;
+}
+
+pre.rouge .ow {
+    color: #000000;
+    font-weight: bold;
+}
+
+pre.rouge .o {
+    color: #000000;
+    font-weight: bold;
+}
+
+pre.rouge .w {
+    color: #bbbbbb;
+}
+
+pre.rouge {
+    background-color: #f8f8f8;
+}
+
+/*#content > h1:first-child:not([class]), body {*/
+/*    background-color: #45494a;*/
+/*    color: #bbbbbb*/
+/*}*/
+
+/*.content > pre {*/
+/*    filter: invert(90%) hue-rotate(180deg);*/
+/*}*/
+
+/*a, a:hover, a:focus {*/
+/*    color: #589df6;*/
+/*}*/
+
+/*table.tableblock, th.tableblock, td.tableblock {*/
+/*    color: #bbbbbb*/
+/*}*/
+
+/*!* was: rgba(0,0,0,.8) *!*/
+/*table:not(.linenotable):not(.CodeRay) thead tr th, table thead tr td, table:not(.linenotable):not(.CodeRay) tfoot tr th, table:not(.linenotable):not(.CodeRay) tfoot tr td {*/
+/*    color: #bbbbbb*/
+/*}*/
+
+/*abbr, acronym {*/
+/*    color: #bbbbbb*/
+/*}*/
+
+/*table:not(.linenotable):not(.CodeRay) tr th, table tr td {*/
+/*    color: #bbbbbb*/
+/*}*/
+
+/*kbd {*/
+/*    background-color: #626262 !important;*/
+/*    color: #bbbbbb;*/
+/*    -webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, .2), 0 0 0 .1em #777 inset;*/
+/*    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2), 0 0 0 .1em #777 inset*/
+/*}*/
+
+/*.menuseq, .menu {*/
+/*    color: #bbbbbb*/
+/*}*/
+
+/*#footer {*/
+/*    color: #bbbbbb*/
+/*}*/
+
+/*tbody tr th, tbody tr th p, tfoot tr th, tfoot tr th p {*/
+/*    color: #bbbbbb*/
+/*}*/
+
+/*.conum[data-value] {*/
+/*    color: #bbbbbb*/
+/*}*/
+
+/*!* was: rgba(0,0,0,.85) *!*/
+/*.paragraph.lead > p, #preamble > .sectionbody > .paragraph:first-of-type p {*/
+/*    color: #bbbbbb*/
+/*}*/
+
+/*.quoteblock blockquote, .quoteblock blockquote p {*/
+/*    color: #bbbbbb*/
+/*}*/
+
+/*#content > h1:first-child:not([class]) {*/
+/*    color: #bbbbbb*/
+/*}*/
+
+/*#header .details br + span.author:before {*/
+/*    color: #bbbbbb*/
+/*}*/
+
+/*#header .details span.email a {*/
+/*    color: #bbbbbb*/
+/*}*/
+
+/*#header > h1:first-child {*/
+/*    color: #bbbbbb*/
+/*}*/
+
+/*blockquote, blockquote p {*/
+/*    color: #bbbbbb*/
+/*}*/
+
+/*!* was: rgba(0,0,0,.6) *!*/
+/*blockquote cite a, blockquote cite a:visited {*/
+/*    color: #bbbbbb*/
+/*}*/
+
+/*#header .details {*/
+/*    color: #bbbbbb*/
+/*}*/
+
+/*.admonitionblock > table td.content {*/
+/*    color: #bbbbbb*/
+/*}*/
+
+/*.quoteblock .quoteblock {*/
+/*    color: #bbbbbb*/
+/*}*/
+
+/*.quoteblock .attribution cite, .verseblock .attribution cite {*/
+/*    color: #bbbbbb*/
+/*}*/
+
+/*!* was: f8f8f7 *!*/
+/*table:not(.linenotable):not(.CodeRay) tbody tr {*/
+/*    background: #45494a*/
+/*}*/
+
+/*table:not(.linenotable):not(.CodeRay) tr.even, table tr.alt, table tr:nth-of-type(even) {*/
+/*    background: #626262*/
+/*}*/
+
+/*!* was f7f8f7 *!*/
+/*table:not(.linenotable):not(.CodeRay) thead, table tfoot {*/
+/*    background: #626262*/
+/*}*/
+
+/*tbody tr th {*/
+/*    background: #626262*/
+/*}*/
+
+/*!* was: 7a2518 *!*/
+/*.subheader, .admonitionblock td.content > .title, .audioblock > .title, .exampleblock > .title, .imageblock > .title, .listingblock > .title, .literalblock > .title, .stemblock > .title, .openblock > .title, .paragraph > .title, .quoteblock > .title, table.tableblock > .title, .verseblock > .title, .videoblock > .title, .dlist > .title, .olist > .title, .ulist > .title, .qlist > .title, .hdlist > .title,*/
+/*#toctitle,*/
+/*.sidebarblock > .content > .title,*/
+/*.quoteblock blockquote::before,*/
+/*    !* was: several *!*/
+/*td.icon {*/
+/*    filter: invert(90%) hue-rotate(180deg);*/
+/*}*/
+
+/*!* was: f8f8f7 *!*/
+/*.sidebarblock, .exampleblock, .exampleblock > .content {*/
+/*    background: #626262;*/
+/*    border-color: #626262;*/
+/*    box-shadow: 0 1px 4px #626262*/
+/*}*/
+
+/*!* was: f7f7f8 *!*/
+/*.exampleblock > .content > :last-child > :last-child, .exampleblock > .content .olist > ol > li:last-child > :last-child, .exampleblock > .content .ulist > ul > li:last-child > :last-child, .exampleblock > .content .qlist > ol > li:last-child > :last-child, .sidebarblock > .content > :last-child > :last-child, .sidebarblock > .content .olist > ol > li:last-child > :last-child, .sidebarblock > .content .ulist > ul > li:last-child > :last-child, .sidebarblock > .content .qlist > ol > li:last-child > :last-child {*/
+/*    margin-bottom: 0*/
+/*}*/
+
+/*#toc {*/
+/*    background-color: #626262 !important;*/
+/*    border-color: #626262 !important;*/
+/*}*/
+
+/*h1, h2, h3, #toctitle, .sidebarblock > .content > .title, h4, h5, h6 {*/
+/*    color: #cccccc*/
+/*}*/
+
+/*!* scroll bar color change to match the dark scheme *!*/
+/*::-webkit-scrollbar {*/
+/*    width: 12px;*/
+/*    height: 12px;*/
+/*    background-color: inherit;*/
+/*}*/
+
+/*::-webkit-scrollbar-thumb {*/
+/*    -webkit-border-radius: 10px;*/
+/*    border: 2px solid #2c2c2c;*/
+/*    background-color: #404040;*/
+/*}*/
+
+/*::-webkit-scrollbar-track {*/
+/*    width: 12px;*/
+/*    height: 12px;*/
+/*    background-color: #2c2c2c;*/
+/*}*/
+</style>
+</head>
+<body class="article toc2 toc-left">
+<div id="header">
+<h1>1. 소프트웨어 공학 개요</h1>
+<div id="toc" class="toc2">
+<div id="toctitle">소프트웨어 공학</div>
+<ul class="sectlevel1">
+<li><a href="#_1_1_소프트웨어_공학_정의_및_목적">1-1. 소프트웨어 공학 정의 및 목적</a>
+<ul class="sectlevel2">
+<li><a href="#_소프트웨어_공학_정의">소프트웨어 공학 정의</a></li>
+<li><a href="#_소프트웨어_공학의_목적_p_003">소프트웨어 공학의 목적 (p.003)</a></li>
+</ul>
+</li>
+<li><a href="#_1_2_소프트웨어_개발생명주기sdlc_p_005">1-2. 소프트웨어 개발생명주기(SDLC) (p.005)</a>
+<ul class="sectlevel2">
+<li><a href="#_소프트웨어_생명주기sdlc_모델">소프트웨어 생명주기(SDLC) 모델</a></li>
+</ul>
+</li>
+<li><a href="#_1_3_소프트웨어_개발_방법론">1-3. 소프트웨어 개발 방법론</a>
+<ul class="sectlevel2">
+<li><a href="#_개요">개요</a></li>
+<li><a href="#_구조적_개발_방법론">구조적 개발 방법론</a></li>
+<li><a href="#_정보공학적_개발_방법론">정보공학적 개발 방법론</a></li>
+<li><a href="#_객체지향_개발_방법론">객체지향  개발 방법론</a></li>
+<li><a href="#_cbd_개발_방법론">CBD 개발 방법론</a></li>
+<li><a href="#_rup_개발_방법론">RUP 개발 방법론</a></li>
+<li><a href="#_mda_개발_방법론">MDA 개발 방법론</a></li>
+<li><a href="#_도메인_공학">도메인 공학</a></li>
+<li><a href="#_aop_aspect_oriented_programming">AOP (Aspect Oriented Programming)</a></li>
+<li><a href="#_software_product_line">Software Product Line</a></li>
+<li><a href="#_software_3r">Software 3R</a></li>
+<li><a href="#_case_computer_aided_software_engineering">CASE (Computer Aided Software Engineering)</a></li>
+<li><a href="#_애자일_개발_방법론_p48">애자일 개발 방법론 (p48)</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="content">
+<div class="sect1">
+<h2 id="_1_1_소프트웨어_공학_정의_및_목적">1-1. 소프트웨어 공학 정의 및 목적</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_소프트웨어_공학_정의">소프트웨어 공학 정의</h3>
+
+</div>
+<div class="sect2">
+<h3 id="_소프트웨어_공학의_목적_p_003">소프트웨어 공학의 목적 (p.003)</h3>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">소프트웨어 위기</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>(무어의 법칙으로 상징되는) 빠른 하드웨어 발전 속도를 따라가지 못함</p>
+</li>
+<li>
+<p>소프트웨어 개발 비용, 일정, 자원 예측 어려움</p>
+</li>
+<li>
+<p>기타 소프트웨어의 가치를 제대로 인정 받지 못함</p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">해결 방안</dt>
+<dd>
+<p><strong>생산성, 자동화, 유지 보수성</strong> 극대화</p>
+</dd>
+<dt class="hdlist1">S/W 생산성 향상 및 고품질 소프트웨어 생산</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>재사용</p>
+</li>
+<li>
+<p>표준화</p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph">
+<p>[ <a href="../index.html">Home</a> ]
+[ <a href="./index.html">소프트웨어 공학</a> ]
+[ <a href="#header">Top</a> ]</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_1_2_소프트웨어_개발생명주기sdlc_p_005">1-2. 소프트웨어 개발생명주기(SDLC) (p.005)</h2>
+<div class="sectionbody">
+<div class="dlist">
+<dl>
+<dt class="hdlist1">소프트웨어 개발생명주기(SDLC) 구성요소</dt>
+<dd>
+<p><code>타당성 조사</code> &#8594; <code>요구분석</code> &#8594; <code>설계</code> &#8594; <code>개발/구현</code> &#8594; <code>테스트</code> &#8594; <code>유지보수</code> &#8594; <code>폐기</code></p>
+</dd>
+<dt class="hdlist1">소프트웨어 생명주기 기능</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>프로젝트 비용 산정</p>
+</li>
+<li>
+<p>프로젝트 개발 계획 수립</p>
+</li>
+<li>
+<p>용어의 표준화</p>
+</li>
+<li>
+<p>개발 진행 상황의 명확한 파악</p>
+</li>
+<li>
+<p>단계별 문서화를 통한 프로젝트 관리</p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">소프트웨어 생명주기 모델의 선정 기준</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>프로젝트의 규모와 성격</p>
+</li>
+<li>
+<p>개발에 사용되는 방법과 도구</p>
+</li>
+<li>
+<p>개발에 소요되는 시간 과 비용</p>
+</li>
+<li>
+<p>개발 과정에서의 통제수단과 소프트웨어 산출물 인도 방식</p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="sect2">
+<h3 id="_소프트웨어_생명주기sdlc_모델">소프트웨어 생명주기(SDLC) 모델</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 40%;">
+<col style="width: 40%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-center valign-top">SDLC Model</th>
+<th class="tableblock halign-center valign-top">장점</th>
+<th class="tableblock halign-center valign-top">단점</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">폭포수 모델 (Waterfall Model) p.006</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p>가장 오래 되고 폭 넓게 사용</p>
+</li>
+<li>
+<p>전체 과정을 이해하기 용이</p>
+</li>
+<li>
+<p>관리 용이(진행 과정 세분화)</p>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p>초기에 요구사항 정의가 어려움</p>
+</li>
+<li>
+<p>중요 문제점의 발견이 늦어짐</p>
+</li>
+<li>
+<p>전 단계가 종결 되어야 다음 단계를 수행</p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">프로토타입 모델 (Prototype Model) p.007</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p>요구 사항 도출이 용이</p>
+</li>
+<li>
+<p>개발자와 사용자간 의사소통 원활</p>
+</li>
+<li>
+<p>개발 타당성 검증 용이</p>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p>프로토타입 산출물 폐기에 따른 비경제적</p>
+</li>
+<li>
+<p>전체 SW 품질과 장기적 유지 보수 어려움</p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">나선형 모델 (Spiral Model) p.009</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p>정확한 사용자 요구 사항 파악</p>
+</li>
+<li>
+<p>위험 부담 감소</p>
+</li>
+<li>
+<p>품질 확보</p>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p>많은 시간 소요</p>
+</li>
+<li>
+<p>관리에 어려움(복잡함)</p>
+</li>
+<li>
+<p>충분한 사례 부족 &#8594; 검증 어려움</p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">반복적(증분/진화적) 개발 모델 p.010</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">RAD 모델 (Rapid Application Development) p.012</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p>요구사항의 완전한 이해와 프로젝트 범위가 명확 할 경우</p>
+</li>
+<li>
+<p>신속한 개발 및 고품질 구현 가능</p>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p>적절한 모듈화 가능성 전제</p>
+</li>
+<li>
+<p>기술적 위험이 높을 경우 부적합</p>
+</li>
+<li>
+<p>구성원의 책임감 필요</p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">4세대 개발 모델</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+</tr>
+</tbody>
+</table>
+<div class="sect3">
+<h4 id="_폭포수_모델_waterfall_model_p_006">폭포수 모델 (Waterfall Model) p.006</h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">폭포수 모델 (Waterfall Model) 정의</dt>
+<dt class="hdlist1">폭포수 모델 (Waterfall Model) 특징</dt>
+<dt class="hdlist1">폭포수 모델 (Waterfall Model) 장단점</dt>
+</dl>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-center valign-top">장점</th>
+<th class="tableblock halign-center valign-top">단점</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_프로토타입_모델_prototype_model_p_007">프로토타입 모델 (Prototype Model) p.007</h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">프로토타입 모델 (Prototype Model) 정의</dt>
+<dt class="hdlist1">프로토타입 모델 (Prototype Model) 특징</dt>
+<dt class="hdlist1">프로토타입 모델 (Prototype Model) 장단점</dt>
+</dl>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-center valign-top">장점</th>
+<th class="tableblock halign-center valign-top">단점</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_나선형_모델_spiral_model_p_009">나선형 모델 (Spiral Model) p.009</h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">나선형 모델 (Spiral Model) 정의</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>계획수립 &#8594; 위험분석 &#8594; 개발 &#8594; 평가</p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">나선형 모델 (Spiral Model) 특징</dt>
+<dt class="hdlist1">나선형 모델 (Spiral Model) 장단점</dt>
+</dl>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-center valign-top">장점</th>
+<th class="tableblock halign-center valign-top">단점</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_반복적_개발_모델_p_010">반복적 개발 모델 p.010</h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">반복적 개발 모델 정의</dt>
+<dt class="hdlist1">반복적 개발 모델 특징</dt>
+<dt class="hdlist1">반복적 개발 모델 유형</dt>
+<dt class="hdlist1">반복적 개발 모델 장단점</dt>
+</dl>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-center valign-top">장점</th>
+<th class="tableblock halign-center valign-top">단점</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_rad_모델_rapid_application_development_p_012">RAD 모델 (Rapid Application Development) p.012</h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">RAD 모델 정의</dt>
+<dt class="hdlist1">RAD 모델 특징</dt>
+<dt class="hdlist1">RAD 모델 장단점</dt>
+</dl>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-center valign-top">장점</th>
+<th class="tableblock halign-center valign-top">단점</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+</tr>
+</tbody>
+</table>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">RAD 모델 VS 전통적 개발 모델</dt>
+</dl>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 40%;">
+<col style="width: 40%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-center valign-top">구분</th>
+<th class="tableblock halign-center valign-top">RAD 개발 모델</th>
+<th class="tableblock halign-center valign-top">정통적 개발 모델</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-center valign-top"></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>[ <a href="../index.html">Home</a> ]
+[ <a href="./index.html">소프트웨어 공학</a> ]
+[ <a href="#header">Top</a> ]</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_1_3_소프트웨어_개발_방법론">1-3. 소프트웨어 개발 방법론</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_개요">개요</h3>
+<div class="sect3">
+<h4 id="_개발_방법론_구서요소">개발 방법론 구서요소</h4>
+
+</div>
+<div class="sect3">
+<h4 id="_개발_방법론_발전">개발 방법론 발전</h4>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 11.1111%;">
+<col style="width: 22.2222%;">
+<col style="width: 22.2222%;">
+<col style="width: 22.2222%;">
+<col style="width: 22.2223%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-center valign-top">구분</th>
+<th class="tableblock halign-center valign-top">구조적 기법</th>
+<th class="tableblock halign-center valign-top">정보공학 기법</th>
+<th class="tableblock halign-center valign-top">객체지향 기법</th>
+<th class="tableblock halign-center valign-top">CBD 기법</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">목적</p></td>
+<td class="tableblock halign-center valign-top"></td>
+<td class="tableblock halign-center valign-top"></td>
+<td class="tableblock halign-center valign-top"></td>
+<td class="tableblock halign-center valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">특징</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">중점</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">장점</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">단점</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_구조적_개발_방법론">구조적 개발 방법론</h3>
+
+</div>
+<div class="sect2">
+<h3 id="_정보공학적_개발_방법론">정보공학적 개발 방법론</h3>
+
+</div>
+<div class="sect2">
+<h3 id="_객체지향_개발_방법론">객체지향  개발 방법론</h3>
+
+</div>
+<div class="sect2">
+<h3 id="_cbd_개발_방법론">CBD 개발 방법론</h3>
+
+</div>
+<div class="sect2">
+<h3 id="_rup_개발_방법론">RUP 개발 방법론</h3>
+
+</div>
+<div class="sect2">
+<h3 id="_mda_개발_방법론">MDA 개발 방법론</h3>
+
+</div>
+<div class="sect2">
+<h3 id="_도메인_공학">도메인 공학</h3>
+
+</div>
+<div class="sect2">
+<h3 id="_aop_aspect_oriented_programming">AOP (Aspect Oriented Programming)</h3>
+
+</div>
+<div class="sect2">
+<h3 id="_software_product_line">Software Product Line</h3>
+
+</div>
+<div class="sect2">
+<h3 id="_software_3r">Software 3R</h3>
+
+</div>
+<div class="sect2">
+<h3 id="_case_computer_aided_software_engineering">CASE (Computer Aided Software Engineering)</h3>
+
+</div>
+<div class="sect2">
+<h3 id="_애자일_개발_방법론_p48">애자일 개발 방법론 (p48)</h3>
+<div class="paragraph">
+<p>반복적으로 프로토 타입을 고객에 전달함으로써 고객의 요구사항 변화에 민첩하게 대응한다.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 80%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-center valign-top">방법론</th>
+<th class="tableblock halign-center valign-top">설명</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">XP</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p>테스트 강조</p>
+</li>
+<li>
+<p>4가치 + 12 실천항목</p>
+</li>
+<li>
+<p>1~3주 iteration</p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">Scrum</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p>매일 스크럼(15분)</p>
+</li>
+<li>
+<p>Sprint 2~4 주 iteration</p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">DSDM</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p>Dynamic Systems Development Method</p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">FDD</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p>Feature Driven Development</p>
+</li>
+<li>
+<p>짧은(2주) iteration</p>
+</li>
+<li>
+<p>5 단계 프로세스</p>
+<div class="ulist">
+<ul>
+<li>
+<p>전체 모델 개발</p>
+</li>
+<li>
+<p>특성 리스트 생성</p>
+</li>
+<li>
+<p>계획</p>
+</li>
+<li>
+<p>설계</p>
+</li>
+<li>
+<p>구축</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+<div class="sect3">
+<h4 id="_xpextreme_programming">XP(eXtreme Programming)</h4>
+<div class="paragraph">
+<p>의사소통을 개선하여 즉각적인 피드백에 의해 단순한게 코딩하여 빠르게 개발하기 위한 방법론</p>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="./imgs/XP.png" alt="XP">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>비즈니스 상의 요구가 시시각각 변동이 심한 경우에 적합</p>
+</li>
+<li>
+<p>비교적 적은 규모의 인원의 개발 프로젝트에 적용</p>
+</li>
+<li>
+<p>개발 문서 보다는 소스코드</p>
+</li>
+<li>
+<p>개인의 책임과 용기에 중점</p>
+</li>
+</ul>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">4가지 가치</dt>
+<dd>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">의사소통(Communication)</dt>
+<dt class="hdlist1">간결함(Simplicity)</dt>
+<dt class="hdlist1">피드백(Feed back)</dt>
+<dt class="hdlist1">자신감(Courage)</dt>
+</dl>
+</div>
+</dd>
+<dt class="hdlist1">12가지 기본원리</dt>
+<dd>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">개발원리</dt>
+<dd>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">페어 프로그래밍</dt>
+<dt class="hdlist1">공동 소유</dt>
+<dt class="hdlist1">지속적인 통합(CI)</dt>
+</dl>
+</div>
+</dd>
+<dt class="hdlist1">관리원리</dt>
+<dd>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">게임 계획</dt>
+<dt class="hdlist1">짧은 릴리즈</dt>
+<dt class="hdlist1">메타포(은유)</dt>
+</dl>
+</div>
+</dd>
+<dt class="hdlist1">구현원리</dt>
+<dd>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">간략한 디자인</dt>
+<dt class="hdlist1">테스트 주도(TDD) 개발</dt>
+<dt class="hdlist1">리펙토링</dt>
+</dl>
+</div>
+</dd>
+<dt class="hdlist1">환경요소</dt>
+<dd>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">주 40시간 작업</dt>
+<dt class="hdlist1">고객 상주</dt>
+</dl>
+</div>
+</dd>
+<dt class="hdlist1">기타</dt>
+<dd>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">코드 표준</dt>
+</dl>
+</div>
+</dd>
+</dl>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_scrum">Scrum</h4>
+<div class="paragraph">
+<p>작은 목표를 짧은 주기로 점진적이며 경험적으로,
+제품을 지속적으로 개발(전달)하는 관리 프레임워크</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Scrum 주요 용어</dt>
+<dd>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">사용자 스토리(User Story)</dt>
+<dd>
+<p>사용자가 사용하는 관점에서 어떤 가치를 제공할 것인지를 설명</p>
+</dd>
+<dt class="hdlist1">제품 백로그(Product Backlog)</dt>
+<dd>
+<p>개발할 제품의 요구사항인 사용자 스토리 집합이며, 우선순위로 관리</p>
+</dd>
+<dt class="hdlist1">스프린트 백로그(Sprint Backlog)</dt>
+<dd>
+<p>각각의 스프린트 목표에 도달하기 위해 필요한 작업 목록</p>
+</dd>
+<dt class="hdlist1">스프린트 계획 회의(Sprint Planning Meeting)</dt>
+<dd>
+<p>스프린트 목표와 스프린트 백로그를 계획</p>
+</dd>
+<dt class="hdlist1">스프린트(Sprint)</dt>
+<dt class="hdlist1">번 다운 차트(burn down chart)</dt>
+<dd>
+<p>생산성 관리. 남아있는 일 대비 시간 그래프</p>
+</dd>
+<dt class="hdlist1">칸반 보드(Kanban Board)</dt>
+<dd>
+<p>작업을 시각적으로 업무 상태, 흐름을 보여주는 게시판</p>
+</dd>
+<dt class="hdlist1">일일 스크럼 회의(Daily Scrum Meeting)</dt>
+<dt class="hdlist1">스프린트 리뷰(Sprint Review)</dt>
+<dd>
+<p>스프린트 마지막날 개발자가 개발한 내용을 Stakeholder, 고객, 제품 책임자에게 시연하고 검토</p>
+</dd>
+<dt class="hdlist1">스프린트 회고(Sprint Retrospective)</dt>
+<dd>
+<p>스프린트 마지막날 좋았던 점, 개선할 점을 도출하고 더 나은 방향으로 개선</p>
+</dd>
+<dt class="hdlist1">완료 기준(Definition of Done)</dt>
+<dd>
+<p>Given, When, Then</p>
+</dd>
+<dt class="hdlist1">인수 기준(Acceptance Criteria)</dt>
+<dd>
+<p>Given, When, Then</p>
+</dd>
+<dt class="hdlist1">잠재적 출시 가능 제품(Potentially Shippable Product Increment)</dt>
+<dd>
+<p>최소 실행 가능 제품(Minimum Viable Product, MVP)</p>
+</dd>
+</dl>
+</div>
+</dd>
+<dt class="hdlist1">Scrum 주요 역할</dt>
+<dd>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">스크럼 마스터(Scrum Master)</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>팀을 보호하고 장애 요소를 해결</p>
+</li>
+<li>
+<p>일일 스크럼 회의를 진행</p>
+</li>
+<li>
+<p>모니터링 및 Tracking</p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">제품 책임자(Product Owner)</dt>
+<dd>
+<p>비즈니스 목표를 충족시키는 제품을 만들기 위해 제품 백 로그를 관리하고 제품을 검토합니다.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>제품 백로그(요구사항) 관리/설명</p>
+</li>
+<li>
+<p>제품 백로그의 우선순위 관리</p>
+</li>
+<li>
+<p>만족스럽게 개발되었는지 확인</p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">개발 팀 (Developer Team)</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>최선의 기술로 백로그를 개발하여 고객을 만족시킴</p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph">
+<p>[ <a href="../index.html">Home</a> ]
+[ <a href="./index.html">소프트웨어 공학</a> ]
+[ <a href="#header">Top</a> ]</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  messageStyle: "none",
+  tex2jax: {
+    inlineMath: [["\\(", "\\)"]],
+    displayMath: [["\\[", "\\]"]],
+    ignoreClass: "nostem|nolatexmath"
+  },
+  asciimath2jax: {
+    delimiters: [["\\$", "\\$"]],
+    ignoreClass: "nostem|noasciimath"
+  },
+  TeX: { equationNumbers: { autoNumber: "none" } }
+})
+MathJax.Hub.Register.StartupHook("AsciiMath Jax Ready", function () {
+  MathJax.InputJax.AsciiMath.postfilterHooks.Add(function (data, node) {
+    if ((node = data.script.parentNode) && (node = node.parentNode) && node.classList.contains("stemblock")) {
+      data.math.root.display = "block"
+    }
+    return data
+  })
+})
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js?config=TeX-MML-AM_HTMLorMML"></script>
+</body>
+</html>

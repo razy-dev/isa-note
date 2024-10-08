@@ -1,0 +1,2197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 2.0.23">
+<title>4. 프로젝트 일정관리</title>
+<style>
+@import "https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700";
+@import "https://cdn.jsdelivr.net/gh/asciidoctor/asciidoctor@2.0/data/stylesheets/asciidoctor-default.css";
+
+body {
+  font-family: "Open Sans","DejaVu Sans",sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6, #toctitle, .sidebarblock > .content > .title {
+  color: rgba(0, 0, 0, 1);
+  font-weight: bold;
+}
+
+h1 > a.link, h2 > a.link, h3 > a.link, h4 > a.link, h5 > a.link, h6 > a.link {
+  color: rgba(0, 0, 0, 1);
+  font-weight: bold;
+}
+
+code {
+  font-weight: 600;
+  color: rgba(0, 0, 255, 1);
+}
+
+strong {
+  font-weight: 600;
+  color: rgba(0, 0, 0 0.9);
+}
+
+em {
+  font-style: inherit;
+  font-weight: 600;
+  color: rgba(255, 0, 0, 1);
+}
+
+/* Stylesheet for CodeRay to match GitHub theme | MIT License | http://foundation.zurb.com */
+pre.CodeRay {
+    background: #f7f7f8
+}
+
+.CodeRay .line-numbers {
+    border-right: 1px solid currentColor;
+    opacity: .35;
+    padding: 0 .5em 0 0
+}
+
+.CodeRay span.line-numbers {
+    display: inline-block;
+    margin-right: .75em
+}
+
+.CodeRay .line-numbers strong {
+    color: #000
+}
+
+table.CodeRay {
+    border-collapse: separate;
+    border: 0;
+    margin-bottom: 0;
+    background: none
+}
+
+table.CodeRay td {
+    vertical-align: top;
+    line-height: inherit
+}
+
+table.CodeRay td.line-numbers {
+    text-align: right
+}
+
+table.CodeRay td.code {
+    padding: 0 0 0 .75em
+}
+
+.CodeRay .debug {
+    color: #fff !important;
+    background: #000080 !important
+}
+
+.CodeRay .annotation {
+    color: #007
+}
+
+.CodeRay .attribute-name {
+    color: #000080
+}
+
+.CodeRay .attribute-value {
+    color: #700
+}
+
+.CodeRay .binary {
+    color: #509
+}
+
+.CodeRay .comment {
+    color: #998;
+    font-style: italic
+}
+
+.CodeRay .char {
+    color: #04d
+}
+
+.CodeRay .char .content {
+    color: #04d
+}
+
+.CodeRay .char .delimiter {
+    color: #039
+}
+
+.CodeRay .class {
+    color: #458;
+    font-weight: bold
+}
+
+.CodeRay .complex {
+    color: #a08
+}
+
+.CodeRay .constant, .CodeRay .predefined-constant {
+    color: #008080
+}
+
+.CodeRay .color {
+    color: #099
+}
+
+.CodeRay .class-variable {
+    color: #369
+}
+
+.CodeRay .decorator {
+    color: #b0b
+}
+
+.CodeRay .definition {
+    color: #099
+}
+
+.CodeRay .delimiter {
+    color: #000
+}
+
+.CodeRay .doc {
+    color: #970
+}
+
+.CodeRay .doctype {
+    color: #34b
+}
+
+.CodeRay .doc-string {
+    color: #d42
+}
+
+.CodeRay .escape {
+    color: #666
+}
+
+.CodeRay .entity {
+    color: #800
+}
+
+.CodeRay .error {
+    color: #808
+}
+
+.CodeRay .exception {
+    color: inherit
+}
+
+.CodeRay .filename {
+    color: #099
+}
+
+.CodeRay .function {
+    color: #900;
+    font-weight: bold
+}
+
+.CodeRay .global-variable {
+    color: #008080
+}
+
+.CodeRay .hex {
+    color: #058
+}
+
+.CodeRay .integer, .CodeRay .float {
+    color: #099
+}
+
+.CodeRay .include {
+    color: #555
+}
+
+.CodeRay .inline {
+    color: #000
+}
+
+.CodeRay .inline .inline {
+    background: #ccc
+}
+
+.CodeRay .inline .inline .inline {
+    background: #bbb
+}
+
+.CodeRay .inline .inline-delimiter {
+    color: #d14
+}
+
+.CodeRay .inline-delimiter {
+    color: #d14
+}
+
+.CodeRay .important {
+    color: #555;
+    font-weight: bold
+}
+
+.CodeRay .interpreted {
+    color: #b2b
+}
+
+.CodeRay .instance-variable {
+    color: #008080
+}
+
+.CodeRay .label {
+    color: #970
+}
+
+.CodeRay .local-variable {
+    color: #963
+}
+
+.CodeRay .octal {
+    color: #40e
+}
+
+.CodeRay .predefined {
+    color: #369
+}
+
+.CodeRay .preprocessor {
+    color: #579
+}
+
+.CodeRay .pseudo-class {
+    color: #555
+}
+
+.CodeRay .directive {
+    font-weight: bold
+}
+
+.CodeRay .type {
+    font-weight: bold
+}
+
+.CodeRay .predefined-type {
+    color: inherit
+}
+
+.CodeRay .reserved, .CodeRay .keyword {
+    color: #000;
+    font-weight: bold
+}
+
+.CodeRay .key {
+    color: #808
+}
+
+.CodeRay .key .delimiter {
+    color: #606
+}
+
+.CodeRay .key .char {
+    color: #80f
+}
+
+.CodeRay .value {
+    color: #088
+}
+
+.CodeRay .regexp .delimiter {
+    color: #808
+}
+
+.CodeRay .regexp .content {
+    color: #808
+}
+
+.CodeRay .regexp .modifier {
+    color: #808
+}
+
+.CodeRay .regexp .char {
+    color: #d14
+}
+
+.CodeRay .regexp .function {
+    color: #404;
+    font-weight: bold
+}
+
+.CodeRay .string {
+    color: #d20
+}
+
+.CodeRay .string .string .string {
+    background: #ffd0d0
+}
+
+.CodeRay .string .content {
+    color: #d14
+}
+
+.CodeRay .string .char {
+    color: #d14
+}
+
+.CodeRay .string .delimiter {
+    color: #d14
+}
+
+.CodeRay .shell {
+    color: #d14
+}
+
+.CodeRay .shell .delimiter {
+    color: #d14
+}
+
+.CodeRay .symbol {
+    color: #990073
+}
+
+.CodeRay .symbol .content {
+    color: #a60
+}
+
+.CodeRay .symbol .delimiter {
+    color: #630
+}
+
+.CodeRay .tag {
+    color: #008080
+}
+
+.CodeRay .tag-special {
+    color: #d70
+}
+
+.CodeRay .variable {
+    color: #036
+}
+
+.CodeRay .insert {
+    background: #afa
+}
+
+.CodeRay .delete {
+    background: #faa
+}
+
+.CodeRay .change {
+    color: #aaf;
+    background: #007
+}
+
+.CodeRay .head {
+    color: #f8f;
+    background: #505
+}
+
+.CodeRay .insert .insert {
+    color: #080
+}
+
+.CodeRay .delete .delete {
+    color: #800
+}
+
+.CodeRay .change .change {
+    color: #66f
+}
+
+.CodeRay .head .head {
+    color: #f4f
+}
+
+pre.rouge table td {
+    padding: 5px;
+}
+
+pre.rouge table pre {
+    margin: 0;
+}
+
+pre.rouge .cm {
+    color: #999988;
+    font-style: italic;
+}
+
+pre.rouge .cp {
+    color: #999999;
+    font-weight: bold;
+}
+
+pre.rouge .c1 {
+    color: #999988;
+    font-style: italic;
+}
+
+pre.rouge .cs {
+    color: #999999;
+    font-weight: bold;
+    font-style: italic;
+}
+
+pre.rouge .c, pre.rouge .ch, pre.rouge .cd, pre.rouge .cpf {
+    color: #999988;
+    font-style: italic;
+}
+
+pre.rouge .err {
+    color: #a61717;
+    background-color: #e3d2d2;
+}
+
+pre.rouge .gd {
+    color: #000000;
+    background-color: #ffdddd;
+}
+
+pre.rouge .ge {
+    color: #000000;
+    font-style: italic;
+}
+
+pre.rouge .gr {
+    color: #aa0000;
+}
+
+pre.rouge .gh {
+    color: #999999;
+}
+
+pre.rouge .gi {
+    color: #000000;
+    background-color: #ddffdd;
+}
+
+pre.rouge .go {
+    color: #888888;
+}
+
+pre.rouge .gp {
+    color: #555555;
+}
+
+pre.rouge .gs {
+    font-weight: bold;
+}
+
+pre.rouge .gu {
+    color: #aaaaaa;
+}
+
+pre.rouge .gt {
+    color: #aa0000;
+}
+
+pre.rouge .kc {
+    color: #000000;
+    font-weight: bold;
+}
+
+pre.rouge .kd {
+    color: #000000;
+    font-weight: bold;
+}
+
+pre.rouge .kn {
+    color: #000000;
+    font-weight: bold;
+}
+
+pre.rouge .kp {
+    color: #000000;
+    font-weight: bold;
+}
+
+pre.rouge .kr {
+    color: #000000;
+    font-weight: bold;
+}
+
+pre.rouge .kt {
+    color: #445588;
+    font-weight: bold;
+}
+
+pre.rouge .k, pre.rouge .kv {
+    color: #000000;
+    font-weight: bold;
+}
+
+pre.rouge .mf {
+    color: #009999;
+}
+
+pre.rouge .mh {
+    color: #009999;
+}
+
+pre.rouge .il {
+    color: #009999;
+}
+
+pre.rouge .mi {
+    color: #009999;
+}
+
+pre.rouge .mo {
+    color: #009999;
+}
+
+pre.rouge .m, pre.rouge .mb, pre.rouge .mx {
+    color: #009999;
+}
+
+pre.rouge .sb {
+    color: #d14;
+}
+
+pre.rouge .sc {
+    color: #d14;
+}
+
+pre.rouge .sd {
+    color: #d14;
+}
+
+pre.rouge .s2 {
+    color: #d14;
+}
+
+pre.rouge .se {
+    color: #d14;
+}
+
+pre.rouge .sh {
+    color: #d14;
+}
+
+pre.rouge .si {
+    color: #d14;
+}
+
+pre.rouge .sx {
+    color: #d14;
+}
+
+pre.rouge .sr {
+    color: #009926;
+}
+
+pre.rouge .s1 {
+    color: #d14;
+}
+
+pre.rouge .ss {
+    color: #990073;
+}
+
+pre.rouge .s, pre.rouge .sa, pre.rouge .dl {
+    color: #d14;
+}
+
+pre.rouge .na {
+    color: #008080;
+}
+
+pre.rouge .bp {
+    color: #999999;
+}
+
+pre.rouge .nb {
+    color: #0086B3;
+}
+
+pre.rouge .nc {
+    color: #445588;
+    font-weight: bold;
+}
+
+pre.rouge .no {
+    color: #008080;
+}
+
+pre.rouge .nd {
+    color: #3c5d5d;
+    font-weight: bold;
+}
+
+pre.rouge .ni {
+    color: #800080;
+}
+
+pre.rouge .ne {
+    color: #990000;
+    font-weight: bold;
+}
+
+pre.rouge .nf, pre.rouge .fm {
+    color: #990000;
+    font-weight: bold;
+}
+
+pre.rouge .nl {
+    color: #990000;
+    font-weight: bold;
+}
+
+pre.rouge .nn {
+    color: #555555;
+}
+
+pre.rouge .nt {
+    color: #000080;
+}
+
+pre.rouge .vc {
+    color: #008080;
+}
+
+pre.rouge .vg {
+    color: #008080;
+}
+
+pre.rouge .vi {
+    color: #008080;
+}
+
+pre.rouge .nv, pre.rouge .vm {
+    color: #008080;
+}
+
+pre.rouge .ow {
+    color: #000000;
+    font-weight: bold;
+}
+
+pre.rouge .o {
+    color: #000000;
+    font-weight: bold;
+}
+
+pre.rouge .w {
+    color: #bbbbbb;
+}
+
+pre.rouge {
+    background-color: #f8f8f8;
+}
+
+/*#content > h1:first-child:not([class]), body {*/
+/*    background-color: #45494a;*/
+/*    color: #bbbbbb*/
+/*}*/
+
+/*.content > pre {*/
+/*    filter: invert(90%) hue-rotate(180deg);*/
+/*}*/
+
+/*a, a:hover, a:focus {*/
+/*    color: #589df6;*/
+/*}*/
+
+/*table.tableblock, th.tableblock, td.tableblock {*/
+/*    color: #bbbbbb*/
+/*}*/
+
+/*!* was: rgba(0,0,0,.8) *!*/
+/*table:not(.linenotable):not(.CodeRay) thead tr th, table thead tr td, table:not(.linenotable):not(.CodeRay) tfoot tr th, table:not(.linenotable):not(.CodeRay) tfoot tr td {*/
+/*    color: #bbbbbb*/
+/*}*/
+
+/*abbr, acronym {*/
+/*    color: #bbbbbb*/
+/*}*/
+
+/*table:not(.linenotable):not(.CodeRay) tr th, table tr td {*/
+/*    color: #bbbbbb*/
+/*}*/
+
+/*kbd {*/
+/*    background-color: #626262 !important;*/
+/*    color: #bbbbbb;*/
+/*    -webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, .2), 0 0 0 .1em #777 inset;*/
+/*    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2), 0 0 0 .1em #777 inset*/
+/*}*/
+
+/*.menuseq, .menu {*/
+/*    color: #bbbbbb*/
+/*}*/
+
+/*#footer {*/
+/*    color: #bbbbbb*/
+/*}*/
+
+/*tbody tr th, tbody tr th p, tfoot tr th, tfoot tr th p {*/
+/*    color: #bbbbbb*/
+/*}*/
+
+/*.conum[data-value] {*/
+/*    color: #bbbbbb*/
+/*}*/
+
+/*!* was: rgba(0,0,0,.85) *!*/
+/*.paragraph.lead > p, #preamble > .sectionbody > .paragraph:first-of-type p {*/
+/*    color: #bbbbbb*/
+/*}*/
+
+/*.quoteblock blockquote, .quoteblock blockquote p {*/
+/*    color: #bbbbbb*/
+/*}*/
+
+/*#content > h1:first-child:not([class]) {*/
+/*    color: #bbbbbb*/
+/*}*/
+
+/*#header .details br + span.author:before {*/
+/*    color: #bbbbbb*/
+/*}*/
+
+/*#header .details span.email a {*/
+/*    color: #bbbbbb*/
+/*}*/
+
+/*#header > h1:first-child {*/
+/*    color: #bbbbbb*/
+/*}*/
+
+/*blockquote, blockquote p {*/
+/*    color: #bbbbbb*/
+/*}*/
+
+/*!* was: rgba(0,0,0,.6) *!*/
+/*blockquote cite a, blockquote cite a:visited {*/
+/*    color: #bbbbbb*/
+/*}*/
+
+/*#header .details {*/
+/*    color: #bbbbbb*/
+/*}*/
+
+/*.admonitionblock > table td.content {*/
+/*    color: #bbbbbb*/
+/*}*/
+
+/*.quoteblock .quoteblock {*/
+/*    color: #bbbbbb*/
+/*}*/
+
+/*.quoteblock .attribution cite, .verseblock .attribution cite {*/
+/*    color: #bbbbbb*/
+/*}*/
+
+/*!* was: f8f8f7 *!*/
+/*table:not(.linenotable):not(.CodeRay) tbody tr {*/
+/*    background: #45494a*/
+/*}*/
+
+/*table:not(.linenotable):not(.CodeRay) tr.even, table tr.alt, table tr:nth-of-type(even) {*/
+/*    background: #626262*/
+/*}*/
+
+/*!* was f7f8f7 *!*/
+/*table:not(.linenotable):not(.CodeRay) thead, table tfoot {*/
+/*    background: #626262*/
+/*}*/
+
+/*tbody tr th {*/
+/*    background: #626262*/
+/*}*/
+
+/*!* was: 7a2518 *!*/
+/*.subheader, .admonitionblock td.content > .title, .audioblock > .title, .exampleblock > .title, .imageblock > .title, .listingblock > .title, .literalblock > .title, .stemblock > .title, .openblock > .title, .paragraph > .title, .quoteblock > .title, table.tableblock > .title, .verseblock > .title, .videoblock > .title, .dlist > .title, .olist > .title, .ulist > .title, .qlist > .title, .hdlist > .title,*/
+/*#toctitle,*/
+/*.sidebarblock > .content > .title,*/
+/*.quoteblock blockquote::before,*/
+/*    !* was: several *!*/
+/*td.icon {*/
+/*    filter: invert(90%) hue-rotate(180deg);*/
+/*}*/
+
+/*!* was: f8f8f7 *!*/
+/*.sidebarblock, .exampleblock, .exampleblock > .content {*/
+/*    background: #626262;*/
+/*    border-color: #626262;*/
+/*    box-shadow: 0 1px 4px #626262*/
+/*}*/
+
+/*!* was: f7f7f8 *!*/
+/*.exampleblock > .content > :last-child > :last-child, .exampleblock > .content .olist > ol > li:last-child > :last-child, .exampleblock > .content .ulist > ul > li:last-child > :last-child, .exampleblock > .content .qlist > ol > li:last-child > :last-child, .sidebarblock > .content > :last-child > :last-child, .sidebarblock > .content .olist > ol > li:last-child > :last-child, .sidebarblock > .content .ulist > ul > li:last-child > :last-child, .sidebarblock > .content .qlist > ol > li:last-child > :last-child {*/
+/*    margin-bottom: 0*/
+/*}*/
+
+/*#toc {*/
+/*    background-color: #626262 !important;*/
+/*    border-color: #626262 !important;*/
+/*}*/
+
+/*h1, h2, h3, #toctitle, .sidebarblock > .content > .title, h4, h5, h6 {*/
+/*    color: #cccccc*/
+/*}*/
+
+/*!* scroll bar color change to match the dark scheme *!*/
+/*::-webkit-scrollbar {*/
+/*    width: 12px;*/
+/*    height: 12px;*/
+/*    background-color: inherit;*/
+/*}*/
+
+/*::-webkit-scrollbar-thumb {*/
+/*    -webkit-border-radius: 10px;*/
+/*    border: 2px solid #2c2c2c;*/
+/*    background-color: #404040;*/
+/*}*/
+
+/*::-webkit-scrollbar-track {*/
+/*    width: 12px;*/
+/*    height: 12px;*/
+/*    background-color: #2c2c2c;*/
+/*}*/
+</style>
+</head>
+<body class="article toc2 toc-left">
+<div id="header">
+<h1>4. 프로젝트 일정관리</h1>
+<div id="toc" class="toc2">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#_4_1_일정_관리_계획">4.1. 일정 관리 계획</a>
+<ul class="sectlevel2">
+<li><a href="#_4_1_1_투입물">4.1.1. 투입물</a></li>
+<li><a href="#_4_1_2_도구_및_기법">4.1.2. 도구 및 기법</a></li>
+<li><a href="#_4_1_3_산출물">4.1.3. 산출물</a></li>
+</ul>
+</li>
+<li><a href="#_4_2_활동_정의">4.2. 활동 정의</a>
+<ul class="sectlevel2">
+<li><a href="#_4_2_1_투입물">4.2.1. 투입물</a></li>
+<li><a href="#_4_2_2_도구_및_기법">4.2.2. 도구 및 기법</a></li>
+<li><a href="#_4_2_3_산출물">4.2.3. 산출물</a></li>
+</ul>
+</li>
+<li><a href="#_4_3_활동_순서_배열">4.3. 활동 순서 배열</a>
+<ul class="sectlevel2">
+<li><a href="#_4_3_1_투입물">4.3.1. 투입물</a></li>
+<li><a href="#_4_3_2_도구_및_기법">4.3.2. 도구 및 기법</a></li>
+<li><a href="#_4_3_4_산출물">4.3.4. 산출물</a></li>
+</ul>
+</li>
+<li><a href="#_4_4_활동_기간_산정">4.4. 활동 기간 산정</a>
+<ul class="sectlevel2">
+<li><a href="#_4_4_1_투입물">4.4.1. 투입물</a></li>
+<li><a href="#_4_4_2_도구_및_기법">4.4.2. 도구 및 기법</a></li>
+<li><a href="#_4_4_4_산출물">4.4.4. 산출물</a></li>
+</ul>
+</li>
+<li><a href="#_4_5_일정_개발">4.5. 일정 개발</a>
+<ul class="sectlevel2">
+<li><a href="#_4_5_1_투입물">4.5.1. 투입물</a></li>
+<li><a href="#_4_5_2_도구_및_기법">4.5.2. 도구 및 기법</a></li>
+<li><a href="#_4_4_4_산출물_2">4.4.4. 산출물</a></li>
+</ul>
+</li>
+<li><a href="#_4_6_일정_통제">4.6. 일정 통제</a>
+<ul class="sectlevel2">
+<li><a href="#_4_6_1_투입물">4.6.1. 투입물</a></li>
+<li><a href="#_4_6_2_도구_및_기법">4.6.2. 도구 및 기법</a></li>
+<li><a href="#_4_6_4_산출물">4.6.4. 산출물</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="content">
+<div class="sect1">
+<h2 id="_4_1_일정_관리_계획">4.1. 일정 관리 계획</h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-center valign-top">투입물</th>
+<th class="tableblock halign-center valign-top">도구 및 기법</th>
+<th class="tableblock halign-center valign-top">산출물</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>프로젝트 헌장</p>
+</li>
+<li>
+<p>프로젝트 관리 계획서</p>
+<div class="ulist">
+<ul>
+<li>
+<p>범위 관리 계획서</p>
+</li>
+<li>
+<p>개발 방식</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>기업 환경 요인</p>
+</li>
+<li>
+<p>조직 프로제스 자산</p>
+</li>
+</ol>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>전문가 판단</p>
+</li>
+<li>
+<p>데이터 분석</p>
+</li>
+<li>
+<p>회의</p>
+</li>
+</ol>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>일정관리 계획서</p>
+</li>
+</ol>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+<div class="sect2">
+<h3 id="_4_1_1_투입물">4.1.1. 투입물</h3>
+
+</div>
+<div class="sect2">
+<h3 id="_4_1_2_도구_및_기법">4.1.2. 도구 및 기법</h3>
+
+</div>
+<div class="sect2">
+<h3 id="_4_1_3_산출물">4.1.3. 산출물</h3>
+
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_4_2_활동_정의">4.2. 활동 정의</h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-center valign-top">투입물</th>
+<th class="tableblock halign-center valign-top">도구 및 기법</th>
+<th class="tableblock halign-center valign-top">산출물</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>프로젝트 관리 계획서</p>
+<div class="ulist">
+<ul>
+<li>
+<p>일정관리 계획서</p>
+</li>
+<li>
+<p><strong>범위 기준선</strong></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>기업 환경 요인</p>
+</li>
+<li>
+<p>조직 프로제스 자산</p>
+</li>
+</ol>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>전문가 판단</p>
+</li>
+<li>
+<p>분할</p>
+</li>
+<li>
+<p>연동 기획</p>
+</li>
+<li>
+<p>회의</p>
+</li>
+</ol>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>활동 목록</strong></p>
+</li>
+<li>
+<p><strong>활동 속성</strong></p>
+</li>
+<li>
+<p>이정표 목록</p>
+</li>
+<li>
+<p>변경 요청</p>
+</li>
+<li>
+<p>프로젝트 관리 계획서 업데이트</p>
+<div class="ulist">
+<ul>
+<li>
+<p>일정 기준선</p>
+</li>
+<li>
+<p>원가 기준선</p>
+</li>
+</ul>
+</div>
+</li>
+</ol>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+<div class="sect2">
+<h3 id="_4_2_1_투입물">4.2.1. 투입물</h3>
+
+</div>
+<div class="sect2">
+<h3 id="_4_2_2_도구_및_기법">4.2.2. 도구 및 기법</h3>
+<div class="sect3">
+<h4 id="_분할decomposition">분할(Decomposition)</h4>
+
+</div>
+<div class="sect3">
+<h4 id="_연동_기획rolling_wave_planning">연동 기획(Rolling Wave Planning)</h4>
+
+</div>
+</div>
+<div class="sect2">
+<h3 id="_4_2_3_산출물">4.2.3. 산출물</h3>
+<div class="sect3">
+<h4 id="_활동_목록activity_list">활동 목록(Activity List)</h4>
+
+</div>
+<div class="sect3">
+<h4 id="_활동_속성activity_attributes">활동 속성(Activity Attributes)</h4>
+
+</div>
+<div class="sect3">
+<h4 id="_이정표_목록milestone_list">이정표 목록(Milestone List)</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>중요한 시점 또는 사건</p>
+</li>
+<li>
+<p><strong>기간이 <em>0</em></strong></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_4_3_활동_순서_배열">4.3. 활동 순서 배열</h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-center valign-top">투입물</th>
+<th class="tableblock halign-center valign-top">도구 및 기법</th>
+<th class="tableblock halign-center valign-top">산출물</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>프로젝트 관리 계획서</p>
+<div class="ulist">
+<ul>
+<li>
+<p>일정관리 계획서</p>
+</li>
+<li>
+<p><strong>범위 기준선</strong></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>프로젝트 문서</p>
+<div class="ulist">
+<ul>
+<li>
+<p>활동 목록</p>
+</li>
+<li>
+<p>활동 속성</p>
+</li>
+<li>
+<p>이정표 목록</p>
+</li>
+<li>
+<p>가정사항 기록부</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>기업 환경 요인</p>
+</li>
+<li>
+<p>조직 프로제스 자산</p>
+</li>
+</ol>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>선후행도형법(PDM)</p>
+</li>
+<li>
+<p>의존관계 결정 및 통합</p>
+</li>
+<li>
+<p>선도 및 지연</p>
+</li>
+<li>
+<p>프로젝트관리정보시스템</p>
+</li>
+</ol>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>프로젝트 일정 네트워크 다이어그램</p>
+</li>
+<li>
+<p>프로젝트 문서 갱신</p>
+</li>
+</ol>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+<div class="sect2">
+<h3 id="_4_3_1_투입물">4.3.1. 투입물</h3>
+
+</div>
+<div class="sect2">
+<h3 id="_4_3_2_도구_및_기법">4.3.2. 도구 및 기법</h3>
+<div class="sect3">
+<h4 id="_선후행_도형법precedence_diagramming_method_pdm">선후행 도형법(Precedence Diagramming Method: PDM)</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>AON(Activity On Node)</p>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">FS(Finish-to-Start)</dt>
+<dd>
+<p>선행 작업을 <em>완료</em> 해야 후속 작업 <em>착수</em></p>
+</dd>
+<dt class="hdlist1">FF(Finish-to-Finish)</dt>
+<dd>
+<p>선행 작업을 <em>완료</em> 해야 후 후속 작업 <em>완료</em></p>
+</dd>
+<dt class="hdlist1">SF(Start-to-Finish)</dt>
+<dd>
+<p>선행 작업을 <em>착수</em> 해야 후 후속 작업 <em>완료</em> (비현실)</p>
+</dd>
+<dt class="hdlist1">SS(Start-to-Start)</dt>
+<dd>
+<p>선행 작업을 <em>착수</em> 해야 후 후속 작업 <em>착수</em></p>
+</dd>
+</dl>
+</div>
+</li>
+</ul>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">(참고) 연결선 도형법(Arrow Diagramming Method: ADM)</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>AOA(Activity On Arrow)</p>
+</li>
+<li>
+<p>FS 만 표현 가능</p>
+<div class="ulist">
+<ul>
+<li>
+<p>기타 관계는 더미 활동(점선, 기간 0) 으로 표기</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">(참고) 조건부 도형법(Conditional Diagramming Method: CDM)</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>GERT(Graphical Evaluation and Review Techniques)</p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_의존관계_결정_및_통합dependency_determination_and_integration">의존관계 결정 및 통합(Dependency Determination and Integration)</h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">강제적 종속성</dt>
+<dt class="hdlist1">임의적 종속성</dt>
+<dt class="hdlist1">외부적 종속성</dt>
+<dt class="hdlist1">내부적 종속성</dt>
+</dl>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_선도_및_지연의_적용"><mark>선도 및 지연의 적용</mark></h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Lead(선도)</dt>
+<dd>
+<p>Lead 를 활용해 후행 활동의 일정을 앞당길 수 있다.</p>
+</dd>
+<dt class="hdlist1">Lag(지연)</dt>
+<dd>
+<p>후행 활동 일정을 지연시킨다.</p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_4_3_4_산출물">4.3.4. 산출물</h3>
+
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_4_4_활동_기간_산정">4.4. 활동 기간 산정</h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-center valign-top">투입물</th>
+<th class="tableblock halign-center valign-top">도구 및 기법</th>
+<th class="tableblock halign-center valign-top">산출물</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>프로젝트 관리 계획서</p>
+<div class="ulist">
+<ul>
+<li>
+<p>일정관리 계획서</p>
+</li>
+<li>
+<p><strong>범위 기준선</strong></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>프로젝트 문서</p>
+<div class="ulist">
+<ul>
+<li>
+<p>활동 목록</p>
+</li>
+<li>
+<p>활동 속성</p>
+</li>
+<li>
+<p>이정표(마일스톤) 목록</p>
+</li>
+<li>
+<p>가정사항 기록부</p>
+</li>
+<li>
+<p>교훈 관리대장</p>
+</li>
+<li>
+<p>프로젝트 팀 배정표</p>
+</li>
+<li>
+<p>자원분류체계(RBS)</p>
+</li>
+<li>
+<p>자원달력</p>
+</li>
+<li>
+<p>자원 요구사항</p>
+</li>
+<li>
+<p>위험 등록부</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>기업 환경 요인</p>
+</li>
+<li>
+<p>조직 프로제스 자산</p>
+</li>
+</ol>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>전문가 판단</p>
+</li>
+<li>
+<p>유추 산정</p>
+</li>
+<li>
+<p>모수 산정</p>
+</li>
+<li>
+<p>3점 산정(PERT)</p>
+</li>
+<li>
+<p>상향식 산정</p>
+</li>
+<li>
+<p>데이터 분석</p>
+<div class="ulist">
+<ul>
+<li>
+<p>대안 분석</p>
+</li>
+<li>
+<p>예비 분석</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>의사 결정</p>
+</li>
+<li>
+<p>회의</p>
+</li>
+</ol>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>기간 산정치</p>
+</li>
+<li>
+<p>산정 기준서</p>
+</li>
+<li>
+<p>프로젝트 문서 갱신</p>
+<div class="ulist">
+<ul>
+<li>
+<p>활동 속성</p>
+</li>
+<li>
+<p>가정사항 기록부</p>
+</li>
+<li>
+<p>교훈 관리대장</p>
+</li>
+</ul>
+</div>
+</li>
+</ol>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+<div class="sect2">
+<h3 id="_4_4_1_투입물">4.4.1. 투입물</h3>
+
+</div>
+<div class="sect2">
+<h3 id="_4_4_2_도구_및_기법">4.4.2. 도구 및 기법</h3>
+<div class="sect3">
+<h4 id="_전문가_판단expert_judgement_사람">전문가 판단(Expert Judgement) : 사람</h4>
+
+</div>
+<div class="sect3">
+<h4 id="_유사_추정analogous_estimating_문서사례">유사 추정(Analogous Estimating) : 문서/사례</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>Top Down = 전문가 판단 + 유사 추정</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_모수_추청parametric_estimating_통계">모수 추청(Parametric Estimating) : 통계</h4>
+
+</div>
+<div class="sect3">
+<h4 id="_3점_추정tree_point_estimating_pert"><mark>3점 추정(Tree-point Estimating) : PERT</mark></h4>
+<div class="paragraph">
+<p>불확실성이 높아 3가지 추정치의 평균 값으로 기간 산정</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>P(Pessimistic: 비관치)</p>
+</li>
+<li>
+<p>M(Most Likely: 최빈치)</p>
+</li>
+<li>
+<p>O(Optimistic : 낙관치)</p>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">삼각분포</dt>
+<dd>
+<p>\(\frac{P + M + O} {3}\)</p>
+</dd>
+<dt class="hdlist1">&beta;-분포</dt>
+<dd>
+<p>\(\frac{P + 4M + O} {6}\)</p>
+</dd>
+</dl>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_상향식_추정bottom_up_estimating">상향식 추정(Bottom-up Estimating)</h4>
+
+</div>
+<div class="sect3">
+<h4 id="_데이터_분석data_analysis">데이터 분석(Data Analysis)</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>대안 분석(Alternatives Analysis)</p>
+</li>
+<li>
+<p>예비 분석(Reserve Analysis)</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Contingency Reserve</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Known - Unknowns : 예측 가능한 위험 대비</p>
+</li>
+<li>
+<p>Duration estimates 에 포함됨</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Management Reserve</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Unknown - Unknowns : 예측 불가능한 위험 대비</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_의사_결정decision_making_투표">의사 결정(Decision Making) : 투표</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>Fist to Five</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_기간_산정치duration_estimates">기간 산정치(Duration Estimates)</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>산정 기준(Basis Of Estimates)</p>
+<div class="ulist">
+<ul>
+<li>
+<p>기간 산정치를 뒷받침 하는 보조 문서</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_4_4_4_산출물">4.4.4. 산출물</h3>
+
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_4_5_일정_개발">4.5. 일정 개발</h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-center valign-top">투입물</th>
+<th class="tableblock halign-center valign-top">도구 및 기법</th>
+<th class="tableblock halign-center valign-top">산출물</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>프로젝트 관리 계획서</p>
+<div class="ulist">
+<ul>
+<li>
+<p>일정관리 계획서</p>
+</li>
+<li>
+<p><strong>범위 기준선</strong></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>프로젝트 문서</p>
+<div class="ulist">
+<ul>
+<li>
+<p>활동 목록</p>
+</li>
+<li>
+<p>활동 속성</p>
+</li>
+<li>
+<p>이정표(마일스톤) 목록</p>
+</li>
+<li>
+<p>가정사항 기록부</p>
+</li>
+<li>
+<p>교훈 관리대장</p>
+</li>
+<li>
+<p>프로젝트 팀 배정표</p>
+</li>
+<li>
+<p>자원분류체계(RBS)</p>
+</li>
+<li>
+<p>자원달력</p>
+</li>
+<li>
+<p>자원 요구사항</p>
+</li>
+<li>
+<p>위험 등록부</p>
+</li>
+<li>
+<p>기간 산정치</p>
+</li>
+<li>
+<p>산정 기준서</p>
+</li>
+<li>
+<p>프로젝트 일정 네트워크 다이어그램</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>협약</p>
+</li>
+<li>
+<p>기업 환경 요인</p>
+</li>
+<li>
+<p>조직 프로제스 자산</p>
+</li>
+</ol>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>일정 네트워크 분석</p>
+</li>
+<li>
+<p>주공정법</p>
+</li>
+<li>
+<p>자원 최적화</p>
+</li>
+<li>
+<p>데이터 분석</p>
+<div class="ulist">
+<ul>
+<li>
+<p>가정형 시나리오 분석</p>
+</li>
+<li>
+<p>시뮬레이션</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>선도와 지연</p>
+</li>
+<li>
+<p>일정 단축</p>
+</li>
+<li>
+<p>애자일 릴리즈 기획</p>
+</li>
+<li>
+<p>프로젝트관리 정보시스템</p>
+</li>
+</ol>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>일정 기준선</p>
+</li>
+<li>
+<p>프로젝트 일정</p>
+</li>
+<li>
+<p>일정 데이터</p>
+</li>
+<li>
+<p>프로젝트 달력</p>
+</li>
+<li>
+<p>변경 요청</p>
+</li>
+<li>
+<p>프로젝트 관리 계획 갱신</p>
+<div class="ulist">
+<ul>
+<li>
+<p>일정관리 계획서</p>
+</li>
+<li>
+<p>원가 기준선</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>프로젝트 문서 갱신</p>
+<div class="ulist">
+<ul>
+<li>
+<p>활동 속성</p>
+</li>
+<li>
+<p>가정사항 기록부</p>
+</li>
+<li>
+<p>기간 산정치</p>
+</li>
+<li>
+<p>교훈 관리대장</p>
+</li>
+<li>
+<p>자원 요구사항</p>
+</li>
+<li>
+<p>위험 등록부</p>
+</li>
+</ul>
+</div>
+</li>
+</ol>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+<div class="sect2">
+<h3 id="_4_5_1_투입물">4.5.1. 투입물</h3>
+
+</div>
+<div class="sect2">
+<h3 id="_4_5_2_도구_및_기법">4.5.2. 도구 및 기법</h3>
+<div class="sect3">
+<h4 id="_일정_네트워크_분석schedule_network_analysis">일정 네트워크 분석(Schedule Network Analysis)</h4>
+<div class="sect4">
+<h5 id="_cpmcritical_path_method"><mark>CPM(Critical Path Method)</mark></h5>
+<div class="ulist">
+<ul>
+<li>
+<p>PERT/CPM 일정 &#8594; 자원 기반 일정 계획</p>
+</li>
+<li>
+<p>CP 개수가 많으면 &#8594; 일정 지연 Risk 가 크다</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="./imgs/CPM-Node.png" alt="CPM Node">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>ES(Early Start Date)</p>
+</li>
+<li>
+<p>EF(Early Finish Date)</p>
+</li>
+<li>
+<p>LS(Late Start Date)</p>
+</li>
+<li>
+<p>LF(Late Finish Date)</p>
+</li>
+<li>
+<p>TF(Total Float) = min(①, ②) = LS - ES = LF - EF</p>
+<div class="ulist">
+<ul>
+<li>
+<p>프로젝트를 지연시키지 않으면서 활동이 가지는 여유 시간</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>FF(Free Float)</p>
+<div class="ulist">
+<ul>
+<li>
+<p>후행 활동의 ES 를 지연시키지 않으면서, 선행 활동이 가지는 여유시간</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_cpcritical_path"><mark>CP(Critical Path)</mark></h5>
+<div class="ulist">
+<ul>
+<li>
+<p>Longest path : 가장 오래 걸리는</p>
+</li>
+<li>
+<p>Lest amount of float : 가장 적은 여유시간&#8594; 최종적으로 0 으로 수렴</p>
+</li>
+<li>
+<p>Determines the duration of the project : 프로젝트 일정 결정자</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="./imgs/CPM-Graph.png" alt="CPM Graph">
+</div>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Forward pass</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>시작일 부터(&#8594;) 계산</p>
+</li>
+<li>
+<p>프로젝트 전채 수행 기간 파악</p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">Backward pass</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>종료일 부터(&#8592;) 계산</p>
+</li>
+<li>
+<p>Activity 의 여유 시간 파악</p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_자원_최적화">자원 최적화</h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">자원평준화(Resource Leveling)</dt>
+<dd>
+<p>CP 변경 가능성</p>
+</dd>
+<dt class="hdlist1">자원다듬기(Resource Smoothing)</dt>
+<dd>
+<p>CP 변경 가능성 X</p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_데이터_분석">데이터 분석</h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">가정형 시나리오 분석(What-if Scenario Analysis)</dt>
+<dt class="hdlist1">모의 실험(Simulation)</dt>
+</dl>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_선도와_지연">선도와 지연</h4>
+
+</div>
+<div class="sect3">
+<h4 id="_일정_단축">일정 단축</h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Crashing</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>추가 예산(Resource) 투입</p>
+</li>
+<li>
+<p>비용 대비 효과성 검토 &#8594; CP 에 적용</p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">Fast Tracking</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>병행(Parallel) 수행</p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_애자일_릴리즈_기획">애자일 릴리즈 기획</h4>
+
+</div>
+<div class="sect3">
+<h4 id="_프로젝트관리_정보시스템">프로젝트관리 정보시스템</h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Bar Chart (=Gantt Chart)</dt>
+<dt class="hdlist1">Milestone Chart</dt>
+</dl>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_4_4_4_산출물_2">4.4.4. 산출물</h3>
+
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_4_6_일정_통제">4.6. 일정 통제</h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-center valign-top">투입물</th>
+<th class="tableblock halign-center valign-top">도구 및 기법</th>
+<th class="tableblock halign-center valign-top">산출물</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>프로젝트 관리 계획서</p>
+<div class="ulist">
+<ul>
+<li>
+<p>일정관리 계획서</p>
+</li>
+<li>
+<p>일정 기준선</p>
+</li>
+<li>
+<p><strong>범위 기준선</strong></p>
+</li>
+<li>
+<p>성과측정 기준선</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>프로젝트 문서</p>
+<div class="ulist">
+<ul>
+<li>
+<p>교훈 관리대장</p>
+</li>
+<li>
+<p>프로젝트 달력</p>
+</li>
+<li>
+<p>프로젝트 일정</p>
+</li>
+<li>
+<p>자원달력</p>
+</li>
+<li>
+<p>일정 데이터</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>작업성과 데이터</p>
+</li>
+<li>
+<p>조직 프로제스 자산</p>
+</li>
+</ol>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>데이터 분석</p>
+<div class="ulist">
+<ul>
+<li>
+<p>획득가치 분석</p>
+</li>
+<li>
+<p>반복 번다운 차트</p>
+</li>
+<li>
+<p>성과 검토</p>
+</li>
+<li>
+<p>추세 분석</p>
+</li>
+<li>
+<p>차이 분석</p>
+</li>
+<li>
+<p>가정형 시나리오 분석</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>주공정법</p>
+</li>
+<li>
+<p>프로젝트관리 정보시스템</p>
+</li>
+<li>
+<p>자원 최적화</p>
+</li>
+<li>
+<p>선도와 지연</p>
+</li>
+<li>
+<p>일정 단축</p>
+</li>
+</ol>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>작업 성과 정보</p>
+</li>
+<li>
+<p>일정 예측</p>
+</li>
+<li>
+<p>변경 요청</p>
+</li>
+<li>
+<p>프로젝트 관리 계획 갱신</p>
+<div class="ulist">
+<ul>
+<li>
+<p>일정관리 계획서</p>
+</li>
+<li>
+<p>일정 기준선</p>
+</li>
+<li>
+<p>원가 기준선</p>
+</li>
+<li>
+<p>성과측정 기준선</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>프로젝트 문서 갱신</p>
+<div class="ulist">
+<ul>
+<li>
+<p>가정사항 기록부</p>
+</li>
+<li>
+<p>산정 기준서</p>
+</li>
+<li>
+<p>교훈 관리대장</p>
+</li>
+<li>
+<p>프로젝트 일정</p>
+</li>
+<li>
+<p>자원 달력</p>
+</li>
+<li>
+<p>일정 데이터</p>
+</li>
+<li>
+<p>위험 등록부(리스크 관리대장)</p>
+</li>
+</ul>
+</div>
+</li>
+</ol>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+<div class="sect2">
+<h3 id="_4_6_1_투입물">4.6.1. 투입물</h3>
+
+</div>
+<div class="sect2">
+<h3 id="_4_6_2_도구_및_기법">4.6.2. 도구 및 기법</h3>
+<div class="sect3">
+<h4 id="_데이터_분석data_analysis_2">데이터 분석(Data Analysis)</h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Earned Value Analysis</dt>
+<dt class="hdlist1">Iteration Burn-down Chart</dt>
+</dl>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_일정_예측schedule_forecasts">일정 예측(Schedule Forecasts)</h4>
+
+</div>
+<div class="sect3">
+<h4 id="_변경_요청change_request">변경 요청(Change Request)</h4>
+
+</div>
+</div>
+<div class="sect2">
+<h3 id="_4_6_4_산출물">4.6.4. 산출물</h3>
+
+</div>
+</div>
+</div>
+</div>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  messageStyle: "none",
+  tex2jax: {
+    inlineMath: [["\\(", "\\)"]],
+    displayMath: [["\\[", "\\]"]],
+    ignoreClass: "nostem|nolatexmath"
+  },
+  asciimath2jax: {
+    delimiters: [["\\$", "\\$"]],
+    ignoreClass: "nostem|noasciimath"
+  },
+  TeX: { equationNumbers: { autoNumber: "none" } }
+})
+MathJax.Hub.Register.StartupHook("AsciiMath Jax Ready", function () {
+  MathJax.InputJax.AsciiMath.postfilterHooks.Add(function (data, node) {
+    if ((node = data.script.parentNode) && (node = node.parentNode) && node.classList.contains("stemblock")) {
+      data.math.root.display = "block"
+    }
+    return data
+  })
+})
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js?config=TeX-MML-AM_HTMLorMML"></script>
+</body>
+</html>

@@ -1,0 +1,2060 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 2.0.23">
+<title>2. 관계형 데이터 모델링</title>
+<style>
+@import "https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700";
+@import "https://cdn.jsdelivr.net/gh/asciidoctor/asciidoctor@2.0/data/stylesheets/asciidoctor-default.css";
+
+body {
+  font-family: "Open Sans","DejaVu Sans",sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6, #toctitle, .sidebarblock > .content > .title {
+  color: rgba(0, 0, 0, 1);
+  font-weight: bold;
+}
+
+h1 > a.link, h2 > a.link, h3 > a.link, h4 > a.link, h5 > a.link, h6 > a.link {
+  color: rgba(0, 0, 0, 1);
+  font-weight: bold;
+}
+
+code {
+  font-weight: 600;
+  color: rgba(0, 0, 255, 1);
+}
+
+strong {
+  font-weight: 600;
+  color: rgba(0, 0, 0 0.9);
+}
+
+em {
+  font-style: inherit;
+  font-weight: 600;
+  color: rgba(255, 0, 0, 1);
+}
+
+/* Stylesheet for CodeRay to match GitHub theme | MIT License | http://foundation.zurb.com */
+pre.CodeRay {
+    background: #f7f7f8
+}
+
+.CodeRay .line-numbers {
+    border-right: 1px solid currentColor;
+    opacity: .35;
+    padding: 0 .5em 0 0
+}
+
+.CodeRay span.line-numbers {
+    display: inline-block;
+    margin-right: .75em
+}
+
+.CodeRay .line-numbers strong {
+    color: #000
+}
+
+table.CodeRay {
+    border-collapse: separate;
+    border: 0;
+    margin-bottom: 0;
+    background: none
+}
+
+table.CodeRay td {
+    vertical-align: top;
+    line-height: inherit
+}
+
+table.CodeRay td.line-numbers {
+    text-align: right
+}
+
+table.CodeRay td.code {
+    padding: 0 0 0 .75em
+}
+
+.CodeRay .debug {
+    color: #fff !important;
+    background: #000080 !important
+}
+
+.CodeRay .annotation {
+    color: #007
+}
+
+.CodeRay .attribute-name {
+    color: #000080
+}
+
+.CodeRay .attribute-value {
+    color: #700
+}
+
+.CodeRay .binary {
+    color: #509
+}
+
+.CodeRay .comment {
+    color: #998;
+    font-style: italic
+}
+
+.CodeRay .char {
+    color: #04d
+}
+
+.CodeRay .char .content {
+    color: #04d
+}
+
+.CodeRay .char .delimiter {
+    color: #039
+}
+
+.CodeRay .class {
+    color: #458;
+    font-weight: bold
+}
+
+.CodeRay .complex {
+    color: #a08
+}
+
+.CodeRay .constant, .CodeRay .predefined-constant {
+    color: #008080
+}
+
+.CodeRay .color {
+    color: #099
+}
+
+.CodeRay .class-variable {
+    color: #369
+}
+
+.CodeRay .decorator {
+    color: #b0b
+}
+
+.CodeRay .definition {
+    color: #099
+}
+
+.CodeRay .delimiter {
+    color: #000
+}
+
+.CodeRay .doc {
+    color: #970
+}
+
+.CodeRay .doctype {
+    color: #34b
+}
+
+.CodeRay .doc-string {
+    color: #d42
+}
+
+.CodeRay .escape {
+    color: #666
+}
+
+.CodeRay .entity {
+    color: #800
+}
+
+.CodeRay .error {
+    color: #808
+}
+
+.CodeRay .exception {
+    color: inherit
+}
+
+.CodeRay .filename {
+    color: #099
+}
+
+.CodeRay .function {
+    color: #900;
+    font-weight: bold
+}
+
+.CodeRay .global-variable {
+    color: #008080
+}
+
+.CodeRay .hex {
+    color: #058
+}
+
+.CodeRay .integer, .CodeRay .float {
+    color: #099
+}
+
+.CodeRay .include {
+    color: #555
+}
+
+.CodeRay .inline {
+    color: #000
+}
+
+.CodeRay .inline .inline {
+    background: #ccc
+}
+
+.CodeRay .inline .inline .inline {
+    background: #bbb
+}
+
+.CodeRay .inline .inline-delimiter {
+    color: #d14
+}
+
+.CodeRay .inline-delimiter {
+    color: #d14
+}
+
+.CodeRay .important {
+    color: #555;
+    font-weight: bold
+}
+
+.CodeRay .interpreted {
+    color: #b2b
+}
+
+.CodeRay .instance-variable {
+    color: #008080
+}
+
+.CodeRay .label {
+    color: #970
+}
+
+.CodeRay .local-variable {
+    color: #963
+}
+
+.CodeRay .octal {
+    color: #40e
+}
+
+.CodeRay .predefined {
+    color: #369
+}
+
+.CodeRay .preprocessor {
+    color: #579
+}
+
+.CodeRay .pseudo-class {
+    color: #555
+}
+
+.CodeRay .directive {
+    font-weight: bold
+}
+
+.CodeRay .type {
+    font-weight: bold
+}
+
+.CodeRay .predefined-type {
+    color: inherit
+}
+
+.CodeRay .reserved, .CodeRay .keyword {
+    color: #000;
+    font-weight: bold
+}
+
+.CodeRay .key {
+    color: #808
+}
+
+.CodeRay .key .delimiter {
+    color: #606
+}
+
+.CodeRay .key .char {
+    color: #80f
+}
+
+.CodeRay .value {
+    color: #088
+}
+
+.CodeRay .regexp .delimiter {
+    color: #808
+}
+
+.CodeRay .regexp .content {
+    color: #808
+}
+
+.CodeRay .regexp .modifier {
+    color: #808
+}
+
+.CodeRay .regexp .char {
+    color: #d14
+}
+
+.CodeRay .regexp .function {
+    color: #404;
+    font-weight: bold
+}
+
+.CodeRay .string {
+    color: #d20
+}
+
+.CodeRay .string .string .string {
+    background: #ffd0d0
+}
+
+.CodeRay .string .content {
+    color: #d14
+}
+
+.CodeRay .string .char {
+    color: #d14
+}
+
+.CodeRay .string .delimiter {
+    color: #d14
+}
+
+.CodeRay .shell {
+    color: #d14
+}
+
+.CodeRay .shell .delimiter {
+    color: #d14
+}
+
+.CodeRay .symbol {
+    color: #990073
+}
+
+.CodeRay .symbol .content {
+    color: #a60
+}
+
+.CodeRay .symbol .delimiter {
+    color: #630
+}
+
+.CodeRay .tag {
+    color: #008080
+}
+
+.CodeRay .tag-special {
+    color: #d70
+}
+
+.CodeRay .variable {
+    color: #036
+}
+
+.CodeRay .insert {
+    background: #afa
+}
+
+.CodeRay .delete {
+    background: #faa
+}
+
+.CodeRay .change {
+    color: #aaf;
+    background: #007
+}
+
+.CodeRay .head {
+    color: #f8f;
+    background: #505
+}
+
+.CodeRay .insert .insert {
+    color: #080
+}
+
+.CodeRay .delete .delete {
+    color: #800
+}
+
+.CodeRay .change .change {
+    color: #66f
+}
+
+.CodeRay .head .head {
+    color: #f4f
+}
+
+pre.rouge table td {
+    padding: 5px;
+}
+
+pre.rouge table pre {
+    margin: 0;
+}
+
+pre.rouge .cm {
+    color: #999988;
+    font-style: italic;
+}
+
+pre.rouge .cp {
+    color: #999999;
+    font-weight: bold;
+}
+
+pre.rouge .c1 {
+    color: #999988;
+    font-style: italic;
+}
+
+pre.rouge .cs {
+    color: #999999;
+    font-weight: bold;
+    font-style: italic;
+}
+
+pre.rouge .c, pre.rouge .ch, pre.rouge .cd, pre.rouge .cpf {
+    color: #999988;
+    font-style: italic;
+}
+
+pre.rouge .err {
+    color: #a61717;
+    background-color: #e3d2d2;
+}
+
+pre.rouge .gd {
+    color: #000000;
+    background-color: #ffdddd;
+}
+
+pre.rouge .ge {
+    color: #000000;
+    font-style: italic;
+}
+
+pre.rouge .gr {
+    color: #aa0000;
+}
+
+pre.rouge .gh {
+    color: #999999;
+}
+
+pre.rouge .gi {
+    color: #000000;
+    background-color: #ddffdd;
+}
+
+pre.rouge .go {
+    color: #888888;
+}
+
+pre.rouge .gp {
+    color: #555555;
+}
+
+pre.rouge .gs {
+    font-weight: bold;
+}
+
+pre.rouge .gu {
+    color: #aaaaaa;
+}
+
+pre.rouge .gt {
+    color: #aa0000;
+}
+
+pre.rouge .kc {
+    color: #000000;
+    font-weight: bold;
+}
+
+pre.rouge .kd {
+    color: #000000;
+    font-weight: bold;
+}
+
+pre.rouge .kn {
+    color: #000000;
+    font-weight: bold;
+}
+
+pre.rouge .kp {
+    color: #000000;
+    font-weight: bold;
+}
+
+pre.rouge .kr {
+    color: #000000;
+    font-weight: bold;
+}
+
+pre.rouge .kt {
+    color: #445588;
+    font-weight: bold;
+}
+
+pre.rouge .k, pre.rouge .kv {
+    color: #000000;
+    font-weight: bold;
+}
+
+pre.rouge .mf {
+    color: #009999;
+}
+
+pre.rouge .mh {
+    color: #009999;
+}
+
+pre.rouge .il {
+    color: #009999;
+}
+
+pre.rouge .mi {
+    color: #009999;
+}
+
+pre.rouge .mo {
+    color: #009999;
+}
+
+pre.rouge .m, pre.rouge .mb, pre.rouge .mx {
+    color: #009999;
+}
+
+pre.rouge .sb {
+    color: #d14;
+}
+
+pre.rouge .sc {
+    color: #d14;
+}
+
+pre.rouge .sd {
+    color: #d14;
+}
+
+pre.rouge .s2 {
+    color: #d14;
+}
+
+pre.rouge .se {
+    color: #d14;
+}
+
+pre.rouge .sh {
+    color: #d14;
+}
+
+pre.rouge .si {
+    color: #d14;
+}
+
+pre.rouge .sx {
+    color: #d14;
+}
+
+pre.rouge .sr {
+    color: #009926;
+}
+
+pre.rouge .s1 {
+    color: #d14;
+}
+
+pre.rouge .ss {
+    color: #990073;
+}
+
+pre.rouge .s, pre.rouge .sa, pre.rouge .dl {
+    color: #d14;
+}
+
+pre.rouge .na {
+    color: #008080;
+}
+
+pre.rouge .bp {
+    color: #999999;
+}
+
+pre.rouge .nb {
+    color: #0086B3;
+}
+
+pre.rouge .nc {
+    color: #445588;
+    font-weight: bold;
+}
+
+pre.rouge .no {
+    color: #008080;
+}
+
+pre.rouge .nd {
+    color: #3c5d5d;
+    font-weight: bold;
+}
+
+pre.rouge .ni {
+    color: #800080;
+}
+
+pre.rouge .ne {
+    color: #990000;
+    font-weight: bold;
+}
+
+pre.rouge .nf, pre.rouge .fm {
+    color: #990000;
+    font-weight: bold;
+}
+
+pre.rouge .nl {
+    color: #990000;
+    font-weight: bold;
+}
+
+pre.rouge .nn {
+    color: #555555;
+}
+
+pre.rouge .nt {
+    color: #000080;
+}
+
+pre.rouge .vc {
+    color: #008080;
+}
+
+pre.rouge .vg {
+    color: #008080;
+}
+
+pre.rouge .vi {
+    color: #008080;
+}
+
+pre.rouge .nv, pre.rouge .vm {
+    color: #008080;
+}
+
+pre.rouge .ow {
+    color: #000000;
+    font-weight: bold;
+}
+
+pre.rouge .o {
+    color: #000000;
+    font-weight: bold;
+}
+
+pre.rouge .w {
+    color: #bbbbbb;
+}
+
+pre.rouge {
+    background-color: #f8f8f8;
+}
+
+/*#content > h1:first-child:not([class]), body {*/
+/*    background-color: #45494a;*/
+/*    color: #bbbbbb*/
+/*}*/
+
+/*.content > pre {*/
+/*    filter: invert(90%) hue-rotate(180deg);*/
+/*}*/
+
+/*a, a:hover, a:focus {*/
+/*    color: #589df6;*/
+/*}*/
+
+/*table.tableblock, th.tableblock, td.tableblock {*/
+/*    color: #bbbbbb*/
+/*}*/
+
+/*!* was: rgba(0,0,0,.8) *!*/
+/*table:not(.linenotable):not(.CodeRay) thead tr th, table thead tr td, table:not(.linenotable):not(.CodeRay) tfoot tr th, table:not(.linenotable):not(.CodeRay) tfoot tr td {*/
+/*    color: #bbbbbb*/
+/*}*/
+
+/*abbr, acronym {*/
+/*    color: #bbbbbb*/
+/*}*/
+
+/*table:not(.linenotable):not(.CodeRay) tr th, table tr td {*/
+/*    color: #bbbbbb*/
+/*}*/
+
+/*kbd {*/
+/*    background-color: #626262 !important;*/
+/*    color: #bbbbbb;*/
+/*    -webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, .2), 0 0 0 .1em #777 inset;*/
+/*    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2), 0 0 0 .1em #777 inset*/
+/*}*/
+
+/*.menuseq, .menu {*/
+/*    color: #bbbbbb*/
+/*}*/
+
+/*#footer {*/
+/*    color: #bbbbbb*/
+/*}*/
+
+/*tbody tr th, tbody tr th p, tfoot tr th, tfoot tr th p {*/
+/*    color: #bbbbbb*/
+/*}*/
+
+/*.conum[data-value] {*/
+/*    color: #bbbbbb*/
+/*}*/
+
+/*!* was: rgba(0,0,0,.85) *!*/
+/*.paragraph.lead > p, #preamble > .sectionbody > .paragraph:first-of-type p {*/
+/*    color: #bbbbbb*/
+/*}*/
+
+/*.quoteblock blockquote, .quoteblock blockquote p {*/
+/*    color: #bbbbbb*/
+/*}*/
+
+/*#content > h1:first-child:not([class]) {*/
+/*    color: #bbbbbb*/
+/*}*/
+
+/*#header .details br + span.author:before {*/
+/*    color: #bbbbbb*/
+/*}*/
+
+/*#header .details span.email a {*/
+/*    color: #bbbbbb*/
+/*}*/
+
+/*#header > h1:first-child {*/
+/*    color: #bbbbbb*/
+/*}*/
+
+/*blockquote, blockquote p {*/
+/*    color: #bbbbbb*/
+/*}*/
+
+/*!* was: rgba(0,0,0,.6) *!*/
+/*blockquote cite a, blockquote cite a:visited {*/
+/*    color: #bbbbbb*/
+/*}*/
+
+/*#header .details {*/
+/*    color: #bbbbbb*/
+/*}*/
+
+/*.admonitionblock > table td.content {*/
+/*    color: #bbbbbb*/
+/*}*/
+
+/*.quoteblock .quoteblock {*/
+/*    color: #bbbbbb*/
+/*}*/
+
+/*.quoteblock .attribution cite, .verseblock .attribution cite {*/
+/*    color: #bbbbbb*/
+/*}*/
+
+/*!* was: f8f8f7 *!*/
+/*table:not(.linenotable):not(.CodeRay) tbody tr {*/
+/*    background: #45494a*/
+/*}*/
+
+/*table:not(.linenotable):not(.CodeRay) tr.even, table tr.alt, table tr:nth-of-type(even) {*/
+/*    background: #626262*/
+/*}*/
+
+/*!* was f7f8f7 *!*/
+/*table:not(.linenotable):not(.CodeRay) thead, table tfoot {*/
+/*    background: #626262*/
+/*}*/
+
+/*tbody tr th {*/
+/*    background: #626262*/
+/*}*/
+
+/*!* was: 7a2518 *!*/
+/*.subheader, .admonitionblock td.content > .title, .audioblock > .title, .exampleblock > .title, .imageblock > .title, .listingblock > .title, .literalblock > .title, .stemblock > .title, .openblock > .title, .paragraph > .title, .quoteblock > .title, table.tableblock > .title, .verseblock > .title, .videoblock > .title, .dlist > .title, .olist > .title, .ulist > .title, .qlist > .title, .hdlist > .title,*/
+/*#toctitle,*/
+/*.sidebarblock > .content > .title,*/
+/*.quoteblock blockquote::before,*/
+/*    !* was: several *!*/
+/*td.icon {*/
+/*    filter: invert(90%) hue-rotate(180deg);*/
+/*}*/
+
+/*!* was: f8f8f7 *!*/
+/*.sidebarblock, .exampleblock, .exampleblock > .content {*/
+/*    background: #626262;*/
+/*    border-color: #626262;*/
+/*    box-shadow: 0 1px 4px #626262*/
+/*}*/
+
+/*!* was: f7f7f8 *!*/
+/*.exampleblock > .content > :last-child > :last-child, .exampleblock > .content .olist > ol > li:last-child > :last-child, .exampleblock > .content .ulist > ul > li:last-child > :last-child, .exampleblock > .content .qlist > ol > li:last-child > :last-child, .sidebarblock > .content > :last-child > :last-child, .sidebarblock > .content .olist > ol > li:last-child > :last-child, .sidebarblock > .content .ulist > ul > li:last-child > :last-child, .sidebarblock > .content .qlist > ol > li:last-child > :last-child {*/
+/*    margin-bottom: 0*/
+/*}*/
+
+/*#toc {*/
+/*    background-color: #626262 !important;*/
+/*    border-color: #626262 !important;*/
+/*}*/
+
+/*h1, h2, h3, #toctitle, .sidebarblock > .content > .title, h4, h5, h6 {*/
+/*    color: #cccccc*/
+/*}*/
+
+/*!* scroll bar color change to match the dark scheme *!*/
+/*::-webkit-scrollbar {*/
+/*    width: 12px;*/
+/*    height: 12px;*/
+/*    background-color: inherit;*/
+/*}*/
+
+/*::-webkit-scrollbar-thumb {*/
+/*    -webkit-border-radius: 10px;*/
+/*    border: 2px solid #2c2c2c;*/
+/*    background-color: #404040;*/
+/*}*/
+
+/*::-webkit-scrollbar-track {*/
+/*    width: 12px;*/
+/*    height: 12px;*/
+/*    background-color: #2c2c2c;*/
+/*}*/
+</style>
+</head>
+<body class="article toc2 toc-left">
+<div id="header">
+<h1>2. 관계형 데이터 모델링</h1>
+<div id="toc" class="toc2">
+<div id="toctitle">데이터베이스</div>
+<ul class="sectlevel1">
+<li><a href="#_2_1_데이터_모델링">2.1. 데이터-모델링</a>
+<ul class="sectlevel2">
+<li><a href="#_데이터_모델링_3요소">데이터 모델링 3요소</a></li>
+</ul>
+</li>
+<li><a href="#_2_2_db_생명주기와_설계단계">2.2. DB-생명주기와-설계단계</a>
+<ul class="sectlevel2">
+<li><a href="#_2_2_1_요구분석">2.2.1. 요구분석</a></li>
+<li><a href="#_2_2_2_개념_설계">2.2.2. 개념 설계</a></li>
+<li><a href="#_2_2_3_논리_설계">2.2.3. 논리 설계</a></li>
+<li><a href="#_2_2_4_물리_설계">2.2.4. 물리 설계</a></li>
+</ul>
+</li>
+<li><a href="#_2_3_erd_와_e_erd">2.3. ERD-와-E-ERD</a>
+<ul class="sectlevel3">
+<li><a href="#_e_r_모델과_관계형_모델의_변화">E-R 모델과 관계형 모델의 변화</a></li>
+<li><a href="#_2_3_1_er_model">2.3.1. ER Model</a></li>
+<li><a href="#_2_3_2_확장형_e_r_모델">2.3.2. 확장형 E-R 모델</a></li>
+</ul>
+</li>
+<li><a href="#_2_4_관계형_모델">2.4. 관계형-모델</a>
+<ul class="sectlevel2">
+<li><a href="#_2_4_1_속성attribute와_도메인">2.4.1. 속성(Attribute)와 도메인</a></li>
+<li><a href="#_2_4_2_relation_table">2.4.2 Relation (Table)</a></li>
+<li><a href="#_2_4_3_키key">2.4.3. 키(Key)</a></li>
+<li><a href="#_2_4_4_무결성_제약">2.4.4. 무결성 제약</a></li>
+</ul>
+</li>
+<li><a href="#_2_5_관계_대수">2.5. 관계 대수</a>
+<ul class="sectlevel2">
+<li><a href="#_2_5_1_관계_대수_vs_관계_해석">2.5.1. 관계 대수 vs 관계 해석</a></li>
+<li><a href="#_2_5_2_관계_대수_집합_연산">2.5.2. 관계 대수 (집합 연산)</a></li>
+<li><a href="#_2_5_2_1_연산의_종류_일반학생_학교카차_복합생_조굔디">2.5.2-1. 연산의 종류: <mark>일반학생 <em>학교카차</em>, <strong>복합생</strong> <em>조굔디?</em></mark></a></li>
+<li><a href="#_2_5_2_2_일반집합연산_합교카차">2.5.2-2. 일반집합연산: <mark><em>합교카차</em></mark></a></li>
+<li><a href="#_2_5_2_3_관계대수_연산_완전집합">2.5.2-3. 관계대수 연산 완전집합</a></li>
+<li><a href="#_2_5_2_4_추가적인_관계_연산">2.5.2-4. 추가적인 관계 연산</a></li>
+<li><a href="#_2_5_3_관계해석">2.5.3. 관계해석</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="content">
+<div class="sect1">
+<h2 id="_2_1_데이터_모델링">2.1. 데이터-모델링</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_데이터_모델링_3요소">데이터 모델링 3요소</h3>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">데이터구조(Data Structure)</dt>
+<dd>
+<p>개체와 개체 간 관계를 명세 (Schema)</p>
+</dd>
+<dt class="hdlist1">연산(Operations)</dt>
+<dd>
+<p>개체를 처리하는 작업에 대한 명세</p>
+</dd>
+<dt class="hdlist1">제약조건(Constraint)</dt>
+<dd>
+<p>DB 에 허용될 수 있는 개체에 대한 논리적 제약 명세</p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_2_2_db_생명주기와_설계단계">2.2. DB-생명주기와-설계단계</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_2_2_1_요구분석">2.2.1. 요구분석</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>요구 분석</p>
+</li>
+<li>
+<p>정보의 내용과 처리 요구조건의 수집</p>
+</li>
+<li>
+<p>기업의 경영목표와 제약조건의 식별</p>
+</li>
+<li>
+<p>공식적인 요구조건 명세 작성</p>
+</li>
+<li>
+<p>요구조건 명세표 검토</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_2_2_2_개념_설계">2.2.2. 개념 설계</h3>
+<div class="paragraph">
+<p><strong>핵심 엔티티 도출</strong></p>
+</div>
+<div class="sect3">
+<h4 id="_개념적_스키마_모델링">개념적 스키마 모델링</h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">개체분석(Entity Analysis:EA) 방법</dt>
+<dd>
+<p>하향식</p>
+</dd>
+<dt class="hdlist1">속성합성(Attribute Synthesis:AS) 방법</dt>
+<dd>
+<p>상향식</p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_트랜잭션_모델링">트랜잭션 모델링</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>트랜잭션 식별</p>
+</li>
+<li>
+<p>트랜잭션 중요도</p>
+</li>
+<li>
+<p>트랜잭션 <em>예상 빈도</em></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_2_2_3_논리_설계">2.2.3. 논리 설계</h3>
+<div class="sect3">
+<h4 id="_ert_표기법">ERT 표기법</h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>IE</p>
+</li>
+<li>
+<p>Baker</p>
+</li>
+<li>
+<p>Chen</p>
+</li>
+<li>
+<p>min/Max</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_2_2_4_물리_설계">2.2.4. 물리 설계</h3>
+<div class="paragraph">
+<p><em>정규화</em></p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_2_3_erd_와_e_erd">2.3. ERD-와-E-ERD</h2>
+<div class="sectionbody">
+<div class="sect3">
+<h4 id="_e_r_모델과_관계형_모델의_변화">E-R 모델과 관계형 모델의 변화</h4>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 40%;">
+<col style="width: 20%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-center valign-top">Diagram</th>
+<th class="tableblock halign-center valign-top">개념 모델</th>
+<th class="tableblock halign-center valign-top">논리 모델</th>
+<th class="tableblock halign-center valign-top">물리 모델</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-center valign-top"></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">Entity</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Relation</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Table</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">Attribute</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p>Attribute</p>
+</li>
+<li>
+<p>Relation</p>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p>Column</p>
+</li>
+<li>
+<p>table</p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">Relationship</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p>소멸</p>
+</li>
+<li>
+<p>Relation</p>
+<div class="ulist">
+<ul>
+<li>
+<p>관계속성이 있는 경우</p>
+</li>
+<li>
+<p>N:M 관계일 때</p>
+</li>
+<li>
+<p>3진 차수</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p><em>FK</em></p>
+</li>
+<li>
+<p>Table</p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">없음</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Tuple</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Record(Row)</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">식별자</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>식별자</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Key</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_2_3_1_er_model">2.3.1. ER Model</h3>
+<div class="sect3">
+<h4 id="_1_er_model_diagram_표기법">1) ER Model Diagram 표기법</h4>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 66.6667%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-center valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">엔티티</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">약한 엔티티</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">관계 (Relationship)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">식별 관계</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">속성(Attribute)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">키 속성(Attribute)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">약한 키 속성(Attribute)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>다치 속성(Attribute)</strong> (여러 값을 가질 수 있음. eg&gt; 취미)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">복합 속성(Attribute) (세부 속성으로 분해 가능. eg&gt; 주소)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">유도된 속성(Attribute) (eg&gt; 합계, 평균)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">부분 참여 / 전체참여</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">카디날리티</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">참조(참여) 제약조건</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_2_개체entity">2) 개체(Entity)</h4>
+
+</div>
+<div class="sect3">
+<h4 id="_3_속성attribute">3) 속성(Attribute)</h4>
+
+</div>
+<div class="sect3">
+<h4 id="_4_관계relationship">4) 관계(Relationship)</h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">차수(Degree)</dt>
+<dd>
+<p>관계에 참여하는 개체의 수</p>
+<div class="ulist">
+<ul>
+<li>
+<p>이진(Binary)차수 : 관계에 참여하는 개체가 2개</p>
+</li>
+<li>
+<p>삼진(Ternary)차수 : 관계에 참여하는 개체가  3개</p>
+</li>
+<li>
+<p>단일(Unary)차수 : 관계에 참여하는 개체가  1개 (Recurve)</p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">기수성(Cardinality)</dt>
+<dd>
+<p>개체가 참여할 수 있는 관계의 수</p>
+<div class="ulist">
+<ul>
+<li>
+<p>1:1</p>
+</li>
+<li>
+<p>1:N</p>
+</li>
+<li>
+<p>N:M</p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">선택성(Optionality)</dt>
+<dd>
+<p>특정 개체와 관련된 상대 개체의 존재 여부</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Mandatory</p>
+</li>
+<li>
+<p>Optional</p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_5_개체_타입">5) 개체 타입</h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">약한 개체 타입</dt>
+<dd>
+<p>자신의 속성만으로 키를 명세할 수 없는 개체</p>
+</dd>
+<dt class="hdlist1">강한 개체 타입</dt>
+<dd>
+<p>자신의 속성으로 구성된 키를 가진 개체</p>
+</dd>
+<dt class="hdlist1">식별관게</dt>
+<dd>
+<p>약한 개체를 강한 개체와 연관 시켜주는 관계</p>
+<div class="ulist">
+<ul>
+<li>
+<p>eg&gt; 대출이 없으면 상환도 없다</p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_2_3_2_확장형_e_r_모델">2.3.2. 확장형 E-R 모델</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>특수화</p>
+</li>
+<li>
+<p>일반화</p>
+</li>
+<li>
+<p>상속</p>
+</li>
+<li>
+<p>집단화</p>
+</li>
+<li>
+<p>Disjoint Constrain</p>
+</li>
+<li>
+<p>Non-disjoint Constrain</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_2_4_관계형_모델">2.4. 관계형-모델</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_2_4_1_속성attribute와_도메인">2.4.1. 속성(Attribute)와 도메인</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Domain</p>
+</li>
+<li>
+<p>Attribute</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_2_4_2_relation_table">2.4.2 Relation (Table)</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>TODO: Relation Image</p>
+</li>
+</ul>
+</div>
+<div class="sect3">
+<h4 id="_relation_의_특징_집합개념">Relation 의 특징 (집합개념)</h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">튜플의 유일성</dt>
+<dd>
+<p>한 Relation 에 속한 모든 Tuple 은 유일하다</p>
+</dd>
+<dt class="hdlist1">튜플의 무 순서성</dt>
+<dd>
+<p>Tuple 의 순서가 없다</p>
+</dd>
+<dt class="hdlist1">속성의 무 순서성</dt>
+<dd>
+<p>한 Relation 을 구성하는 속성(Attribute) 의 순서가 없다</p>
+</dd>
+<dt class="hdlist1">속성의 원자성</dt>
+<dd>
+<p>속성(Attribute) 은 더 이상 분해할 수 없다</p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_2_4_3_키key">2.4.3. 키(Key)</h3>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">후보키(Candidate Key)</dt>
+<dd>
+<p><mark>유일성과 최소성을 만족</mark></p>
+<div class="ulist">
+<ul>
+<li>
+<p><em>유일성</em> : 키의 값으로 Relation 의 Tuple 구분 (Unique and Not Null)</p>
+</li>
+<li>
+<p><em>최소성</em> : 유일성을 지니는 최소한의 속성만을 포함</p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">기본키(Primary Key)</dt>
+<dd>
+<p>후보키가 둘 이상인 경우 대표키로 선정된 키</p>
+</dd>
+<dt class="hdlist1">대체키(Alternate Key)</dt>
+<dd>
+<p>후보키 중 기본키가 아닌 키</p>
+</dd>
+<dt class="hdlist1">슈퍼키(Super Key)</dt>
+<dd>
+<p>유일성을 만족하나, 최소성을 만족하지 않는 키</p>
+<div class="ulist">
+<ul>
+<li>
+<p>각 행을 유일하게 식별할 수 있는 <mark>하나 또는 그 이상의 속성들의 집합</mark>이다.</p>
+</li>
+<li>
+<p>eg&gt; 주민번호 + 이름</p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">외래키(Foreign Key)</dt>
+<dd>
+<p>다른 엔티티의 Tuple 을 식별할 수 있는 키</p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_2_4_4_무결성_제약">2.4.4. 무결성 제약</h3>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">데이터 무결성</dt>
+<dt class="hdlist1">데이터베이스 상태</dt>
+<dt class="hdlist1">널(NULL)</dt>
+<dt class="hdlist1">키(Key)를 기본으로 하는 무결성 제약</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>개체 무결성</p>
+</li>
+<li>
+<p>참조 무결성</p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_2_5_관계_대수">2.5. 관계 대수</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_2_5_1_관계_대수_vs_관계_해석">2.5.1. 관계 대수 vs 관계 해석</h3>
+
+</div>
+<div class="sect2">
+<h3 id="_2_5_2_관계_대수_집합_연산">2.5.2. 관계 대수 (집합 연산)</h3>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 1. 기본연산/근원연산</caption>
+<colgroup>
+<col style="width: 37.5%;">
+<col style="width: 12.5%;">
+<col style="width: 50%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">선택 Select (&sigma;)</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">&sigma;</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">&sigma;<sub>condition</sub>(R)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">추출 Project (&Pi;)</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">&Pi;</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">&Pi;<sub>A1,A2..Ak</sub>(R)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">합집합 Union (&cup;)</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">&cup;</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">R &cup; S</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">차집합 Difference (-)</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">-</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">R - S</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">카티션 곱 Cartesian Product (x)</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">x</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">R x S</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">재명명 Rename (&rho;)</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">&rho;</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">&rho;<sub>x</sub>(E)</p></td>
+</tr>
+</tbody>
+</table>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 2. 부가연산/복합연산</caption>
+<colgroup>
+<col style="width: 37.5%;">
+<col style="width: 12.5%;">
+<col style="width: 50%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">교집합 Intersection (&cap;)</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">&cap;</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">R &cap; S</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">나누기 Division (&div;)</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">&div;</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">R &div; S</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">동등조인/자연조인 (⋈)</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">⋈</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">R ⋈ S</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">세타조인 (⋈θ)</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">⋈θ</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">R ⋈θ S</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">자연조인 (⋈N)</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">⋈N</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">R ⋈N S</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">세미조인 (⋉)</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">⋉</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">R ⋉ S</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">외부조인 Left (⟕)</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">⟕</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">R ⟕ S</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">외부조인 Right (⟖)</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">⟖</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">R ⟖ S</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">외부조인 Full (⟗)</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">⟗</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">R ⟗ S</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">배정 Assignment (&larr;)</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">&larr;</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">temp1 &larr; &Pi;<sub>R-S</sub>\(A)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_2_5_2_1_연산의_종류_일반학생_학교카차_복합생_조굔디">2.5.2-1. 연산의 종류: <mark>일반학생 <em>학교카차</em>, <strong>복합생</strong> <em>조굔디?</em></mark></h3>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">순수 관계 연산</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>셀렉트, 프로젝트, 조인, 나누기</p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1"><mark>일반 집합</mark> 연산</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><mark><em>합</em>집합, <em>교</em>집합, <em>카</em>티션 곱, <em>차</em>집합</mark></p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">근원연산(=완전집합)</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>합집합, 차집합, 카티션곱, 셀렉트, 프로젝트</p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1"><mark>복합연산</mark></dt>
+<dd>
+<p>근원집합의 조합으로 표현 가능</p>
+<div class="ulist">
+<ul>
+<li>
+<p><mark><em>조</em>인, <em>교</em>집합, 나누기(<em>Di</em>vision)</mark></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="sect3">
+<h4 id="_셀렉트select">셀렉트(Select) &sigma;</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>&sigma;<sub>ID=Razy</sub>(Members)</p>
+</li>
+<li>
+<p>&sigma;<sub>Age</sub> <sub>&gt;</sub> <sub>40</sub> <sub>AND</sub> <sub>Age</sub> <sub>&lt;</sub> <sub>50</sub>(Members)</p>
+</li>
+</ul>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 3. Relation R</caption>
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-center valign-top">학번</th>
+<th class="tableblock halign-center valign-top">이름</th>
+<th class="tableblock halign-center valign-top"><em>학과</em></th>
+<th class="tableblock halign-center valign-top">학년</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">100</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">가가</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><mark>컴공</mark></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">1</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">200</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">나나</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">전산</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">2</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">300</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">다다</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><mark>컴공</mark></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">1</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">400</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">라라</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">전산</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">3</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">500</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">마마</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">수학</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">4</p></td>
+</tr>
+</tbody>
+</table>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 4. &sigma;<sub>학과=컴공</sub>(R)</caption>
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-center valign-top">학번</th>
+<th class="tableblock halign-center valign-top">이름</th>
+<th class="tableblock halign-center valign-top">학과</th>
+<th class="tableblock halign-center valign-top">학년</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">100</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">가가</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">컴공</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">1</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">300</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">다다</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">컴공</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">1</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_프로젝트project">프로젝트(Project) &Pi;</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>&Pi;<sub>Name,Age</sub>(Members)</p>
+<div class="ulist">
+<ul>
+<li>
+<p>(집합이므로) 중복된 튜플은 제거된다.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 5. Relation R</caption>
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-center valign-top">학번</th>
+<th class="tableblock halign-center valign-top">이름</th>
+<th class="tableblock halign-center valign-top"><em>학과</em></th>
+<th class="tableblock halign-center valign-top"><em>학년</em></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">100</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">가가</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">컴공</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">1</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">200</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">나나</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">전산</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">2</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">300</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">다다</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">컴공</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">1</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">400</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">라라</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">전산</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">3</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">500</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">마마</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">수학</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">4</p></td>
+</tr>
+</tbody>
+</table>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 6. &Pi;~학과, 학년~(R) (중복포함)</caption>
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-center valign-top">학과</th>
+<th class="tableblock halign-center valign-top">학년</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><mark>컴공</mark></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><mark>1</mark></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">전산</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">2</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><mark>컴공</mark></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><mark>1</mark></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">전산</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">3</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">수학</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">4</p></td>
+</tr>
+</tbody>
+</table>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 7. &Pi;~학과, 학년~(R) (중복제거)</caption>
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-center valign-top">학과</th>
+<th class="tableblock halign-center valign-top">학년</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">컴공</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">1</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">전산</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">2</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">전산</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">3</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">수학</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">4</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_합집합">합집합() &cup;</h4>
+
+</div>
+<div class="sect3">
+<h4 id="_교집합">교집합() &cap;</h4>
+
+</div>
+<div class="sect3">
+<h4 id="_차집합">차집합() -</h4>
+
+</div>
+<div class="sect3">
+<h4 id="_카티산_곱_x">카티산 곱() x</h4>
+
+</div>
+<div class="sect3">
+<h4 id="_조인join_세동자세">조인(Join) ⋈ : <mark><em>세동자세</em></mark></h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">세타조인(⋈θ)</dt>
+<dd>
+<p>비교연산자가 =, &lt;, &gt;, &#8230;&#8203; 등</p>
+</dd>
+<dt class="hdlist1">동등조인(⋈)</dt>
+<dd>
+<p>세타 조인 중 비교 연산자가 '<em>=</em>'</p>
+</dd>
+<dt class="hdlist1">자연조인(⋈)</dt>
+<dd>
+<p>동등조인에서 중복 속성이 제거 된것</p>
+</dd>
+<dt class="hdlist1">세미조인(⋉)</dt>
+<dd>
+<p>자연조인에서 한쪽 릴레이션의 속성만 나타나는 것</p>
+<div class="ulist">
+<ul>
+<li>
+<p>⋉ : 왼쪽 속성만 추출</p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">외부조인</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>⟕ : 열린쪽(왼쪽 Left) 기준</p>
+</li>
+<li>
+<p>⟖ : 열린쪽(오늘쪽 Right) 기준</p>
+</li>
+<li>
+<p>⟗ : 열린쪽(양쪽 Full)</p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_교집합_2">교집합() &cap;</h4>
+
+</div>
+<div class="sect3">
+<h4 id="_나누기division">나누기(Division) &div;</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>A 중에서 에서 B 를 모두 가지고 있는 Tuple</p>
+</li>
+<li>
+<p>A &div; B = 몫 + 나머지</p>
+</li>
+<li>
+<p>결과 릴레이션의 차수는 A차수 - B차수 와 같다</p>
+</li>
+</ul>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 8. Relation R</caption>
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-center valign-top">학번</th>
+<th class="tableblock halign-center valign-top">이름</th>
+<th class="tableblock halign-center valign-top">학과</th>
+<th class="tableblock halign-center valign-top">학년</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">100</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">가가</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">컴공</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">1</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">200</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">나나</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">전산</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">2</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">300</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">다다</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">컴공</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">1</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">400</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">라라</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">전산</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">3</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">500</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">마마</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">수학</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">4</p></td>
+</tr>
+</tbody>
+</table>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 9. Relation S1</caption>
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-center valign-top">학과</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">컴공</p></td>
+</tr>
+</tbody>
+</table>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 10. Relation R &div; S1</caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-center valign-top">학번</th>
+<th class="tableblock halign-center valign-top">이름</th>
+<th class="tableblock halign-center valign-top">학년</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">100</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">가가</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">1</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">300</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">다다</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">1</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_2_5_2_2_일반집합연산_합교카차">2.5.2-2. 일반집합연산: <mark><em>합교카차</em></mark></h3>
+<div class="ulist">
+<ul>
+<li>
+<p>합집합:: R1 &cup; R2</p>
+</li>
+<li>
+<p>교집합:: R1 &cap; R2</p>
+</li>
+<li>
+<p>차집합:: R1 - R2</p>
+</li>
+<li>
+<p>카티산 곱 :: R1 x R2</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_2_5_2_3_관계대수_연산_완전집합">2.5.2-3. 관계대수 연산 완전집합</h3>
+<div class="paragraph">
+<p><em>근원연산</em>의 집합 = { &sigma; &pi; &cup; - x }
+&#8594; 다른 연산은 근원연산의 조합으로 표현 가능. <mark>셀프합차곱</mark></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_2_5_2_4_추가적인_관계_연산">2.5.2-4. 추가적인 관계 연산</h3>
+
+</div>
+<div class="sect2">
+<h3 id="_2_5_3_관계해석">2.5.3. 관계해석</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>그냥 참조만 할 것</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  messageStyle: "none",
+  tex2jax: {
+    inlineMath: [["\\(", "\\)"]],
+    displayMath: [["\\[", "\\]"]],
+    ignoreClass: "nostem|nolatexmath"
+  },
+  asciimath2jax: {
+    delimiters: [["\\$", "\\$"]],
+    ignoreClass: "nostem|noasciimath"
+  },
+  TeX: { equationNumbers: { autoNumber: "none" } }
+})
+MathJax.Hub.Register.StartupHook("AsciiMath Jax Ready", function () {
+  MathJax.InputJax.AsciiMath.postfilterHooks.Add(function (data, node) {
+    if ((node = data.script.parentNode) && (node = node.parentNode) && node.classList.contains("stemblock")) {
+      data.math.root.display = "block"
+    }
+    return data
+  })
+})
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js?config=TeX-MML-AM_HTMLorMML"></script>
+</body>
+</html>

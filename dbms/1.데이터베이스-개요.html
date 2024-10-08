@@ -1,0 +1,1950 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 2.0.23">
+<title>1. 데이터베이스 개요</title>
+<style>
+@import "https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700";
+@import "https://cdn.jsdelivr.net/gh/asciidoctor/asciidoctor@2.0/data/stylesheets/asciidoctor-default.css";
+
+body {
+  font-family: "Open Sans","DejaVu Sans",sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6, #toctitle, .sidebarblock > .content > .title {
+  color: rgba(0, 0, 0, 1);
+  font-weight: bold;
+}
+
+h1 > a.link, h2 > a.link, h3 > a.link, h4 > a.link, h5 > a.link, h6 > a.link {
+  color: rgba(0, 0, 0, 1);
+  font-weight: bold;
+}
+
+code {
+  font-weight: 600;
+  color: rgba(0, 0, 255, 1);
+}
+
+strong {
+  font-weight: 600;
+  color: rgba(0, 0, 0 0.9);
+}
+
+em {
+  font-style: inherit;
+  font-weight: 600;
+  color: rgba(255, 0, 0, 1);
+}
+
+/* Stylesheet for CodeRay to match GitHub theme | MIT License | http://foundation.zurb.com */
+pre.CodeRay {
+    background: #f7f7f8
+}
+
+.CodeRay .line-numbers {
+    border-right: 1px solid currentColor;
+    opacity: .35;
+    padding: 0 .5em 0 0
+}
+
+.CodeRay span.line-numbers {
+    display: inline-block;
+    margin-right: .75em
+}
+
+.CodeRay .line-numbers strong {
+    color: #000
+}
+
+table.CodeRay {
+    border-collapse: separate;
+    border: 0;
+    margin-bottom: 0;
+    background: none
+}
+
+table.CodeRay td {
+    vertical-align: top;
+    line-height: inherit
+}
+
+table.CodeRay td.line-numbers {
+    text-align: right
+}
+
+table.CodeRay td.code {
+    padding: 0 0 0 .75em
+}
+
+.CodeRay .debug {
+    color: #fff !important;
+    background: #000080 !important
+}
+
+.CodeRay .annotation {
+    color: #007
+}
+
+.CodeRay .attribute-name {
+    color: #000080
+}
+
+.CodeRay .attribute-value {
+    color: #700
+}
+
+.CodeRay .binary {
+    color: #509
+}
+
+.CodeRay .comment {
+    color: #998;
+    font-style: italic
+}
+
+.CodeRay .char {
+    color: #04d
+}
+
+.CodeRay .char .content {
+    color: #04d
+}
+
+.CodeRay .char .delimiter {
+    color: #039
+}
+
+.CodeRay .class {
+    color: #458;
+    font-weight: bold
+}
+
+.CodeRay .complex {
+    color: #a08
+}
+
+.CodeRay .constant, .CodeRay .predefined-constant {
+    color: #008080
+}
+
+.CodeRay .color {
+    color: #099
+}
+
+.CodeRay .class-variable {
+    color: #369
+}
+
+.CodeRay .decorator {
+    color: #b0b
+}
+
+.CodeRay .definition {
+    color: #099
+}
+
+.CodeRay .delimiter {
+    color: #000
+}
+
+.CodeRay .doc {
+    color: #970
+}
+
+.CodeRay .doctype {
+    color: #34b
+}
+
+.CodeRay .doc-string {
+    color: #d42
+}
+
+.CodeRay .escape {
+    color: #666
+}
+
+.CodeRay .entity {
+    color: #800
+}
+
+.CodeRay .error {
+    color: #808
+}
+
+.CodeRay .exception {
+    color: inherit
+}
+
+.CodeRay .filename {
+    color: #099
+}
+
+.CodeRay .function {
+    color: #900;
+    font-weight: bold
+}
+
+.CodeRay .global-variable {
+    color: #008080
+}
+
+.CodeRay .hex {
+    color: #058
+}
+
+.CodeRay .integer, .CodeRay .float {
+    color: #099
+}
+
+.CodeRay .include {
+    color: #555
+}
+
+.CodeRay .inline {
+    color: #000
+}
+
+.CodeRay .inline .inline {
+    background: #ccc
+}
+
+.CodeRay .inline .inline .inline {
+    background: #bbb
+}
+
+.CodeRay .inline .inline-delimiter {
+    color: #d14
+}
+
+.CodeRay .inline-delimiter {
+    color: #d14
+}
+
+.CodeRay .important {
+    color: #555;
+    font-weight: bold
+}
+
+.CodeRay .interpreted {
+    color: #b2b
+}
+
+.CodeRay .instance-variable {
+    color: #008080
+}
+
+.CodeRay .label {
+    color: #970
+}
+
+.CodeRay .local-variable {
+    color: #963
+}
+
+.CodeRay .octal {
+    color: #40e
+}
+
+.CodeRay .predefined {
+    color: #369
+}
+
+.CodeRay .preprocessor {
+    color: #579
+}
+
+.CodeRay .pseudo-class {
+    color: #555
+}
+
+.CodeRay .directive {
+    font-weight: bold
+}
+
+.CodeRay .type {
+    font-weight: bold
+}
+
+.CodeRay .predefined-type {
+    color: inherit
+}
+
+.CodeRay .reserved, .CodeRay .keyword {
+    color: #000;
+    font-weight: bold
+}
+
+.CodeRay .key {
+    color: #808
+}
+
+.CodeRay .key .delimiter {
+    color: #606
+}
+
+.CodeRay .key .char {
+    color: #80f
+}
+
+.CodeRay .value {
+    color: #088
+}
+
+.CodeRay .regexp .delimiter {
+    color: #808
+}
+
+.CodeRay .regexp .content {
+    color: #808
+}
+
+.CodeRay .regexp .modifier {
+    color: #808
+}
+
+.CodeRay .regexp .char {
+    color: #d14
+}
+
+.CodeRay .regexp .function {
+    color: #404;
+    font-weight: bold
+}
+
+.CodeRay .string {
+    color: #d20
+}
+
+.CodeRay .string .string .string {
+    background: #ffd0d0
+}
+
+.CodeRay .string .content {
+    color: #d14
+}
+
+.CodeRay .string .char {
+    color: #d14
+}
+
+.CodeRay .string .delimiter {
+    color: #d14
+}
+
+.CodeRay .shell {
+    color: #d14
+}
+
+.CodeRay .shell .delimiter {
+    color: #d14
+}
+
+.CodeRay .symbol {
+    color: #990073
+}
+
+.CodeRay .symbol .content {
+    color: #a60
+}
+
+.CodeRay .symbol .delimiter {
+    color: #630
+}
+
+.CodeRay .tag {
+    color: #008080
+}
+
+.CodeRay .tag-special {
+    color: #d70
+}
+
+.CodeRay .variable {
+    color: #036
+}
+
+.CodeRay .insert {
+    background: #afa
+}
+
+.CodeRay .delete {
+    background: #faa
+}
+
+.CodeRay .change {
+    color: #aaf;
+    background: #007
+}
+
+.CodeRay .head {
+    color: #f8f;
+    background: #505
+}
+
+.CodeRay .insert .insert {
+    color: #080
+}
+
+.CodeRay .delete .delete {
+    color: #800
+}
+
+.CodeRay .change .change {
+    color: #66f
+}
+
+.CodeRay .head .head {
+    color: #f4f
+}
+
+pre.rouge table td {
+    padding: 5px;
+}
+
+pre.rouge table pre {
+    margin: 0;
+}
+
+pre.rouge .cm {
+    color: #999988;
+    font-style: italic;
+}
+
+pre.rouge .cp {
+    color: #999999;
+    font-weight: bold;
+}
+
+pre.rouge .c1 {
+    color: #999988;
+    font-style: italic;
+}
+
+pre.rouge .cs {
+    color: #999999;
+    font-weight: bold;
+    font-style: italic;
+}
+
+pre.rouge .c, pre.rouge .ch, pre.rouge .cd, pre.rouge .cpf {
+    color: #999988;
+    font-style: italic;
+}
+
+pre.rouge .err {
+    color: #a61717;
+    background-color: #e3d2d2;
+}
+
+pre.rouge .gd {
+    color: #000000;
+    background-color: #ffdddd;
+}
+
+pre.rouge .ge {
+    color: #000000;
+    font-style: italic;
+}
+
+pre.rouge .gr {
+    color: #aa0000;
+}
+
+pre.rouge .gh {
+    color: #999999;
+}
+
+pre.rouge .gi {
+    color: #000000;
+    background-color: #ddffdd;
+}
+
+pre.rouge .go {
+    color: #888888;
+}
+
+pre.rouge .gp {
+    color: #555555;
+}
+
+pre.rouge .gs {
+    font-weight: bold;
+}
+
+pre.rouge .gu {
+    color: #aaaaaa;
+}
+
+pre.rouge .gt {
+    color: #aa0000;
+}
+
+pre.rouge .kc {
+    color: #000000;
+    font-weight: bold;
+}
+
+pre.rouge .kd {
+    color: #000000;
+    font-weight: bold;
+}
+
+pre.rouge .kn {
+    color: #000000;
+    font-weight: bold;
+}
+
+pre.rouge .kp {
+    color: #000000;
+    font-weight: bold;
+}
+
+pre.rouge .kr {
+    color: #000000;
+    font-weight: bold;
+}
+
+pre.rouge .kt {
+    color: #445588;
+    font-weight: bold;
+}
+
+pre.rouge .k, pre.rouge .kv {
+    color: #000000;
+    font-weight: bold;
+}
+
+pre.rouge .mf {
+    color: #009999;
+}
+
+pre.rouge .mh {
+    color: #009999;
+}
+
+pre.rouge .il {
+    color: #009999;
+}
+
+pre.rouge .mi {
+    color: #009999;
+}
+
+pre.rouge .mo {
+    color: #009999;
+}
+
+pre.rouge .m, pre.rouge .mb, pre.rouge .mx {
+    color: #009999;
+}
+
+pre.rouge .sb {
+    color: #d14;
+}
+
+pre.rouge .sc {
+    color: #d14;
+}
+
+pre.rouge .sd {
+    color: #d14;
+}
+
+pre.rouge .s2 {
+    color: #d14;
+}
+
+pre.rouge .se {
+    color: #d14;
+}
+
+pre.rouge .sh {
+    color: #d14;
+}
+
+pre.rouge .si {
+    color: #d14;
+}
+
+pre.rouge .sx {
+    color: #d14;
+}
+
+pre.rouge .sr {
+    color: #009926;
+}
+
+pre.rouge .s1 {
+    color: #d14;
+}
+
+pre.rouge .ss {
+    color: #990073;
+}
+
+pre.rouge .s, pre.rouge .sa, pre.rouge .dl {
+    color: #d14;
+}
+
+pre.rouge .na {
+    color: #008080;
+}
+
+pre.rouge .bp {
+    color: #999999;
+}
+
+pre.rouge .nb {
+    color: #0086B3;
+}
+
+pre.rouge .nc {
+    color: #445588;
+    font-weight: bold;
+}
+
+pre.rouge .no {
+    color: #008080;
+}
+
+pre.rouge .nd {
+    color: #3c5d5d;
+    font-weight: bold;
+}
+
+pre.rouge .ni {
+    color: #800080;
+}
+
+pre.rouge .ne {
+    color: #990000;
+    font-weight: bold;
+}
+
+pre.rouge .nf, pre.rouge .fm {
+    color: #990000;
+    font-weight: bold;
+}
+
+pre.rouge .nl {
+    color: #990000;
+    font-weight: bold;
+}
+
+pre.rouge .nn {
+    color: #555555;
+}
+
+pre.rouge .nt {
+    color: #000080;
+}
+
+pre.rouge .vc {
+    color: #008080;
+}
+
+pre.rouge .vg {
+    color: #008080;
+}
+
+pre.rouge .vi {
+    color: #008080;
+}
+
+pre.rouge .nv, pre.rouge .vm {
+    color: #008080;
+}
+
+pre.rouge .ow {
+    color: #000000;
+    font-weight: bold;
+}
+
+pre.rouge .o {
+    color: #000000;
+    font-weight: bold;
+}
+
+pre.rouge .w {
+    color: #bbbbbb;
+}
+
+pre.rouge {
+    background-color: #f8f8f8;
+}
+
+/*#content > h1:first-child:not([class]), body {*/
+/*    background-color: #45494a;*/
+/*    color: #bbbbbb*/
+/*}*/
+
+/*.content > pre {*/
+/*    filter: invert(90%) hue-rotate(180deg);*/
+/*}*/
+
+/*a, a:hover, a:focus {*/
+/*    color: #589df6;*/
+/*}*/
+
+/*table.tableblock, th.tableblock, td.tableblock {*/
+/*    color: #bbbbbb*/
+/*}*/
+
+/*!* was: rgba(0,0,0,.8) *!*/
+/*table:not(.linenotable):not(.CodeRay) thead tr th, table thead tr td, table:not(.linenotable):not(.CodeRay) tfoot tr th, table:not(.linenotable):not(.CodeRay) tfoot tr td {*/
+/*    color: #bbbbbb*/
+/*}*/
+
+/*abbr, acronym {*/
+/*    color: #bbbbbb*/
+/*}*/
+
+/*table:not(.linenotable):not(.CodeRay) tr th, table tr td {*/
+/*    color: #bbbbbb*/
+/*}*/
+
+/*kbd {*/
+/*    background-color: #626262 !important;*/
+/*    color: #bbbbbb;*/
+/*    -webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, .2), 0 0 0 .1em #777 inset;*/
+/*    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2), 0 0 0 .1em #777 inset*/
+/*}*/
+
+/*.menuseq, .menu {*/
+/*    color: #bbbbbb*/
+/*}*/
+
+/*#footer {*/
+/*    color: #bbbbbb*/
+/*}*/
+
+/*tbody tr th, tbody tr th p, tfoot tr th, tfoot tr th p {*/
+/*    color: #bbbbbb*/
+/*}*/
+
+/*.conum[data-value] {*/
+/*    color: #bbbbbb*/
+/*}*/
+
+/*!* was: rgba(0,0,0,.85) *!*/
+/*.paragraph.lead > p, #preamble > .sectionbody > .paragraph:first-of-type p {*/
+/*    color: #bbbbbb*/
+/*}*/
+
+/*.quoteblock blockquote, .quoteblock blockquote p {*/
+/*    color: #bbbbbb*/
+/*}*/
+
+/*#content > h1:first-child:not([class]) {*/
+/*    color: #bbbbbb*/
+/*}*/
+
+/*#header .details br + span.author:before {*/
+/*    color: #bbbbbb*/
+/*}*/
+
+/*#header .details span.email a {*/
+/*    color: #bbbbbb*/
+/*}*/
+
+/*#header > h1:first-child {*/
+/*    color: #bbbbbb*/
+/*}*/
+
+/*blockquote, blockquote p {*/
+/*    color: #bbbbbb*/
+/*}*/
+
+/*!* was: rgba(0,0,0,.6) *!*/
+/*blockquote cite a, blockquote cite a:visited {*/
+/*    color: #bbbbbb*/
+/*}*/
+
+/*#header .details {*/
+/*    color: #bbbbbb*/
+/*}*/
+
+/*.admonitionblock > table td.content {*/
+/*    color: #bbbbbb*/
+/*}*/
+
+/*.quoteblock .quoteblock {*/
+/*    color: #bbbbbb*/
+/*}*/
+
+/*.quoteblock .attribution cite, .verseblock .attribution cite {*/
+/*    color: #bbbbbb*/
+/*}*/
+
+/*!* was: f8f8f7 *!*/
+/*table:not(.linenotable):not(.CodeRay) tbody tr {*/
+/*    background: #45494a*/
+/*}*/
+
+/*table:not(.linenotable):not(.CodeRay) tr.even, table tr.alt, table tr:nth-of-type(even) {*/
+/*    background: #626262*/
+/*}*/
+
+/*!* was f7f8f7 *!*/
+/*table:not(.linenotable):not(.CodeRay) thead, table tfoot {*/
+/*    background: #626262*/
+/*}*/
+
+/*tbody tr th {*/
+/*    background: #626262*/
+/*}*/
+
+/*!* was: 7a2518 *!*/
+/*.subheader, .admonitionblock td.content > .title, .audioblock > .title, .exampleblock > .title, .imageblock > .title, .listingblock > .title, .literalblock > .title, .stemblock > .title, .openblock > .title, .paragraph > .title, .quoteblock > .title, table.tableblock > .title, .verseblock > .title, .videoblock > .title, .dlist > .title, .olist > .title, .ulist > .title, .qlist > .title, .hdlist > .title,*/
+/*#toctitle,*/
+/*.sidebarblock > .content > .title,*/
+/*.quoteblock blockquote::before,*/
+/*    !* was: several *!*/
+/*td.icon {*/
+/*    filter: invert(90%) hue-rotate(180deg);*/
+/*}*/
+
+/*!* was: f8f8f7 *!*/
+/*.sidebarblock, .exampleblock, .exampleblock > .content {*/
+/*    background: #626262;*/
+/*    border-color: #626262;*/
+/*    box-shadow: 0 1px 4px #626262*/
+/*}*/
+
+/*!* was: f7f7f8 *!*/
+/*.exampleblock > .content > :last-child > :last-child, .exampleblock > .content .olist > ol > li:last-child > :last-child, .exampleblock > .content .ulist > ul > li:last-child > :last-child, .exampleblock > .content .qlist > ol > li:last-child > :last-child, .sidebarblock > .content > :last-child > :last-child, .sidebarblock > .content .olist > ol > li:last-child > :last-child, .sidebarblock > .content .ulist > ul > li:last-child > :last-child, .sidebarblock > .content .qlist > ol > li:last-child > :last-child {*/
+/*    margin-bottom: 0*/
+/*}*/
+
+/*#toc {*/
+/*    background-color: #626262 !important;*/
+/*    border-color: #626262 !important;*/
+/*}*/
+
+/*h1, h2, h3, #toctitle, .sidebarblock > .content > .title, h4, h5, h6 {*/
+/*    color: #cccccc*/
+/*}*/
+
+/*!* scroll bar color change to match the dark scheme *!*/
+/*::-webkit-scrollbar {*/
+/*    width: 12px;*/
+/*    height: 12px;*/
+/*    background-color: inherit;*/
+/*}*/
+
+/*::-webkit-scrollbar-thumb {*/
+/*    -webkit-border-radius: 10px;*/
+/*    border: 2px solid #2c2c2c;*/
+/*    background-color: #404040;*/
+/*}*/
+
+/*::-webkit-scrollbar-track {*/
+/*    width: 12px;*/
+/*    height: 12px;*/
+/*    background-color: #2c2c2c;*/
+/*}*/
+</style>
+</head>
+<body class="article toc2 toc-left">
+<div id="header">
+<h1>1. 데이터베이스 개요</h1>
+<div id="toc" class="toc2">
+<div id="toctitle">데이터베이스</div>
+<ul class="sectlevel1">
+<li><a href="#_1_1_데이터베이스_개념">1.1. 데이터베이스 개념</a>
+<ul class="sectlevel2">
+<li><a href="#_데이터베이스_정의">데이터베이스 정의</a></li>
+</ul>
+</li>
+<li><a href="#_1_2_dbms_발전_배경">1.2. DBMS 발전 배경</a>
+<ul class="sectlevel2">
+<li><a href="#_파일시스템의_문제점">파일시스템의 문제점</a></li>
+</ul>
+</li>
+<li><a href="#_1_3_dbms_정의">1.3. DBMS 정의</a>
+<ul class="sectlevel2">
+<li><a href="#_데이터베이스_기능">데이터베이스 기능</a></li>
+</ul>
+</li>
+<li><a href="#_1_4_데이터베이스_시스템">1.4. 데이터베이스 시스템</a>
+<ul class="sectlevel2">
+<li><a href="#_데이터_언어data_language">데이터 언어(Data Language)</a></li>
+</ul>
+</li>
+<li><a href="#_1_5_3단계_데이터베이스_구조">1.5. 3단계 데이터베이스 구조</a></li>
+<li><a href="#_1_6_데이터아키텍쳐_및_데이터베이스_관리">1.6. 데이터아키텍쳐 및 데이터베이스 관리</a>
+<ul class="sectlevel2">
+<li><a href="#_1_6_1_데이터아키텍쳐_및_데이터베이스_구축_방법론">1.6.1. 데이터아키텍쳐 및 데이터베이스 구축 방법론</a></li>
+<li><a href="#_1_6_2_공공데이터_품질관리">1.6.2. 공공데이터 품질관리</a></li>
+<li><a href="#_1_6_3_공공기관의_데이터베이스_표준화_관리">1.6.3. 공공기관의 데이터베이스 표준화 관리</a></li>
+<li><a href="#_1_6_4_데이터_품질_관리_대상_및_품질_지표">1.6.4. 데이터 품질 관리 대상 및 품질 지표</a></li>
+</ul>
+</li>
+<li><a href="#_1_7_데이터베이스_저장_장치">1.7. 데이터베이스 저장 장치</a>
+<ul class="sectlevel2">
+<li><a href="#_1_7_1_데이터를_디스크에_물리적으로_저장하는_방법">1.7.1 데이터를 디스크에 물리적으로 저장하는 방법</a></li>
+<li><a href="#_1_7_2_자기_디스크_구조">1.7.2 자기 디스크 구조</a></li>
+</ul>
+</li>
+<li><a href="#_1_8_데이터베이스_접근">1.8. 데이터베이스 접근</a>
+<ul class="sectlevel3">
+<li><a href="#_blocking_factor_계산_예제">Blocking Factor 계산 예제</a></li>
+</ul>
+</li>
+<li><a href="#_1_9_파일조작_기본_방식">1.9. 파일조작 기본 방식</a>
+<ul class="sectlevel2">
+<li><a href="#_1_9_1_순차_방법">1.9.1. 순차 방법</a></li>
+<li><a href="#_1_9_2_인덱스_방법">1.9.2. 인덱스 방법</a></li>
+<li><a href="#_1_9_3_해시_방법">1.9.3. 해시 방법</a></li>
+</ul>
+</li>
+<li><a href="#_1_10_tree">1.10. Tree</a>
+<ul class="sectlevel2">
+<li><a href="#_1_10_1_tree_개요">1.10.1. Tree 개요</a></li>
+<li><a href="#_1_10_2_b_tree">1.10.2. B Tree</a></li>
+<li><a href="#_1_10_3_b_tree_순회연산">1.10.3. B-Tree 순회연산</a></li>
+<li><a href="#_1_10_4_b_tree_삽입_연산">1.10.4. B-Tree 삽입 연산</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="content">
+<div class="sect1">
+<h2 id="_1_1_데이터베이스_개념">1.1. 데이터베이스 개념</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_데이터베이스_정의">데이터베이스 정의</h3>
+<div class="paragraph">
+<p>한 조직의 여러 응용시스템이 공용(Shared)하기 위해 최소 중복으로 통합(Integrated), 저장(Store)된 운영(Operational) 데이터의 집합</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong><em>통</em>합 데이터</strong>(Integrated) : 최소의 중복 / 통제된 중복</p>
+</li>
+<li>
+<p><strong><em>저</em>장 데이터</strong>(Stored) : 컴퓨터가 접근 가능한 매체에 저장</p>
+</li>
+<li>
+<p><strong><em>운</em>영 데이터</strong>(Operational) : 조직 운영에 필요한 필수적인 데이터</p>
+</li>
+<li>
+<p><strong><em>공</em>유 데이터</strong>(Shared) : 여러 응용 프로그램이 공동으로 사용</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>[ <a href="../index.html">Home</a> ]
+[ <a href="./index.html">데이터베이스</a> ]
+[ <a href="#header">Top</a> ]</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_1_2_dbms_발전_배경">1.2. DBMS 발전 배경</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_파일시스템의_문제점">파일시스템의 문제점</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>데이터 종속성(Data Dependency)</p>
+<div class="ulist">
+<ul>
+<li>
+<p>응용 프로그램과 데이터간의 상호 의존(종속)</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>데이터 중복성(Data Redundancy)</p>
+<div class="ulist">
+<ul>
+<li>
+<p><em>일</em>관성 :</p>
+</li>
+<li>
+<p><em>보</em>안성 :</p>
+</li>
+<li>
+<p><em>경</em>제성 :</p>
+</li>
+<li>
+<p><em>무</em>결성 :</p>
+</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>[ <a href="../index.html">Home</a> ]
+[ <a href="./index.html">데이터베이스</a> ]
+[ <a href="#header">Top</a> ]</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_1_3_dbms_정의">1.3. DBMS 정의</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>응용프로그램과 데이터의 중재자로서 모든 응용프로그램들이 데이터베이스를 공용할 수 있도록 관리해주는 소프트웨어 시스템</p>
+</div>
+<div class="sect2">
+<h3 id="_데이터베이스_기능">데이터베이스 기능</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>정의</strong>기능(Definition)</p>
+</li>
+<li>
+<p><strong>조작</strong>기능(Manipulation:CRUD)</p>
+</li>
+<li>
+<p><strong>제어</strong>기능(Control)</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>[ <a href="../index.html">Home</a> ]
+[ <a href="./index.html">데이터베이스</a> ]
+[ <a href="#header">Top</a> ]</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_1_4_데이터베이스_시스템">1.4. 데이터베이스 시스템</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>데이터를 DB로 저장하고 관리해서 필요한 정보를 생성하는 컴퓨터 중심의 시스템</p>
+</div>
+<div class="sect2">
+<h3 id="_데이터_언어data_language">데이터 언어(Data Language)</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>데이터 정의어(DDL)</p>
+</li>
+<li>
+<p>데이터 조작어(DML)</p>
+</li>
+<li>
+<p>데이터 제어어(DCL)</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>[ <a href="../index.html">Home</a> ]
+[ <a href="./index.html">데이터베이스</a> ]
+[ <a href="#header">Top</a> ]</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_1_5_3단계_데이터베이스_구조">1.5. 3단계 데이터베이스 구조</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>사용자의 응용과 물리적 데이터베이스의 분리</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 10%;">
+<col style="width: 20%;">
+<col style="width: 50%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">단계</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">갯수</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">관점</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">목적</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">외부 Schema</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">N 개</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">사용자관점</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">사용자 View. 특정 사용자 그룹이 관심을 갖는 부분을 보여주고, 나머지는 은폐</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top" colspan="4"><p class="tableblock">논리적 Data 독립성 확보</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">개념 Schema</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">1 개</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">전사 관점</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">전체 사용자를 위한 데이터베이스의 구조를 기술</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top" colspan="4"><p class="tableblock">물리적 Data 독립성 확보</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">내부 Schema</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">1 개</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">장치 관점</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">물리적 데이터 모델을 사용. 데이터 저장 구조의 세부 사항과 데이터베이스에 대한 접근 경로를 기술</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>[ <a href="../index.html">Home</a> ]
+[ <a href="./index.html">데이터베이스</a> ]
+[ <a href="#header">Top</a> ]</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_1_6_데이터아키텍쳐_및_데이터베이스_관리">1.6. 데이터아키텍쳐 및 데이터베이스 관리</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_1_6_1_데이터아키텍쳐_및_데이터베이스_구축_방법론">1.6.1. 데이터아키텍쳐 및 데이터베이스 구축 방법론</h3>
+
+</div>
+<div class="sect2">
+<h3 id="_1_6_2_공공데이터_품질관리">1.6.2. 공공데이터 품질관리</h3>
+<div class="sect3">
+<h4 id="_데이터_품질_관리">데이터 품질 관리</h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>계획단계 품질관리</p>
+</li>
+<li>
+<p>구축단계 품질관리 <code>감리</code></p>
+</li>
+<li>
+<p>운영단계 품질관리 <code>감리</code></p>
+</li>
+<li>
+<p>활용단계 품질관리</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_데이터_품질_진단_및_개선">데이터 품질 진단 및 개선</h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>진단대상 정의</p>
+</li>
+<li>
+<p>품질진단 실시 <code>감리</code></p>
+</li>
+<li>
+<p>진단결과 분석 <code>감리</code></p>
+</li>
+<li>
+<p>개선계획 수립</p>
+</li>
+<li>
+<p>개선 수행 <code>감리</code></p>
+</li>
+<li>
+<p>품질 통제</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_1_6_3_공공기관의_데이터베이스_표준화_관리">1.6.3. 공공기관의 데이터베이스 표준화 관리</h3>
+
+</div>
+<div class="sect2">
+<h3 id="_1_6_4_데이터_품질_관리_대상_및_품질_지표">1.6.4. 데이터 품질 관리 대상 및 품질 지표</h3>
+<div class="sect3">
+<h4 id="_데이터_품질_관리_대상">데이터 품질 관리 대상</h4>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 40%;">
+<col style="width: 60%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">관리 대상</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">내용</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">데이터 값</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">* 데이터 현상적 값<br>
+* 데이터 구조적 값<br></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">데이터 구조</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">* 각 단계별 데이터 구조<br>
+* 각 조직 단위별 데이터 구조<br></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">데이터 관리 프로세스</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">* 데이터 정의 프로세스<br>
+* 데이터 변경 프로세스<br>
+* 데이터 평가 프로세스<br></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_데이터_품질_지표">데이터 품질 지표</h4>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 30%;">
+<col style="width: 30%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">구분</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">지표</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">설명</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">세부 지표</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top" rowspan="2"><p class="tableblock"><strong>유효성</strong></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><strong>정확성</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">실세계를 정확히 반영</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">사실성, 적합성, 필수성, 연관성</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><strong>일관성</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">동일 데이터간 불일치 미존재</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">일치성, 정합성, 무결성</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top" rowspan="4"><p class="tableblock"><strong>활용성</strong></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><strong>유용성</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">요구되는 데이터 충족</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">유연성, 충분성, 사용성, 추적성</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><strong>접근성</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">원하는 데이터를 손쉽게 이용</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><strong>적시성</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">최신성 유지</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><strong>보안성</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">내외부 요인으로부터 데이터 보호</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">보호성, 안정성, 책임성</p></td>
+</tr>
+</tbody>
+</table>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>유-정</strong> 이면 <strong>사-적-필-연</strong></p>
+</li>
+<li>
+<p><strong>유-일</strong> 이면 <strong>일-정-무</strong></p>
+</li>
+<li>
+<p><strong>활-유</strong> 하면 <strong>유-충-사-추</strong></p>
+</li>
+<li>
+<p><strong>활-접</strong> 하면 없다</p>
+</li>
+<li>
+<p><strong>활-적</strong> 하면 없다</p>
+</li>
+<li>
+<p><strong>활-보</strong> 하면 <strong>보-안-책</strong></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_데이터_품질_관리_프레임워크">데이터 품질 관리 프레임워크</h4>
+
+</div>
+<div class="sect3">
+<h4 id="_데이터_품질_관리_프로세스">데이터 품질 관리 프로세스</h4>
+<div class="paragraph">
+<p>[ <a href="../index.html">Home</a> ]
+[ <a href="./index.html">데이터베이스</a> ]
+[ <a href="#header">Top</a> ]</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_1_7_데이터베이스_저장_장치">1.7. 데이터베이스 저장 장치</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_1_7_1_데이터를_디스크에_물리적으로_저장하는_방법">1.7.1 데이터를 디스크에 물리적으로 저장하는 방법</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>순차 파일(Sequential File)</p>
+</li>
+<li>
+<p>인덱스 파일(Indexed File)</p>
+</li>
+<li>
+<p>해싱 파일(Hashing File)</p>
+</li>
+<li>
+<p>B-Tree</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_1_7_2_자기_디스크_구조">1.7.2 자기 디스크 구조</h3>
+<div class="sect3">
+<h4 id="_디스크_접근_시간">디스크 접근 시간</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>탐색시간</p>
+</li>
+<li>
+<p>회전지연시간</p>
+</li>
+<li>
+<p>전송지연시간</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_blockpage_구조">Block(Page) 구조</h4>
+<div class="paragraph">
+<p>디스크와 주기억장치간 데이터 전송은 Block(Page) 단위로 수행</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>TODO</code> 이미지 추가</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>[ <a href="../index.html">Home</a> ]
+[ <a href="./index.html">데이터베이스</a> ]
+[ <a href="#header">Top</a> ]</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_1_8_데이터베이스_접근">1.8. 데이터베이스 접근</h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Slot</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Sub-Block</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Inter Record Gap</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">레코드와 레코드 사이의 갭.(레코드 구분)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Inter Block Gap</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">블록과 블록사이의 갭. (다음 블록을 읽을 때 읽기위한 속도을 회복하기 위해 사용)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Blocking Factor</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">한 <strong>block</strong>에 저장 할 수 있는 <strong>record</strong>(<strong>tuple</strong>, <strong>row</strong>)의 수</p></td>
+</tr>
+</tbody>
+</table>
+<div class="sect3">
+<h4 id="_blocking_factor_계산_예제">Blocking Factor 계산 예제</h4>
+<div class="paragraph">
+<p><code>Problem</code></p>
+</div>
+<div class="paragraph">
+<p><strong>Block 단위로 저장한 disk에서</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>20,000 bytes/track 을 담을 수 있다.</p>
+</li>
+<li>
+<p>Subblock, interblock gap은 300 bytes/block 정도이다.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>하나의 파일이 100 bytes인 record들을 저장하고 싶을 때, blocking factor가 10 또는 60 인 경우에 몇 개의 record들을 저장할 수 있는가?</p>
+</div>
+<div class="paragraph">
+<p><code>Solve</code></p>
+</div>
+<div class="paragraph">
+<p><strong>Blocking factor가 10인 경우</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>1 block의 크기 = 10개 * (100 bytes 짜리 record) + 300</p>
+</li>
+<li>
+<p>20,000 bytes에는 20,000 / (10*100 + 300) = 15 blocks = 150 records 가 들어갈 수 있다.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>Blocking factor가 60인 경우,</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>1 block의 크기 = 60개 * (100 bytes 짜리 record) + 300</p>
+</li>
+<li>
+<p>20,000 bytes / (60*100 + 300) = 3 block = 180 records 가 들어갈 수 있다.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>[ <a href="../index.html">Home</a> ]
+[ <a href="./index.html">데이터베이스</a> ]
+[ <a href="#header">Top</a> ]</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_1_9_파일조작_기본_방식">1.9. 파일조작 기본 방식</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>순차 방법</p>
+<div class="ulist">
+<ul>
+<li>
+<p>엔트리 순차 파일</p>
+</li>
+<li>
+<p>키 순차 파일</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>인덱스 방법</p>
+<div class="ulist">
+<ul>
+<li>
+<p>인덱스된 파일</p>
+<div class="ulist">
+<ul>
+<li>
+<p>ISAM</p>
+</li>
+<li>
+<p>vSAM</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>다중키 파일</p>
+<div class="ulist">
+<ul>
+<li>
+<p>다중리스트 파일</p>
+</li>
+<li>
+<p>역 파일</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>해싱 방법</p>
+<div class="ulist">
+<ul>
+<li>
+<p>직접 파일</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Closed Hash</p>
+</li>
+<li>
+<p>Open Hash</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="sect2">
+<h3 id="_1_9_1_순차_방법">1.9.1. 순차 방법</h3>
+
+</div>
+<div class="sect2">
+<h3 id="_1_9_2_인덱스_방법">1.9.2. 인덱스 방법</h3>
+<div class="sect3">
+<h4 id="_인덱스_분류">인덱스 분류</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>기본키 여부에 따른 분류</p>
+<div class="ulist">
+<ul>
+<li>
+<p>기본 인덱스</p>
+</li>
+<li>
+<p>보조 인덱스</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>인덱스 엔트리 순서에 따른 분류</p>
+<div class="ulist">
+<ul>
+<li>
+<p>집중 인덱스</p>
+</li>
+<li>
+<p>비 집중 인덱스</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>엔트리 맵핑 여부에 따른 분류</p>
+<div class="ulist">
+<ul>
+<li>
+<p>밀집 인덱스</p>
+</li>
+<li>
+<p>희소 인덱스</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>인덱스를 구성하는 구조나 특징에 따른 분류</p>
+<div class="ulist">
+<ul>
+<li>
+<p>트리기반 인덱스</p>
+</li>
+<li>
+<p>비트맵 인덱스</p>
+</li>
+<li>
+<p>비트맵조인 인덱스</p>
+</li>
+<li>
+<p>함수기반 인덱스(FBI)</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_다단계_인덱스">다단계 인덱스</h4>
+
+</div>
+<div class="sect3">
+<h4 id="_다중키_파일">다중키 파일</h4>
+
+</div>
+</div>
+<div class="sect2">
+<h3 id="_1_9_3_해시_방법">1.9.3. 해시 방법</h3>
+<div class="sect3">
+<h4 id="_용어">용어</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>해싱 함수(hashing function)/사상함수(mapping function)</p>
+<div class="ulist">
+<ul>
+<li>
+<p>키 값으로부터 레코드의 물리적 주소로 사상시키는 사상 함수</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>슬롯(Slot)</p>
+<div class="ulist">
+<ul>
+<li>
+<p>한 개의 레코드를 저장 할 수 있는 공간</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>버켓(Bucket)</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Bucket 하나의 주소를 가지면서 하나 이상의 레코드를 저장할 수 있는 파일의 한 구역</p>
+</li>
+<li>
+<p>크기는 같은 주소에 포함될 수 있는 레코드 수</p>
+</li>
+<li>
+<p>여러 개의 슬롯으로 구성</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>충돌(Collision)</p>
+<div class="ulist">
+<ul>
+<li>
+<p>서로 다른 두개의 키 값이 동일한 주소같은 버킷로 산출된 현상</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>동거자(Synonym)</p>
+<div class="ulist">
+<ul>
+<li>
+<p>동일한 주소로 산출된 두 키 값</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>오버플로우(Overflow)</p>
+<div class="ulist">
+<ul>
+<li>
+<p>저장공간(Slot)이 없는 버켓에 레코드가 저장되도록 해싱되는 현상</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>적재밀도</p>
+<div class="ulist">
+<ul>
+<li>
+<p>실제 사용중인 키 값 갯수버킷 개수슬롯 개수</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_해싱_충돌_해결">해싱 충돌 해결</h4>
+<div class="sect4">
+<h5 id="_정적_해시_bucket_size_가_고정되었을_경우">정적 해시 (Bucket Size 가 고정되었을 경우)</h5>
+<div class="imageblock">
+<div class="content">
+<img src="./imgs/정적해시.png" alt="정적해시">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>개방 주소</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p>해시 충돌이 일어나면 다른 버킷에 데이터를 저장</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>체이닝</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p>해시 충돌이 발생하면 키에 해당하는 데이터들을 연결(Linked List)</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>다중 해싱</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p>해시 충돌시 다른 해시함수를 한 번더 적용</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_확장성동적_해시">확장성(동적) 해시</h5>
+<div class="paragraph">
+<p>해싱 충돌 문제점 해결</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="./imgs/확장해시.png" alt="확장해시">
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="./imgs/확장해시%20확장.png" alt="확장해시 확장">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://m.blog.naver.com/PostView.naver?isHttpsRedirect=true&amp;blogId=skyjjw79&amp;logNo=220875535595" class="bare">https://m.blog.naver.com/PostView.naver?isHttpsRedirect=true&amp;blogId=skyjjw79&amp;logNo=220875535595</a></p>
+</li>
+<li>
+<p><a href="https://www.geeksforgeeks.org/extendible-hashing-dynamic-approach-to-dbms/" class="bare">https://www.geeksforgeeks.org/extendible-hashing-dynamic-approach-to-dbms/</a></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>[ <a href="../index.html">Home</a> ]
+[ <a href="./index.html">데이터베이스</a> ]
+[ <a href="#header">Top</a> ]</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_1_10_tree">1.10. Tree</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_1_10_1_tree_개요">1.10.1. Tree 개요</h3>
+<div class="sect3">
+<h4 id="_이진_탐색_트리">이진 탐색 트리</h4>
+
+</div>
+</div>
+<div class="sect2">
+<h3 id="_1_10_2_b_tree">1.10.2. B Tree</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 40%;">
+<col style="width: 40%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">구분</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">B Tree</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">B+ Tree</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">접근성</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p>Leaf에 가기전에 값을 찾을 수 있다</p>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p>레코드의 위치는 Leaf 노드에서만 파악된다<br></p>
+</li>
+<li>
+<p>순차검색(범위검색)이 유리하다</p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">중복성</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p>탐색 키의 중복성이 없다</p>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p>Index Set 과 Sequence Set 에 중복된다</p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">복잡성</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p>Leaf 가 아닌 노드 Size 가 더 크다<br></p>
+</li>
+<li>
+<p>Index 에 대한 저장공간 관리가 보잡하다<br></p>
+</li>
+<li>
+<p>삽입, 삭제가 복잡하다</p>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p>모든 노드의 크기가 같다<br></p>
+</li>
+<li>
+<p>삭제가 쉽다<br>
+(삭제될 노드가 항상 Leaf 에 존재한다)</p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+<div class="ulist">
+<ul>
+<li>
+<p><code>TODO</code> image</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_1_10_3_b_tree_순회연산">1.10.3. B-Tree 순회연산</h3>
+<div class="sect3">
+<h4 id="_b_tree_전위순회">B-Tree 전위순회</h4>
+<div class="imageblock">
+<div class="content">
+<img src="./imgs/b-tree-전위순회.png" alt="b tree 전위순회">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>ROOT</code> 에서 시작. 왼쪽 빗변을 따라 진행</p>
+</li>
+<li>
+<p>오른쪽 <code>마지막 노드</code> <strong>전위순회</strong>로 끝</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_b_tree_중위순회">B-Tree 중위순회</h4>
+<div class="imageblock">
+<div class="content">
+<img src="./imgs/b-tree-중위순회.png" alt="b tree 중위순회">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>왼쪽 <code>마지막 노드</code> <strong>중위순회</strong>로 시작</p>
+</li>
+<li>
+<p>오른쪽 <code>마지막 노드</code> <strong>중위순회</strong>로 끝</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_b_tree_후위순회">B-Tree 후위순회</h4>
+<div class="imageblock">
+<div class="content">
+<img src="./imgs/b-tree-후위순회.png" alt="b tree 후위순회">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>왼쪽 <code>마지막 노드</code> <strong>후위순회</strong>로 시작</p>
+</li>
+<li>
+<p>오른쪽 빗변 <strong>역순</strong>으로 끝</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_1_10_4_b_tree_삽입_연산">1.10.4. B-Tree 삽입 연산</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://velog.io/@emplam27/%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0-%EA%B7%B8%EB%A6%BC%EC%9C%BC%EB%A1%9C-%EC%95%8C%EC%95%84%EB%B3%B4%EB%8A%94-B-Tree" class="bare">https://velog.io/@emplam27/%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0-%EA%B7%B8%EB%A6%BC%EC%9C%BC%EB%A1%9C-%EC%95%8C%EC%95%84%EB%B3%B4%EB%8A%94-B-Tree</a></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>[ <a href="../index.html">Home</a> ]
+[ <a href="./index.html">데이터베이스</a> ]
+[ <a href="#header">Top</a> ]</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  messageStyle: "none",
+  tex2jax: {
+    inlineMath: [["\\(", "\\)"]],
+    displayMath: [["\\[", "\\]"]],
+    ignoreClass: "nostem|nolatexmath"
+  },
+  asciimath2jax: {
+    delimiters: [["\\$", "\\$"]],
+    ignoreClass: "nostem|noasciimath"
+  },
+  TeX: { equationNumbers: { autoNumber: "none" } }
+})
+MathJax.Hub.Register.StartupHook("AsciiMath Jax Ready", function () {
+  MathJax.InputJax.AsciiMath.postfilterHooks.Add(function (data, node) {
+    if ((node = data.script.parentNode) && (node = node.parentNode) && node.classList.contains("stemblock")) {
+      data.math.root.display = "block"
+    }
+    return data
+  })
+})
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js?config=TeX-MML-AM_HTMLorMML"></script>
+</body>
+</html>

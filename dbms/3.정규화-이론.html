@@ -1,0 +1,1807 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 2.0.23">
+<title>3. 정규화 이론</title>
+<style>
+@import "https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700";
+@import "https://cdn.jsdelivr.net/gh/asciidoctor/asciidoctor@2.0/data/stylesheets/asciidoctor-default.css";
+
+body {
+  font-family: "Open Sans","DejaVu Sans",sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6, #toctitle, .sidebarblock > .content > .title {
+  color: rgba(0, 0, 0, 1);
+  font-weight: bold;
+}
+
+h1 > a.link, h2 > a.link, h3 > a.link, h4 > a.link, h5 > a.link, h6 > a.link {
+  color: rgba(0, 0, 0, 1);
+  font-weight: bold;
+}
+
+code {
+  font-weight: 600;
+  color: rgba(0, 0, 255, 1);
+}
+
+strong {
+  font-weight: 600;
+  color: rgba(0, 0, 0 0.9);
+}
+
+em {
+  font-style: inherit;
+  font-weight: 600;
+  color: rgba(255, 0, 0, 1);
+}
+
+/* Stylesheet for CodeRay to match GitHub theme | MIT License | http://foundation.zurb.com */
+pre.CodeRay {
+    background: #f7f7f8
+}
+
+.CodeRay .line-numbers {
+    border-right: 1px solid currentColor;
+    opacity: .35;
+    padding: 0 .5em 0 0
+}
+
+.CodeRay span.line-numbers {
+    display: inline-block;
+    margin-right: .75em
+}
+
+.CodeRay .line-numbers strong {
+    color: #000
+}
+
+table.CodeRay {
+    border-collapse: separate;
+    border: 0;
+    margin-bottom: 0;
+    background: none
+}
+
+table.CodeRay td {
+    vertical-align: top;
+    line-height: inherit
+}
+
+table.CodeRay td.line-numbers {
+    text-align: right
+}
+
+table.CodeRay td.code {
+    padding: 0 0 0 .75em
+}
+
+.CodeRay .debug {
+    color: #fff !important;
+    background: #000080 !important
+}
+
+.CodeRay .annotation {
+    color: #007
+}
+
+.CodeRay .attribute-name {
+    color: #000080
+}
+
+.CodeRay .attribute-value {
+    color: #700
+}
+
+.CodeRay .binary {
+    color: #509
+}
+
+.CodeRay .comment {
+    color: #998;
+    font-style: italic
+}
+
+.CodeRay .char {
+    color: #04d
+}
+
+.CodeRay .char .content {
+    color: #04d
+}
+
+.CodeRay .char .delimiter {
+    color: #039
+}
+
+.CodeRay .class {
+    color: #458;
+    font-weight: bold
+}
+
+.CodeRay .complex {
+    color: #a08
+}
+
+.CodeRay .constant, .CodeRay .predefined-constant {
+    color: #008080
+}
+
+.CodeRay .color {
+    color: #099
+}
+
+.CodeRay .class-variable {
+    color: #369
+}
+
+.CodeRay .decorator {
+    color: #b0b
+}
+
+.CodeRay .definition {
+    color: #099
+}
+
+.CodeRay .delimiter {
+    color: #000
+}
+
+.CodeRay .doc {
+    color: #970
+}
+
+.CodeRay .doctype {
+    color: #34b
+}
+
+.CodeRay .doc-string {
+    color: #d42
+}
+
+.CodeRay .escape {
+    color: #666
+}
+
+.CodeRay .entity {
+    color: #800
+}
+
+.CodeRay .error {
+    color: #808
+}
+
+.CodeRay .exception {
+    color: inherit
+}
+
+.CodeRay .filename {
+    color: #099
+}
+
+.CodeRay .function {
+    color: #900;
+    font-weight: bold
+}
+
+.CodeRay .global-variable {
+    color: #008080
+}
+
+.CodeRay .hex {
+    color: #058
+}
+
+.CodeRay .integer, .CodeRay .float {
+    color: #099
+}
+
+.CodeRay .include {
+    color: #555
+}
+
+.CodeRay .inline {
+    color: #000
+}
+
+.CodeRay .inline .inline {
+    background: #ccc
+}
+
+.CodeRay .inline .inline .inline {
+    background: #bbb
+}
+
+.CodeRay .inline .inline-delimiter {
+    color: #d14
+}
+
+.CodeRay .inline-delimiter {
+    color: #d14
+}
+
+.CodeRay .important {
+    color: #555;
+    font-weight: bold
+}
+
+.CodeRay .interpreted {
+    color: #b2b
+}
+
+.CodeRay .instance-variable {
+    color: #008080
+}
+
+.CodeRay .label {
+    color: #970
+}
+
+.CodeRay .local-variable {
+    color: #963
+}
+
+.CodeRay .octal {
+    color: #40e
+}
+
+.CodeRay .predefined {
+    color: #369
+}
+
+.CodeRay .preprocessor {
+    color: #579
+}
+
+.CodeRay .pseudo-class {
+    color: #555
+}
+
+.CodeRay .directive {
+    font-weight: bold
+}
+
+.CodeRay .type {
+    font-weight: bold
+}
+
+.CodeRay .predefined-type {
+    color: inherit
+}
+
+.CodeRay .reserved, .CodeRay .keyword {
+    color: #000;
+    font-weight: bold
+}
+
+.CodeRay .key {
+    color: #808
+}
+
+.CodeRay .key .delimiter {
+    color: #606
+}
+
+.CodeRay .key .char {
+    color: #80f
+}
+
+.CodeRay .value {
+    color: #088
+}
+
+.CodeRay .regexp .delimiter {
+    color: #808
+}
+
+.CodeRay .regexp .content {
+    color: #808
+}
+
+.CodeRay .regexp .modifier {
+    color: #808
+}
+
+.CodeRay .regexp .char {
+    color: #d14
+}
+
+.CodeRay .regexp .function {
+    color: #404;
+    font-weight: bold
+}
+
+.CodeRay .string {
+    color: #d20
+}
+
+.CodeRay .string .string .string {
+    background: #ffd0d0
+}
+
+.CodeRay .string .content {
+    color: #d14
+}
+
+.CodeRay .string .char {
+    color: #d14
+}
+
+.CodeRay .string .delimiter {
+    color: #d14
+}
+
+.CodeRay .shell {
+    color: #d14
+}
+
+.CodeRay .shell .delimiter {
+    color: #d14
+}
+
+.CodeRay .symbol {
+    color: #990073
+}
+
+.CodeRay .symbol .content {
+    color: #a60
+}
+
+.CodeRay .symbol .delimiter {
+    color: #630
+}
+
+.CodeRay .tag {
+    color: #008080
+}
+
+.CodeRay .tag-special {
+    color: #d70
+}
+
+.CodeRay .variable {
+    color: #036
+}
+
+.CodeRay .insert {
+    background: #afa
+}
+
+.CodeRay .delete {
+    background: #faa
+}
+
+.CodeRay .change {
+    color: #aaf;
+    background: #007
+}
+
+.CodeRay .head {
+    color: #f8f;
+    background: #505
+}
+
+.CodeRay .insert .insert {
+    color: #080
+}
+
+.CodeRay .delete .delete {
+    color: #800
+}
+
+.CodeRay .change .change {
+    color: #66f
+}
+
+.CodeRay .head .head {
+    color: #f4f
+}
+
+pre.rouge table td {
+    padding: 5px;
+}
+
+pre.rouge table pre {
+    margin: 0;
+}
+
+pre.rouge .cm {
+    color: #999988;
+    font-style: italic;
+}
+
+pre.rouge .cp {
+    color: #999999;
+    font-weight: bold;
+}
+
+pre.rouge .c1 {
+    color: #999988;
+    font-style: italic;
+}
+
+pre.rouge .cs {
+    color: #999999;
+    font-weight: bold;
+    font-style: italic;
+}
+
+pre.rouge .c, pre.rouge .ch, pre.rouge .cd, pre.rouge .cpf {
+    color: #999988;
+    font-style: italic;
+}
+
+pre.rouge .err {
+    color: #a61717;
+    background-color: #e3d2d2;
+}
+
+pre.rouge .gd {
+    color: #000000;
+    background-color: #ffdddd;
+}
+
+pre.rouge .ge {
+    color: #000000;
+    font-style: italic;
+}
+
+pre.rouge .gr {
+    color: #aa0000;
+}
+
+pre.rouge .gh {
+    color: #999999;
+}
+
+pre.rouge .gi {
+    color: #000000;
+    background-color: #ddffdd;
+}
+
+pre.rouge .go {
+    color: #888888;
+}
+
+pre.rouge .gp {
+    color: #555555;
+}
+
+pre.rouge .gs {
+    font-weight: bold;
+}
+
+pre.rouge .gu {
+    color: #aaaaaa;
+}
+
+pre.rouge .gt {
+    color: #aa0000;
+}
+
+pre.rouge .kc {
+    color: #000000;
+    font-weight: bold;
+}
+
+pre.rouge .kd {
+    color: #000000;
+    font-weight: bold;
+}
+
+pre.rouge .kn {
+    color: #000000;
+    font-weight: bold;
+}
+
+pre.rouge .kp {
+    color: #000000;
+    font-weight: bold;
+}
+
+pre.rouge .kr {
+    color: #000000;
+    font-weight: bold;
+}
+
+pre.rouge .kt {
+    color: #445588;
+    font-weight: bold;
+}
+
+pre.rouge .k, pre.rouge .kv {
+    color: #000000;
+    font-weight: bold;
+}
+
+pre.rouge .mf {
+    color: #009999;
+}
+
+pre.rouge .mh {
+    color: #009999;
+}
+
+pre.rouge .il {
+    color: #009999;
+}
+
+pre.rouge .mi {
+    color: #009999;
+}
+
+pre.rouge .mo {
+    color: #009999;
+}
+
+pre.rouge .m, pre.rouge .mb, pre.rouge .mx {
+    color: #009999;
+}
+
+pre.rouge .sb {
+    color: #d14;
+}
+
+pre.rouge .sc {
+    color: #d14;
+}
+
+pre.rouge .sd {
+    color: #d14;
+}
+
+pre.rouge .s2 {
+    color: #d14;
+}
+
+pre.rouge .se {
+    color: #d14;
+}
+
+pre.rouge .sh {
+    color: #d14;
+}
+
+pre.rouge .si {
+    color: #d14;
+}
+
+pre.rouge .sx {
+    color: #d14;
+}
+
+pre.rouge .sr {
+    color: #009926;
+}
+
+pre.rouge .s1 {
+    color: #d14;
+}
+
+pre.rouge .ss {
+    color: #990073;
+}
+
+pre.rouge .s, pre.rouge .sa, pre.rouge .dl {
+    color: #d14;
+}
+
+pre.rouge .na {
+    color: #008080;
+}
+
+pre.rouge .bp {
+    color: #999999;
+}
+
+pre.rouge .nb {
+    color: #0086B3;
+}
+
+pre.rouge .nc {
+    color: #445588;
+    font-weight: bold;
+}
+
+pre.rouge .no {
+    color: #008080;
+}
+
+pre.rouge .nd {
+    color: #3c5d5d;
+    font-weight: bold;
+}
+
+pre.rouge .ni {
+    color: #800080;
+}
+
+pre.rouge .ne {
+    color: #990000;
+    font-weight: bold;
+}
+
+pre.rouge .nf, pre.rouge .fm {
+    color: #990000;
+    font-weight: bold;
+}
+
+pre.rouge .nl {
+    color: #990000;
+    font-weight: bold;
+}
+
+pre.rouge .nn {
+    color: #555555;
+}
+
+pre.rouge .nt {
+    color: #000080;
+}
+
+pre.rouge .vc {
+    color: #008080;
+}
+
+pre.rouge .vg {
+    color: #008080;
+}
+
+pre.rouge .vi {
+    color: #008080;
+}
+
+pre.rouge .nv, pre.rouge .vm {
+    color: #008080;
+}
+
+pre.rouge .ow {
+    color: #000000;
+    font-weight: bold;
+}
+
+pre.rouge .o {
+    color: #000000;
+    font-weight: bold;
+}
+
+pre.rouge .w {
+    color: #bbbbbb;
+}
+
+pre.rouge {
+    background-color: #f8f8f8;
+}
+
+/*#content > h1:first-child:not([class]), body {*/
+/*    background-color: #45494a;*/
+/*    color: #bbbbbb*/
+/*}*/
+
+/*.content > pre {*/
+/*    filter: invert(90%) hue-rotate(180deg);*/
+/*}*/
+
+/*a, a:hover, a:focus {*/
+/*    color: #589df6;*/
+/*}*/
+
+/*table.tableblock, th.tableblock, td.tableblock {*/
+/*    color: #bbbbbb*/
+/*}*/
+
+/*!* was: rgba(0,0,0,.8) *!*/
+/*table:not(.linenotable):not(.CodeRay) thead tr th, table thead tr td, table:not(.linenotable):not(.CodeRay) tfoot tr th, table:not(.linenotable):not(.CodeRay) tfoot tr td {*/
+/*    color: #bbbbbb*/
+/*}*/
+
+/*abbr, acronym {*/
+/*    color: #bbbbbb*/
+/*}*/
+
+/*table:not(.linenotable):not(.CodeRay) tr th, table tr td {*/
+/*    color: #bbbbbb*/
+/*}*/
+
+/*kbd {*/
+/*    background-color: #626262 !important;*/
+/*    color: #bbbbbb;*/
+/*    -webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, .2), 0 0 0 .1em #777 inset;*/
+/*    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2), 0 0 0 .1em #777 inset*/
+/*}*/
+
+/*.menuseq, .menu {*/
+/*    color: #bbbbbb*/
+/*}*/
+
+/*#footer {*/
+/*    color: #bbbbbb*/
+/*}*/
+
+/*tbody tr th, tbody tr th p, tfoot tr th, tfoot tr th p {*/
+/*    color: #bbbbbb*/
+/*}*/
+
+/*.conum[data-value] {*/
+/*    color: #bbbbbb*/
+/*}*/
+
+/*!* was: rgba(0,0,0,.85) *!*/
+/*.paragraph.lead > p, #preamble > .sectionbody > .paragraph:first-of-type p {*/
+/*    color: #bbbbbb*/
+/*}*/
+
+/*.quoteblock blockquote, .quoteblock blockquote p {*/
+/*    color: #bbbbbb*/
+/*}*/
+
+/*#content > h1:first-child:not([class]) {*/
+/*    color: #bbbbbb*/
+/*}*/
+
+/*#header .details br + span.author:before {*/
+/*    color: #bbbbbb*/
+/*}*/
+
+/*#header .details span.email a {*/
+/*    color: #bbbbbb*/
+/*}*/
+
+/*#header > h1:first-child {*/
+/*    color: #bbbbbb*/
+/*}*/
+
+/*blockquote, blockquote p {*/
+/*    color: #bbbbbb*/
+/*}*/
+
+/*!* was: rgba(0,0,0,.6) *!*/
+/*blockquote cite a, blockquote cite a:visited {*/
+/*    color: #bbbbbb*/
+/*}*/
+
+/*#header .details {*/
+/*    color: #bbbbbb*/
+/*}*/
+
+/*.admonitionblock > table td.content {*/
+/*    color: #bbbbbb*/
+/*}*/
+
+/*.quoteblock .quoteblock {*/
+/*    color: #bbbbbb*/
+/*}*/
+
+/*.quoteblock .attribution cite, .verseblock .attribution cite {*/
+/*    color: #bbbbbb*/
+/*}*/
+
+/*!* was: f8f8f7 *!*/
+/*table:not(.linenotable):not(.CodeRay) tbody tr {*/
+/*    background: #45494a*/
+/*}*/
+
+/*table:not(.linenotable):not(.CodeRay) tr.even, table tr.alt, table tr:nth-of-type(even) {*/
+/*    background: #626262*/
+/*}*/
+
+/*!* was f7f8f7 *!*/
+/*table:not(.linenotable):not(.CodeRay) thead, table tfoot {*/
+/*    background: #626262*/
+/*}*/
+
+/*tbody tr th {*/
+/*    background: #626262*/
+/*}*/
+
+/*!* was: 7a2518 *!*/
+/*.subheader, .admonitionblock td.content > .title, .audioblock > .title, .exampleblock > .title, .imageblock > .title, .listingblock > .title, .literalblock > .title, .stemblock > .title, .openblock > .title, .paragraph > .title, .quoteblock > .title, table.tableblock > .title, .verseblock > .title, .videoblock > .title, .dlist > .title, .olist > .title, .ulist > .title, .qlist > .title, .hdlist > .title,*/
+/*#toctitle,*/
+/*.sidebarblock > .content > .title,*/
+/*.quoteblock blockquote::before,*/
+/*    !* was: several *!*/
+/*td.icon {*/
+/*    filter: invert(90%) hue-rotate(180deg);*/
+/*}*/
+
+/*!* was: f8f8f7 *!*/
+/*.sidebarblock, .exampleblock, .exampleblock > .content {*/
+/*    background: #626262;*/
+/*    border-color: #626262;*/
+/*    box-shadow: 0 1px 4px #626262*/
+/*}*/
+
+/*!* was: f7f7f8 *!*/
+/*.exampleblock > .content > :last-child > :last-child, .exampleblock > .content .olist > ol > li:last-child > :last-child, .exampleblock > .content .ulist > ul > li:last-child > :last-child, .exampleblock > .content .qlist > ol > li:last-child > :last-child, .sidebarblock > .content > :last-child > :last-child, .sidebarblock > .content .olist > ol > li:last-child > :last-child, .sidebarblock > .content .ulist > ul > li:last-child > :last-child, .sidebarblock > .content .qlist > ol > li:last-child > :last-child {*/
+/*    margin-bottom: 0*/
+/*}*/
+
+/*#toc {*/
+/*    background-color: #626262 !important;*/
+/*    border-color: #626262 !important;*/
+/*}*/
+
+/*h1, h2, h3, #toctitle, .sidebarblock > .content > .title, h4, h5, h6 {*/
+/*    color: #cccccc*/
+/*}*/
+
+/*!* scroll bar color change to match the dark scheme *!*/
+/*::-webkit-scrollbar {*/
+/*    width: 12px;*/
+/*    height: 12px;*/
+/*    background-color: inherit;*/
+/*}*/
+
+/*::-webkit-scrollbar-thumb {*/
+/*    -webkit-border-radius: 10px;*/
+/*    border: 2px solid #2c2c2c;*/
+/*    background-color: #404040;*/
+/*}*/
+
+/*::-webkit-scrollbar-track {*/
+/*    width: 12px;*/
+/*    height: 12px;*/
+/*    background-color: #2c2c2c;*/
+/*}*/
+</style>
+</head>
+<body class="article toc2 toc-left">
+<div id="header">
+<h1>3. 정규화 이론</h1>
+<div id="toc" class="toc2">
+<div id="toctitle">데이터베이스</div>
+<ul class="sectlevel1">
+<li><a href="#_3_0_개요">3.0. 개요</a></li>
+<li><a href="#_3_1_데이터_종속_문제">3.1. 데이터 종속 문제</a>
+<ul class="sectlevel2">
+<li><a href="#_이상anomaly">이상(Anomaly)</a></li>
+</ul>
+</li>
+<li><a href="#_3_2_함수적_종속성">3.2. 함수적 종속성</a>
+<ul class="sectlevel2">
+<li><a href="#_완전_함수_종속">완전 함수 종속</a></li>
+<li><a href="#_부분_함수_종속">부분 함수 종속</a></li>
+<li><a href="#_이행적_함수_종속">이행적 함수 종속</a></li>
+</ul>
+</li>
+<li><a href="#_3_3_추론_규칙">3.3. 추론 규칙</a>
+<ul class="sectlevel2">
+<li><a href="#_3_3_1_암스트롱의_추론_규칙">3.3.1. 암스트롱의 추론 규칙</a></li>
+<li><a href="#_3_3_2_페포closure_이론">3.3.2. 페포(Closure) 이론</a></li>
+<li><a href="#_3_3_3_cover">3.3.3. Cover</a></li>
+<li><a href="#_3_3_4_함수적_종속성들의_집합_f의_최소minimal">3.3.4. 함수적 종속성들의 집합 F의 최소(Minimal)</a></li>
+<li><a href="#_3_3_5_minimal_cover">3.3.5. Minimal Cover</a></li>
+</ul>
+</li>
+<li><a href="#_3_4_정규화">3.4. 정규화</a>
+<ul class="sectlevel2">
+<li><a href="#_3_4_1_제1_정규형1nf">3.4.1. 제1 정규형(1NF)</a></li>
+<li><a href="#_3_4_2_제2_정규형2nf">3.4.2. 제2 정규형(2NF)</a></li>
+<li><a href="#_3_4_3_제3_정규형3nf">3.4.3. 제3 정규형(3NF)</a></li>
+<li><a href="#_3_4_4_bcnf">3.4.4. BCNF</a></li>
+<li><a href="#_3_4_5_제4_정규형4nf">3.4.5. 제4 정규형(4NF)</a></li>
+<li><a href="#_3_4_6_제5_정규형5nf">3.4.6. 제5 정규형(5NF)</a></li>
+<li><a href="#_3_4_7_정규화_단계">3.4.7 정규화 단계</a></li>
+<li><a href="#_3_4_8_반정규화de_normalization">3.4.8. 반정규화(De-Normalization)</a></li>
+<li><a href="#_3_4_9_연결함정connection_trap">3.4.9. 연결함정(Connection Trap)</a></li>
+<li><a href="#_3_4_10_부채꼴함정fan_trap">3.4.10. 부채꼴함정(Fan Trap)</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="content">
+<div class="sect1">
+<h2 id="_3_0_개요">3.0. 개요</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>개념적 설계 단계와 논리적 설계 단계 사이에서 수행</p>
+</li>
+<li>
+<p>개체에 존재하는 함수적 종속 관계를 이용하여 데이터베이스 구조를 안정화 시킨다.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_3_1_데이터_종속_문제">3.1. 데이터 종속 문제</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_이상anomaly">이상(Anomaly)</h3>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">삽입이상(Insertion Anomaly)</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>원하지 않은 값들도 함께 삽입되는 현상</p>
+</li>
+<li>
+<p>새 데이터를 삽입하기 위해 불필요한 데이터도 함께 삽입해야 하는 문제</p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">갱신이상(Update Anomaly)</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>일부 튜플의 정보만 갱신되어 정보에 모순이 생기는 현상</p>
+</li>
+<li>
+<p>중복 튜플 중 일부만 변경하여 데이터가 불일치하게 되는 모순의 문제</p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">삭제이상(Deletion Anomaly)</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>상관없는 값들도 함께 삭제되는 연쇄 삭제 현상</p>
+</li>
+<li>
+<p>튜플을 삭제하면 꼭 필요한 데이터까지 함께 삭제되는 데이터 손실의 문제</p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_3_2_함수적_종속성">3.2. 함수적 종속성</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>(FD: Functional Dependency)</p>
+</div>
+<div class="paragraph">
+<p>Relation R의 애트리뷰트들의 집합 X의 값이 애트리뷰트들의 집합 Y의 값을 유일하게(Unique) 결정한다면<br>
+'집합 X 는 집합 Y 를 함수적으로 결정' 한다고 한다.</p>
+</div>
+<div class="paragraph">
+<p><a href="https://yaboong.github.io/database/2018/03/09/database-anomaly-and-functional-dependency" class="bare">https://yaboong.github.io/database/2018/03/09/database-anomaly-and-functional-dependency</a></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>X &#8594; Y</p>
+<div class="ulist">
+<ul>
+<li>
+<p>X : 결정자(Determinant)</p>
+</li>
+<li>
+<p>Y : 종속자(Dependent)</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>R = { 학번, 과목, 성적, 학년 }</p>
+</div>
+<div class="sect2">
+<h3 id="_완전_함수_종속">완전 함수 종속</h3>
+<div class="paragraph">
+<p>X = { <strong>학번</strong>, <strong>과목</strong> }, Y = { <strong>성적</strong> } 일 때, Y 는 X 에 대해 <strong>완전 함수 종속</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>학번과 과목 을 모두 알아야 성적을 알 수 있다.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_부분_함수_종속">부분 함수 종속</h3>
+<div class="paragraph">
+<p>X = { <em>학번</em>, <strong>과목</strong> }, S = { <strong>학년</strong> } 일 때, S 는 X 에 대해 <strong>부분 함수 종속</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>학번과 과목 중 학번 만으로 학년을 알 수 있다.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_이행적_함수_종속">이행적 함수 종속</h3>
+<div class="paragraph">
+<p>X &#8594; Y 이고 Y &#8594; Z 이며, X &#8594; Z 가 성립할 때</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_3_3_추론_규칙">3.3. 추론 규칙</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_3_3_1_암스트롱의_추론_규칙">3.3.1. 암스트롱의 추론 규칙</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><em>재귀</em> 규칙 : <strong>Y &sube; X</strong> 이면, <strong>X &#8594; Y</strong> 이다</p>
+</li>
+<li>
+<p><em>부가</em> 규칙 : <strong>X &#8594; Y</strong> 이면, <strong>XZ &#8594; YZ</strong> 이다 (XZ = X &cup; Z)</p>
+</li>
+<li>
+<p><em>이행</em> 규칙 : <strong>X &#8594; Y</strong> 이고 <strong>Y &#8594; Z</strong> 이면, <strong>X &#8594; Z</strong> 이다</p>
+</li>
+<li>
+<p>분해 규칙 : <strong>X &#8594; YZ</strong> 이면, <strong>X &#8594; Y</strong> 이고, <strong>X &#8594; Z</strong> 이다</p>
+</li>
+<li>
+<p>합집합 규칙 : <strong>X &#8594; Y</strong> 이고, <strong>X &#8594; Z</strong> 이면, <strong>X &#8594; YZ</strong> 이다 (분해 규칙의 역)</p>
+</li>
+<li>
+<p>의사이행 규칙 : <strong>X &#8594; Y</strong> 이고, <strong>WY &#8594; Z</strong> 이면, <strong>WX &#8594; Z</strong> 이다</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_3_3_2_페포closure_이론">3.3.2. 페포(Closure) 이론</h3>
+<div class="paragraph">
+<p>X 에 종속되었다고 추론할 수 있는 모든 집합</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>X &#8594; YZ 일 때, X+ = X, Y, Z</p>
+<div class="ulist">
+<ul>
+<li>
+<p>X: 자기 자신</p>
+</li>
+<li>
+<p>X &#8594; Y and X &#8594; Z 성립</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="sect3">
+<h4 id="_eg">eg&gt;</h4>
+<div class="paragraph">
+<p>R = { A, B, C, D, E }</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>{ A } &#8594; { C }</p>
+</li>
+<li>
+<p>{ B } &#8594; { D }</p>
+</li>
+<li>
+<p>{ A, B } &#8594; { E }</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>일 때,</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>A+ = { A, C }</p>
+<div class="ulist">
+<ul>
+<li>
+<p>A 자신, A &#8594; C</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>B+ = { B, D }</p>
+<div class="ulist">
+<ul>
+<li>
+<p>B 자신, B &#8594; D</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>{ A, B }+ = { <mark>A, C</mark>, <mark>B, D</mark>, <mark>E</mark> }</p>
+<div class="ulist">
+<ul>
+<li>
+<p>A 자신</p>
+</li>
+<li>
+<p>A &#8594; C 에 의해 C</p>
+</li>
+<li>
+<p>B 자신</p>
+</li>
+<li>
+<p>B &#8594; D 에 의해 D</p>
+</li>
+<li>
+<p>AB &#8594; E 에 의해 E</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>&#8594; { A, B }+ 가 R 의 모든 속성(Attribute)를 가지므로, R 의 Key 는 { A, B } 가 됨</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_3_3_3_cover">3.3.3. Cover</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>G+ &sube; F+ 이면, F 가 G 를 덮는다(Cover)</p>
+</li>
+<li>
+<p>G+ = F+ 이면, G 와 F 는 동등하다.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_3_3_4_함수적_종속성들의_집합_f의_최소minimal">3.3.4. 함수적 종속성들의 집합 F의 최소(Minimal)</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>조건 1. F 의 모든 종속성의 오른쪽 속성(Attribute)이 1개이다 (오른쪽 한개로)</p>
+</li>
+<li>
+<p>조건 2. 대체 가능한 함수적 종속성이 없다 (왼쪽을 1개로)</p>
+</li>
+<li>
+<p>조건 3. 제거 가능한 함수적 종속성이 없다 (중복 제거)</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_3_3_5_minimal_cover">3.3.5. Minimal Cover</h3>
+<div class="paragraph">
+<p>E = { B &#8594; A, D &#8594; A, AB &#8594; D} 일때</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">조건 1. </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>모든 종속성의 오른쪽 속성이 1개 이다. OK</p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">조건 2. </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>AB &#8594; D 를 A &#8594; D 또는 B &#8594; D 로 대치 가능 한가?</p>
+</li>
+<li>
+<p>B &#8594; A = BB &#8594; AB = B &#8594; AB (부가규칙)</p>
+</li>
+<li>
+<p>B &#8594; AB 이고, AB &#8594; D 이므로 B &#8594; D (이행규칙)</p>
+</li>
+<li>
+<p>E = { B &#8594; A, D &#8594; A, <span class="line-through">AB &#8594; D</span> <mark>B &#8594; D</mark> }</p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">조건 3. </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>B &#8594; D 이고, D &#8594; A 이므로 <strong>B &#8594; A</strong> (이행규칙)</p>
+</li>
+<li>
+<p>E = { <span class="line-through">B &#8594; A</span>, D &#8594; A, B &#8594; D }</p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_3_4_정규화">3.4. 정규화</h2>
+<div class="sectionbody">
+<div class="dlist">
+<dl>
+<dt class="hdlist1">무손실 분해(Lossless Decomposition)</dt>
+<dd>
+<p>저장 정보 손실이 없어야 함</p>
+</dd>
+<dt class="hdlist1">종속 보전 분해</dt>
+<dd>
+<p>함수적 종속성 유지 되어야 함</p>
+</dd>
+</dl>
+</div>
+<div class="sect2">
+<h3 id="_3_4_1_제1_정규형1nf">3.4.1. 제1 정규형(1NF)</h3>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 1. Relation R</caption>
+<colgroup>
+<col style="width: 14.2857%;">
+<col style="width: 14.2857%;">
+<col style="width: 14.2857%;">
+<col style="width: 14.2857%;">
+<col style="width: 14.2857%;">
+<col style="width: 14.2857%;">
+<col style="width: 14.2858%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-center valign-top"><span class="underline">학번</span></th>
+<th class="tableblock halign-center valign-top">이름</th>
+<th class="tableblock halign-center valign-top"><span class="underline">과목</span></th>
+<th class="tableblock halign-center valign-top">교수</th>
+<th class="tableblock halign-center valign-top">학점</th>
+<th class="tableblock halign-center valign-top">학과</th>
+<th class="tableblock halign-center valign-top">학비</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">100</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">가가</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><em>수학, 물리</em></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><em>나수학, 나물리</em></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><em>A, C</em></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">전산</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">1000</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">200</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">나나</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">물리</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">나물리</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">A</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">기계</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">1200</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">200</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">나나</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">화학</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">나화학</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">B</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">기계</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">1200</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">300</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">다다</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">화학</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">나화학</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">D</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">컴공</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">1400</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">400</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">라라</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">코딩</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">나코딩</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">C</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">컴공</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">1400</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">500</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">마마</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">자바</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">나자바</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">F</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">컴공</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">1400</p></td>
+</tr>
+</tbody>
+</table>
+<div class="sect3">
+<h4 id="_제1_정규형1nf">제1 정규형(1NF)</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>R 의 모든 도메인이 원자값(Atomic Value)으로 되 있을 때</p>
+</li>
+<li>
+<p>복합, 다치, 중첩 릴레이션 등 비원자적(Non-Atomic) 속성(Attribute)을 허용 하지 않음</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_제1_정규화_결과">제1 정규화 결과</h4>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 2. Relation R</caption>
+<colgroup>
+<col style="width: 14.2857%;">
+<col style="width: 14.2857%;">
+<col style="width: 14.2857%;">
+<col style="width: 14.2857%;">
+<col style="width: 14.2857%;">
+<col style="width: 14.2857%;">
+<col style="width: 14.2858%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-center valign-top"><span class="underline">학번</span></th>
+<th class="tableblock halign-center valign-top">이름</th>
+<th class="tableblock halign-center valign-top"><span class="underline">과목</span></th>
+<th class="tableblock halign-center valign-top">교수</th>
+<th class="tableblock halign-center valign-top">학점</th>
+<th class="tableblock halign-center valign-top">학과</th>
+<th class="tableblock halign-center valign-top">학비</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">100</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">가가</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">수학</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">나수학</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">A</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">전산</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">1000</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">100</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">가가</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">물리</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">나물리</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">C</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">전산</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">1000</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">200</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">나나</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">물리</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">나물리</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">A</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">기계</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">1200</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">200</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">나나</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">화학</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">나화학</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">B</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">기계</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">1200</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">300</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">다다</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">화학</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">나화학</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">D</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">컴공</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">1400</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">400</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">라라</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">코딩</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">나코딩</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">C</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">컴공</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">1400</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">500</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">마마</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">자바</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">나자바</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">F</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">컴공</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">1400</p></td>
+</tr>
+</tbody>
+</table>
+<div class="ulist">
+<ul>
+<li>
+<p>부분 함수종속 이 존재함</p>
+<div class="ulist">
+<ul>
+<li>
+<p>{학번, 과목} &#8594; 이름</p>
+</li>
+<li>
+<p>{학번, 과목} &#8594; 교수</p>
+</li>
+<li>
+<p>{학번, 과목} &#8594; 학점</p>
+</li>
+<li>
+<p>{학번, 과목} &#8594; 학과</p>
+</li>
+<li>
+<p>{학번, 과목} &#8594; 학비</p>
+<div class="ulist">
+<ul>
+<li>
+<p>학번 &#8594; 이름</p>
+</li>
+<li>
+<p>학번 &#8594; 학과</p>
+</li>
+<li>
+<p>학번 &#8594; 학비</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_제1_정규형1nf_문제점">제1 정규형(1NF) 문제점</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>삽입이상</p>
+</li>
+<li>
+<p>갱신이상</p>
+</li>
+<li>
+<p>삭제이상</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_3_4_2_제2_정규형2nf">3.4.2. 제2 정규형(2NF)</h3>
+<div class="sect3">
+<h4 id="_제2_정규형2nf">제2 정규형(2NF)</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>부분함수종속 제거</p>
+</li>
+<li>
+<p>R 이 제1 정규형 이고, 모든 속성(Attribute) 가 <mark>기본키</mark>에 <mark>완전함수종속</mark> 일 때</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_제2_정규화_결과">제2 정규화 결과</h4>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 3. Relation R1</caption>
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-center valign-top"><span class="underline">학번</span></th>
+<th class="tableblock halign-center valign-top"><span class="underline">과목</span></th>
+<th class="tableblock halign-center valign-top">교수</th>
+<th class="tableblock halign-center valign-top">학점</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">100</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">수학</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">나수학</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">A</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">100</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">물리</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">나물리</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">C</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">200</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">물리</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">나물리</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">A</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">200</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">화학</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">나화학</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">B</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">300</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">화학</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">나화학</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">D</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">400</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">코딩</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">나코딩</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">C</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">500</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">자바</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">나자바</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">F</p></td>
+</tr>
+</tbody>
+</table>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 4. Relation R2</caption>
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-center valign-top"><span class="underline">학번</span></th>
+<th class="tableblock halign-center valign-top">이름</th>
+<th class="tableblock halign-center valign-top">학과</th>
+<th class="tableblock halign-center valign-top">학비</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">100</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">가가</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">전산</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">1000</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">200</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">나나</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">기계</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">1200</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">300</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">다다</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">컴공</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">1400</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">400</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">라라</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">컴공</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">1400</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">500</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">마마</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">컴공</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">1400</p></td>
+</tr>
+</tbody>
+</table>
+<div class="ulist">
+<ul>
+<li>
+<p>이행적 함수종속</p>
+<div class="ulist">
+<ul>
+<li>
+<p>학번 &#8594; 학과 and 학과 &#8594; 학비</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_제2_정규형2nf_문제점">제2 정규형(2NF) 문제점</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>삽입이상</p>
+</li>
+<li>
+<p>갱신이상</p>
+</li>
+<li>
+<p>삭제이상</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_3_4_3_제3_정규형3nf">3.4.3. 제3 정규형(3NF)</h3>
+<div class="sect3">
+<h4 id="_제3_정규형3nf">제3 정규형(3NF)</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>이행적 함수종속 제거</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_제3_정규화_결과">제3 정규화 결과</h4>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 5. Relation R2-1</caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-center valign-top"><span class="underline">학번</span></th>
+<th class="tableblock halign-center valign-top">이름</th>
+<th class="tableblock halign-center valign-top">학과</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">100</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">가가</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">전산</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">200</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">나나</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">기계</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">300</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">다다</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">컴공</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">400</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">라라</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">컴공</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">500</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">마마</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">컴공</p></td>
+</tr>
+</tbody>
+</table>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 6. Relation R2-1</caption>
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-center valign-top">학과</th>
+<th class="tableblock halign-center valign-top">학비</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">전산</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">1000</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">기계</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">1200</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">컴공</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">1400</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_제3_정규형3nf_문제점">제3 정규형(3NF) 문제점</h4>
+
+</div>
+</div>
+<div class="sect2">
+<h3 id="_3_4_4_bcnf">3.4.4. BCNF</h3>
+<div class="sect3">
+<h4 id="_bcnf">BCNF</h4>
+
+</div>
+<div class="sect3">
+<h4 id="_bcnf_결과">BCNF 결과</h4>
+
+</div>
+<div class="sect3">
+<h4 id="_bcnf_문제점">BCNF 문제점</h4>
+
+</div>
+</div>
+<div class="sect2">
+<h3 id="_3_4_5_제4_정규형4nf">3.4.5. 제4 정규형(4NF)</h3>
+
+</div>
+<div class="sect2">
+<h3 id="_3_4_6_제5_정규형5nf">3.4.6. 제5 정규형(5NF)</h3>
+
+</div>
+<div class="sect2">
+<h3 id="_3_4_7_정규화_단계">3.4.7 정규화 단계</h3>
+
+</div>
+<div class="sect2">
+<h3 id="_3_4_8_반정규화de_normalization">3.4.8. 반정규화(De-Normalization)</h3>
+
+</div>
+<div class="sect2">
+<h3 id="_3_4_9_연결함정connection_trap">3.4.9. 연결함정(Connection Trap)</h3>
+
+</div>
+<div class="sect2">
+<h3 id="_3_4_10_부채꼴함정fan_trap">3.4.10. 부채꼴함정(Fan Trap)</h3>
+
+</div>
+</div>
+</div>
+</div>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  messageStyle: "none",
+  tex2jax: {
+    inlineMath: [["\\(", "\\)"]],
+    displayMath: [["\\[", "\\]"]],
+    ignoreClass: "nostem|nolatexmath"
+  },
+  asciimath2jax: {
+    delimiters: [["\\$", "\\$"]],
+    ignoreClass: "nostem|noasciimath"
+  },
+  TeX: { equationNumbers: { autoNumber: "none" } }
+})
+MathJax.Hub.Register.StartupHook("AsciiMath Jax Ready", function () {
+  MathJax.InputJax.AsciiMath.postfilterHooks.Add(function (data, node) {
+    if ((node = data.script.parentNode) && (node = node.parentNode) && node.classList.contains("stemblock")) {
+      data.math.root.display = "block"
+    }
+    return data
+  })
+})
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js?config=TeX-MML-AM_HTMLorMML"></script>
+</body>
+</html>
